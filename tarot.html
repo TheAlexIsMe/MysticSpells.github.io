@@ -4,550 +4,883 @@
 <meta charset="UTF-8">
 <title>Mystic Spells – Tarot Readings</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="icon" href="https://i.imgur.com/6NZVG2f.png" type="image/png">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{
-font-family:"Montserrat",sans-serif;
-background:radial-gradient(circle at center,#3c1a6e 0%,#1f1238 40%,#0d0818 80%,#000 100%);
-color:#e9ddff;
-overflow-x:hidden
-}
-#loginOverlay{
-position:fixed;inset:0;
-background:rgba(10,0,25,0.92);
-backdrop-filter:blur(8px);
-display:flex;justify-content:center;align-items:center;
-z-index:9999
-}
-#loginOverlayInner{
-background:linear-gradient(145deg,#120d1f,#1c1530);
-padding:40px 30px;border-radius:20px;
-box-shadow:0 0 35px rgba(164,124,243,0.4);
-width:320px;text-align:center;
-animation:fadeIn .6s ease
-}
-#loginLogo{width:120px;margin-bottom:20px}
-.login-field{
-background:rgba(255,255,255,0.08);
-border-radius:10px;padding:10px;margin-bottom:12px
-}
-.login-field input{
-width:100%;background:none;border:none;outline:none;
-color:#fff;font-size:14px
-}
-#loginButton{
-width:100%;padding:10px;margin-top:10px;border:none;border-radius:10px;
-background:linear-gradient(135deg,#A47CF3,#683FEA);
-color:white;font-weight:600;cursor:pointer;transition:.2s
-}
-#loginButton:hover{box-shadow:0 0 20px rgba(164,124,243,0.7)}
-#loginError{margin-top:10px;color:#ff7a7a;font-size:13px;min-height:18px}
-@keyframes fadeIn{from{opacity:0;transform:scale(.95)}to{opacity:1;transform:scale(1)}}
-#mainHeader{
-display:flex;justify-content:space-between;align-items:center;
-padding:14px 30px;
-background:rgba(10,0,25,0.6);
-backdrop-filter:blur(6px);
-border-bottom:1px solid rgba(255,255,255,0.1)
-}
-#navLogo{display:flex;align-items:center;gap:10px}
-#navLogo img{width:40px}
-#navLogo span{font-size:20px;font-weight:600;color:#e9ddff}
-#mainNav{display:flex;gap:12px}
-.nav-btn{
-padding:8px 16px;border-radius:999px;
-border:1px solid rgba(255,255,255,0.15);
-background:rgba(255,255,255,0.05);
-color:#e9ddff;cursor:pointer;transition:.2s
-}
-.nav-btn:hover{
-background:rgba(164,124,243,0.3);
-box-shadow:0 0 12px rgba(164,124,243,0.5)
-}
-.page-section{
-padding:40px 20px;
-max-width:1200px;margin:0 auto
-}
-#tarotHero{text-align:center;margin-bottom:30px}
-#tarotLogo{width:140px;margin-bottom:10px}
-#tarotHero h1{font-size:42px;color:#f2e6ff}
-#tarotSubtitle{
-font-size:18px;color:#e8d8ff;
-max-width:650px;margin:10px auto
-}
-#tarotNote{font-size:14px;color:#c7b8f5}
-#tarotControlsCard{
-background:linear-gradient(145deg,#120d1f,#1c1530);
-border-radius:1.2rem;padding:20px;
-box-shadow:0 0 25px rgba(164,124,243,0.25);
-margin-bottom:30px
-}
-#tarotControlsGrid{
-display:grid;
-grid-template-columns:2fr 1.4fr;
-gap:20px
-}
-@media(max-width:900px){
-#tarotControlsGrid{grid-template-columns:1fr}
-}
-.controls-group-title{
-font-size:16px;font-weight:600;margin-bottom:8px;color:#fff
-}
-.pill-row,.toggle-row{
-display:flex;flex-wrap:wrap;gap:8px
-}
-.pill,.toggle-pill{
-padding:7px 12px;border-radius:999px;
-border:1px solid rgba(255,255,255,0.18);
-background:rgba(10,8,20,0.7);
-font-size:13px;cursor:pointer;color:#e9ddff;transition:.2s
-}
-.pill.active{
-background:linear-gradient(135deg,#A47CF3,#683FEA);
-box-shadow:0 0 18px rgba(164,124,243,0.6)
-}
-.toggle-pill.active{
-background:linear-gradient(135deg,#ff7ad9,#b13cff);
-box-shadow:0 0 18px rgba(255,122,217,0.7)
-}
-#generateBtn{
-width:100%;padding:12px;border-radius:999px;border:none;
-background:linear-gradient(135deg,#A47CF3,#683FEA);
-color:white;font-weight:600;cursor:pointer;transition:.2s
-}
-#generateBtn:hover{box-shadow:0 0 25px rgba(164,124,243,0.9)}
-#shuffleAnimation{
-height:120px;margin:20px auto;
-background:url('https://i.imgur.com/3xVJt8W.gif') center/contain no-repeat
-}
-#loadingAnimation{text-align:center;margin:20px 0}
-.loading-circle{
-width:60px;height:60px;border:4px solid rgba(255,255,255,0.2);
-border-top-color:#A47CF3;border-radius:50%;
-margin:0 auto;animation:spin 1s linear infinite
-}
-.loading-text{margin-top:10px;color:#e9ddff;font-size:14px}
-@keyframes spin{to{transform:rotate(360deg)}}
-#resultsWrapper{
-display:grid;
-grid-template-columns:1.4fr 1.6fr;
-gap:24px
-}
-@media(max-width:900px){
-#resultsWrapper{grid-template-columns:1fr}
-}
-#cardsArea,#oracleArea{
-background:linear-gradient(145deg,#120d1f,#1c1530);
-border-radius:1.2rem;padding:20px;
-box-shadow:0 0 25px rgba(164,124,243,0.25)
-}
-.section-title{font-size:16px;font-weight:600;margin-bottom:8px}
-.section-sub{font-size:13px;color:#cfc4e8;margin-bottom:14px}
-#cardsGrid{
-display:flex;flex-wrap:wrap;gap:12px;justify-content:center
-}
-.card-display{
-width:120px;min-height:190px;border-radius:10px;
-background:radial-gradient(circle at top,#3c2a6e,#120d1f);
-border:1px solid rgba(255,255,255,0.18);
-box-shadow:0 0 18px rgba(164,124,243,0.35);
-padding:6px;text-align:center;font-size:12px;color:#f5ecff;
-opacity:0;transform:translateY(10px) scale(.96);
-animation:cardFadeIn .4s forwards
-}
-@keyframes cardFadeIn{
-to{opacity:1;transform:translateY(0) scale(1)}
-}
+  body {
+    margin: 0;
+    font-family: "Montserrat", sans-serif;
+    background: radial-gradient(circle at center,
+      #3c1a6e 0%,
+      #1f1238 40%,
+      #0d0818 80%,
+      #000 100%
+    );
+    color: #e9ddff;
+  }
+
+  .page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px 20px 60px;
+  }
+
+  .hero {
+    text-align: center;
+    padding: 60px 10px 40px;
+    position: relative;
+  }
+
+  .hero::before {
+    content: "";
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    width: 420px;
+    height: 420px;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(circle, rgba(164,124,243,0.45), rgba(0,0,0,0));
+    border-radius: 50%;
+    filter: blur(40px);
+    z-index: -1;
+  }
+
+  .logo {
+    width: 140px;
+    display: block;
+    margin: 0 auto 15px;
+  }
+
+  h1 {
+    font-size: 42px;
+    margin: 0 0 8px;
+    color: #f2e6ff;
+  }
+
+  .subtitle {
+    font-size: 18px;
+    color: #e8d8ff;
+    max-width: 650px;
+    margin: 0 auto 20px;
+  }
+
+  .hero-note {
+    font-size: 14px;
+    color: #c7b8f5;
+    opacity: 0.9;
+  }
+
+  .controls-card {
+    margin-top: 30px;
+    background: linear-gradient(145deg, #120d1f, #1c1530);
+    border-radius: 1.2rem;
+    padding: 20px 18px 22px;
+    box-shadow: 0 0 25px rgba(164,124,243,0.25);
+  }
+
+  .controls-grid {
+    display: grid;
+    grid-template-columns: 2fr 1.4fr;
+    gap: 20px;
+  }
+
+  @media (max-width: 900px) {
+    .controls-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .controls-group-title {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #ffffff;
+  }
+
+  .pill-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .pill {
+    padding: 7px 12px;
+    border-radius: 999px;
+    border: 1px solid rgba(255,255,255,0.18);
+    background: rgba(10,8,20,0.7);
+    font-size: 13px;
+    cursor: pointer;
+    color: #e9ddff;
+    transition: all 0.2s ease;
+  }
+
+  .pill.active {
+    background: linear-gradient(135deg, #A47CF3, #683FEA);
+    border-color: transparent;
+    box-shadow: 0 0 18px rgba(164,124,243,0.6);
+  }
+
+  .pill:hover {
+    background: rgba(164,124,243,0.25);
+  }
+
+  .toggle-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 6px;
+  }
+
+  .toggle-pill {
+    padding: 6px 10px;
+    border-radius: 999px;
+    border: 1px solid rgba(255,255,255,0.18);
+    background: rgba(10,8,20,0.7);
+    font-size: 12px;
+    cursor: pointer;
+    color: #e9ddff;
+    transition: all 0.2s ease;
+  }
+
+  .toggle-pill.active {
+    background: linear-gradient(135deg, #ff7ad9, #b13cff);
+    border-color: transparent;
+    box-shadow: 0 0 18px rgba(255,122,217,0.7);
+  }
+
+  .generate-row {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  .generate-btn {
+    border: none;
+    border-radius: 999px;
+    padding: 12px 18px;
+    background: linear-gradient(135deg, #A47CF3, #683FEA);
+    color: white;
+    font-weight: 600;
+    font-size: 15px;
+    cursor: pointer;
+    box-shadow: 0 0 25px rgba(164,124,243,0.6);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    width: 100%;
+  }
+
+  .generate-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 0 35px rgba(164,124,243,0.9);
+  }
+
+  .small-note {
+    font-size: 12px;
+    color: #c7b8f5;
+    opacity: 0.9;
+  }
+
+  .results-wrapper {
+    margin-top: 35px;
+    display: grid;
+    grid-template-columns: 1.4fr 1.6fr;
+    gap: 24px;
+  }
+
+  @media (max-width: 900px) {
+    .results-wrapper {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .cards-area, .oracle-area {
+    background: linear-gradient(145deg, #120d1f, #1c1530);
+    border-radius: 1.2rem;
+    padding: 18px 16px 20px;
+    box-shadow: 0 0 25px rgba(164,124,243,0.25);
+  }
+
+  .section-title {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #ffffff;
+  }
+
+  .section-sub {
+    font-size: 13px;
+    color: #cfc4e8;
+    margin-bottom: 14px;
+  }
+
+  .cards-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+  }
+
+  .card-display {
+    width: 120px;
+    min-height: 190px;
+    border-radius: 10px;
+    background: radial-gradient(circle at top, #3c2a6e, #120d1f);
+    border: 1px solid rgba(255,255,255,0.18);
+    box-shadow: 0 0 18px rgba(164,124,243,0.35);
+    padding: 6px;
+    text-align: center;
+    font-size: 12px;
+    color: #f5ecff;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    opacity: 0;
+    transform: translateY(10px) scale(0.96);
+    animation: cardFadeIn 0.4s forwards;
+  }
+
+  .card-display:nth-child(2) { animation-delay: 0.05s; }
+  .card-display:nth-child(3) { animation-delay: 0.1s; }
+  .card-display:nth-child(4) { animation-delay: 0.15s; }
+  .card-display:nth-child(5) { animation-delay: 0.2s; }
+  .card-display:nth-child(6) { animation-delay: 0.25s; }
+  .card-display:nth-child(7) { animation-delay: 0.3s; }
+
+  @keyframes cardFadeIn {
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  .card-display img {
+    width: 100%;
+    border-radius: 8px;
+    margin-bottom: 6px;
+  }
+
+  .card-name {
+    font-weight: 600;
+    margin-bottom: 2px;
+  }
+
+  .card-tag {
+    font-size: 11px;
+    color: #c7b8f5;
+  }
+
+  .card-extra {
+    font-size: 10px;
+    color: #b9a9ff;
+    margin-top: 4px;
+  }
+
+  .oracle-text {
+    font-size: 14px;
+    color: #e9ddff;
+    line-height: 1.5;
+    white-space: pre-line;
+  }
+
+  .oracle-highlight {
+    color: #f7bfff;
+    font-weight: 600;
+  }
+
+  .oracle-mode-tag,
+  .oracle-spread-tag,
+  .oracle-topic-tag,
+  .oracle-shadow-tag {
+    font-size: 11px;
+    color: #c7b8f5;
+    margin-bottom: 4px;
+  }
+
+  .back-link {
+    display: inline-block;
+    margin-top: 30px;
+    font-size: 13px;
+    color: #c7b8f5;
+    text-decoration: none;
+  }
+
+  .back-link:hover {
+    text-decoration: underline;
+  }
 </style>
 </head>
+
 <body>
+<div class="page">
 
-<div id="loginOverlay">
-  <div id="loginOverlayInner">
-    <img id="loginLogo" src="https://i.imgur.com/6NZVG2f.png">
-    <form id="loginForm">
-      <div class="login-field">
-        <input id="loginUsername" type="text" autocomplete="off" placeholder="Username">
-      </div>
-      <div class="login-field">
-        <input id="loginPassword" type="password" placeholder="Password">
-      </div>
-      <button id="loginButton">Login</button>
-      <div id="loginError"></div>
-    </form>
+  <div class="hero">
+    <img class="logo" src="https://i.imgur.com/6NZVG2f.png" alt="Mystic Spells Logo">
+    <h1>Tarot Readings</h1>
+    <p class="subtitle">
+      Draw from the deck, let the cards speak, and let the Oracle weave their story—whether for IC fate or OOC reflection.
+    </p>
+    <p class="hero-note">
+      This is a roleplay‑friendly tarot experience. Nothing here is medical, legal, or financial advice—just vibes, story, and symbolism.
+    </p>
   </div>
-</div>
 
-<div id="appWrapper" style="display:none;">
-  <header id="mainHeader">
-    <div id="navLogo">
-      <img src="https://i.imgur.com/6NZVG2f.png">
-      <span>Mystic Spells</span>
+  <div class="controls-card">
+    <div class="controls-grid">
+
+      <div>
+        <div class="controls-group-title">Reading Type</div>
+        <div class="pill-row" id="readingTypeRow">
+          <button class="pill active" data-reading="one">One‑Card Advice</button>
+          <button class="pill" data-reading="truefalse">True / False</button>
+          <button class="pill" data-reading="three">3‑Card Deep Reading</button>
+          <button class="pill" data-reading="five">5‑Card Spread</button>
+          <button class="pill" data-reading="seven">7‑Card Story Spread</button>
+          <button class="pill" data-reading="custom">Custom (You choose count)</button>
+        </div>
+
+        <div style="height:12px;"></div>
+
+        <div class="controls-group-title">Deck Focus</div>
+        <div class="pill-row" id="deckTypeRow">
+          <button class="pill active" data-deck="full">Full Deck</button>
+          <button class="pill" data-deck="major">Major Arcana Only</button>
+          <button class="pill" data-deck="minor">Minor Arcana Only</button>
+        </div>
+
+        <div style="height:12px;"></div>
+
+        <div class="controls-group-title">Topic Focus</div>
+        <div class="pill-row" id="topicRow">
+          <button class="pill active" data-topic="general">General</button>
+          <button class="pill" data-topic="romance">Romance</button>
+          <button class="pill" data-topic="career">Career</button>
+          <button class="pill" data-topic="spiritual">Spiritual</button>
+        </div>
+      </div>
+
+      <div class="generate-row">
+        <div>
+          <div class="controls-group-title">Reading Mode</div>
+          <div class="pill-row" id="modeRow">
+            <button class="pill active" data-mode="ic">IC – In Character</button>
+            <button class="pill" data-mode="ooc">OOC – Real Life</button>
+          </div>
+
+          <div class="controls-group-title" style="margin-top:14px;">Extra Options</div>
+          <div class="toggle-row">
+            <button class="toggle-pill" id="shadowToggle" data-shadow="off">Shadow Meaning: Off</button>
+            <button class="toggle-pill" id="reversedToggle" data-reversed="off">Allow Reversed: Off</button>
+          </div>
+        </div>
+
+        <div>
+          <button class="generate-btn" id="generateBtn">Draw Cards & Ask the Oracle</button>
+          <div class="small-note">
+            The Oracle considers spread, card combinations, elements, numerology, topic, mode, and shadow settings.
+          </div>
+        </div>
+      </div>
+
     </div>
-    <nav id="mainNav">
-      <button class="nav-btn" data-target="homeSection">Home</button>
-      <button class="nav-btn" data-target="tarotSection">Tarot Readings</button>
-      <button class="nav-btn" data-target="staffSection">Staff</button>
-      <button class="nav-btn" id="logoutBtn">Logout</button>
-    </nav>
-  </header>
+  </div>
 
-  <main id="pageContainer">
+  <div class="results-wrapper">
 
-    <section id="homeSection" class="page-section">
-      <h1>Welcome to Mystic Spells</h1>
-      <p>This is the staff portal. Use the navigation above to access tools like Tarot Readings.</p>
-    </section>
-
-    <section id="staffSection" class="page-section" style="display:none;">
-      <h1>Staff Area</h1>
-      <p>Reserved for internal notes, schedules, or other staff tools.</p>
-    </section>
-
-    <section id="tarotSection" class="page-section" style="display:none;">
-      <div id="tarotHero">
-        <img id="tarotLogo" src="https://i.imgur.com/6NZVG2f.png">
-        <h1>Tarot Readings</h1>
-        <p id="tarotSubtitle">Draw from the deck, let the cards speak, and let the Oracle weave their story.</p>
-        <p id="tarotNote">Roleplay‑friendly tarot experience.</p>
+    <div class="cards-area">
+      <div class="section-title">Drawn Cards</div>
+      <div class="section-sub" id="cardsSub">
+        Your cards will appear here once you draw from the deck.
       </div>
+      <div class="cards-grid" id="cardsGrid"></div>
+    </div>
 
-      <div id="tarotControlsCard">
-        <div id="tarotControlsGrid">
-
-          <div>
-            <div class="controls-group-title">Reading Type</div>
-            <div class="pill-row" id="readingTypeRow">
-              <button class="pill active" data-reading="one">One‑Card Advice</button>
-              <button class="pill" data-reading="truefalse">True / False</button>
-              <button class="pill" data-reading="three">3‑Card</button>
-              <button class="pill" data-reading="five">5‑Card</button>
-              <button class="pill" data-reading="seven">7‑Card</button>
-              <button class="pill" data-reading="custom">Custom</button>
-            </div>
-
-            <div class="controls-group-title">Deck Focus</div>
-            <div class="pill-row" id="deckTypeRow">
-              <button class="pill active" data-deck="full">Full Deck</button>
-              <button class="pill" data-deck="major">Major Only</button>
-              <button class="pill" data-deck="minor">Minor Only</button>
-            </div>
-
-            <div class="controls-group-title">Topic</div>
-            <div class="pill-row" id="topicRow">
-              <button class="pill active" data-topic="general">General</button>
-              <button class="pill" data-topic="romance">Romance</button>
-              <button class="pill" data-topic="career">Career</button>
-              <button class="pill" data-topic="spiritual">Spiritual</button>
-            </div>
-          </div>
-
-          <div id="tarotRightControls">
-            <div>
-              <div class="controls-group-title">Mode</div>
-              <div class="pill-row" id="modeRow">
-                <button class="pill active" data-mode="ic">IC</button>
-                <button class="pill" data-mode="ooc">OOC</button>
-              </div>
-
-              <div class="controls-group-title">Options</div>
-              <div class="toggle-row">
-                <button class="toggle-pill" id="shadowToggle">Shadow</button>
-                <button class="toggle-pill" id="reversedToggle">Reversed</button>
-              </div>
-            </div>
-
-            <div id="drawArea">
-              <button id="generateBtn">Draw Cards</button>
-              <div id="drawNote">The Oracle considers synergy, elements, numerology, and topic.</div>
-            </div>
-          </div>
-
-        </div>
+    <div class="oracle-area">
+      <div class="section-title">Oracle’s Recommendation</div>
+      <div class="oracle-mode-tag" id="oracleModeTag"></div>
+      <div class="oracle-topic-tag" id="oracleTopicTag"></div>
+      <div class="oracle-shadow-tag" id="oracleShadowTag"></div>
+      <div class="oracle-spread-tag" id="oracleSpreadTag"></div>
+      <div class="oracle-text" id="oracleText">
+        Choose your reading type, deck focus, topic, and mode—then draw.  
+        The Oracle will interpret the energy, synergy, and story of your cards.
       </div>
+    </div>
 
-      <div id="animationArea">
-        <div id="shuffleAnimation" style="display:none;"></div>
-        <div id="loadingAnimation" style="display:none;">
-          <div class="loading-circle"></div>
-          <div class="loading-text">The Oracle is listening...</div>
-        </div>
-      </div>
+  </div>
 
-      <div id="resultsWrapper">
+  <a href="index.html" class="back-link">← Back to Mystic Spells Home</a>
 
-        <div id="cardsArea">
-          <div class="section-title">Drawn Cards</div>
-          <div class="section-sub" id="cardsSub">Your cards will appear here.</div>
-          <div id="cardsGrid"></div>
-        </div>
-
-        <div id="oracleArea">
-          <div class="section-title">Oracle’s Recommendation</div>
-          <div id="oracleModeTag"></div>
-          <div id="oracleTopicTag"></div>
-          <div id="oracleShadowTag"></div>
-          <div id="oracleSpreadTag"></div>
-          <div id="oracleText">Choose your settings and draw.</div>
-        </div>
-
-      </div>
-
-    </section>
-
-  </main>
 </div>
-
 <script>
-const workers={"AlexOwner":"MysticSpells2025"};
+  // ====== TAROT DATA ======
 
-function showSection(id){
-document.querySelectorAll(".page-section").forEach(s=>s.style.display="none");
-document.getElementById(id).style.display="block";
-}
+  const majorArcana = [
+    { name: "The Fool", type: "Major", img: "https://i.imgur.com/IBrMUUS.png", number: 0, element: "Air" },
+    { name: "The Magician", type: "Major", img: "https://i.imgur.com/5PidMHl.png", number: 1, element: "Air" },
+    { name: "The High Priestess", type: "Major", img: "https://i.imgur.com/xrsmWEA.png", number: 2, element: "Water" },
+    { name: "The Empress", type: "Major", img: "https://i.imgur.com/RvakGCX.png", number: 3, element: "Earth" },
+    { name: "The Emperor", type: "Major", img: "https://i.imgur.com/K4oVvvj.png", number: 4, element: "Fire" },
+    { name: "The Hierophant", type: "Major", img: "https://i.imgur.com/GRF1erw.png", number: 5, element: "Earth" },
+    { name: "The Lovers", type: "Major", img: "https://i.imgur.com/DVAdlIA.png", number: 6, element: "Air" },
+    { name: "The Chariot", type: "Major", img: "https://i.imgur.com/K5lk6Om.png", number: 7, element: "Water" },
+    { name: "Strength", type: "Major", img: "https://i.imgur.com/WF9jYOf.png", number: 8, element: "Fire" },
+    { name: "The Hermit", type: "Major", img: "https://i.imgur.com/GgoMlM8.png", number: 9, element: "Earth" },
+    { name: "Wheel of Fortune", type: "Major", img: "https://i.imgur.com/oQ7dG8i.png", number: 10, element: "Fire" },
+    { name: "Justice", type: "Major", img: "https://i.imgur.com/xxvbuEe.png", number: 11, element: "Air" },
+    { name: "The Hanged Man", type: "Major", img: "https://i.imgur.com/b71lXKz.png", number: 12, element: "Water" },
+    { name: "Death", type: "Major", img: "https://i.imgur.com/WB1hQzH.png", number: 13, element: "Water" },
+    { name: "Temperance", type: "Major", img: "https://i.imgur.com/2rUNAHs.png", number: 14, element: "Fire" },
+    { name: "The Devil", type: "Major", img: "https://i.imgur.com/WA3Zekv.png", number: 15, element: "Earth" },
+    { name: "The Tower", type: "Major", img: "https://i.imgur.com/OGbBcsY.png", number: 16, element: "Fire" },
+    { name: "The Star", type: "Major", img: "https://i.imgur.com/zf2SNWL.png", number: 17, element: "Air" },
+    { name: "The Moon", type: "Major", img: "https://i.imgur.com/uaLXrGB.png", number: 18, element: "Water" },
+    { name: "The Sun", type: "Major", img: "https://i.imgur.com/FxEoqnn.png", number: 19, element: "Fire" },
+    { name: "Judgement", type: "Major", img: "https://i.imgur.com/9E5aH31.png", number: 20, element: "Fire" },
+    { name: "The World", type: "Major", img: "https://i.imgur.com/XdoOTCP.png", number: 21, element: "Earth" }
+  ];
 
-document.addEventListener("DOMContentLoaded",()=>{
-const loginForm=document.getElementById("loginForm");
-const loginOverlay=document.getElementById("loginOverlay");
-const appWrapper=document.getElementById("appWrapper");
-const loginError=document.getElementById("loginError");
+  const suits = ["Wands", "Cups", "Swords", "Pentacles"];
+  const ranks = ["Ace","Two","Three","Four","Five","Six","Seven","Eight","Nine","Ten","Page","Knight","Queen","King"];
 
-loginForm.addEventListener("submit",e=>{
-e.preventDefault();
-let u=document.getElementById("loginUsername").value.trim();
-let p=document.getElementById("loginPassword").value.trim();
-if(workers[u]&&workers[u]===p){
-loginOverlay.style.display="none";
-appWrapper.style.display="block";
-showSection("homeSection");
-}else{
-loginError.textContent="Invalid username or password.";
-}
-});
+  function suitElement(suit) {
+    if (suit === "Wands") return "Fire";
+    if (suit === "Cups") return "Water";
+    if (suit === "Swords") return "Air";
+    if (suit === "Pentacles") return "Earth";
+    return "Spirit";
+  }
 
-document.querySelectorAll(".nav-btn").forEach(btn=>{
-btn.addEventListener("click",()=>{
-let target=btn.getAttribute("data-target");
-showSection(target);
-});
-});
+  function rankNumber(rank) {
+    const map = {
+      "Ace":1,"Two":2,"Three":3,"Four":4,"Five":5,"Six":6,"Seven":7,"Eight":8,"Nine":9,"Ten":10,
+      "Page":11,"Knight":12,"Queen":13,"King":14
+    };
+    return map[rank] || 0;
+  }
 
-document.getElementById("logoutBtn").addEventListener("click",()=>{
-location.reload();
-});
+  const minorArcana = [];
+  suits.forEach(suit => {
+    ranks.forEach(rank => {
+      minorArcana.push({
+        name: `${rank} of ${suit}`,
+        type: "Minor",
+        img: null,
+        element: suitElement(suit),
+        number: rankNumber(rank)
+      });
+    });
+  });
 
-const generateBtn=document.getElementById("generateBtn");
-const shuffleAnimation=document.getElementById("shuffleAnimation");
-const loadingAnimation=document.getElementById("loadingAnimation");
+  const fullDeck = [...majorArcana, ...minorArcana];
 
-generateBtn.addEventListener("click",()=>{
-shuffleAnimation.style.display="block";
-loadingAnimation.style.display="none";
+  // ====== UI ELEMENTS ======
+  const readingTypeRow = document.getElementById("readingTypeRow");
+  const deckTypeRow = document.getElementById("deckTypeRow");
+  const modeRow = document.getElementById("modeRow");
+  const topicRow = document.getElementById("topicRow");
+  const shadowToggle = document.getElementById("shadowToggle");
+  const reversedToggle = document.getElementById("reversedToggle");
+  const generateBtn = document.getElementById("generateBtn");
 
-setTimeout(()=>{
-shuffleAnimation.style.display="none";
-loadingAnimation.style.display="block";
-},1500);
-});
-});
-</script>
+  const cardsGrid = document.getElementById("cardsGrid");
+  const cardsSub = document.getElementById("cardsSub");
+  const oracleText = document.getElementById("oracleText");
+  const oracleModeTag = document.getElementById("oracleModeTag");
+  const oracleSpreadTag = document.getElementById("oracleSpreadTag");
+  const oracleTopicTag = document.getElementById("oracleTopicTag");
+  const oracleShadowTag = document.getElementById("oracleShadowTag");
 
-<script>
-const tarotDeck=[
-{n:"The Fool",s:"Major",e:"Air",num:0,i:"https://i.imgur.com/0ZQZQ0M.png"},
-{n:"The Magician",s:"Major",e:"Air",num:1,i:"https://i.imgur.com/0ZQZQ0M.png"},
-{n:"The High Priestess",s:"Major",e:"Water",num:2,i:"https://i.imgur.com/0ZQZQ0M.png"},
-{n:"The Empress",s:"Major",e:"Earth",num:3,i:"https://i.imgur.com/0ZQZQ0M.png"},
-{n:"The Emperor",s:"Major",e:"Fire",num:4,i:"https://i.imgur.com/0ZQZQ0M.png"},
-{n:"The Hierophant",s:"Major",e:"Earth",num:5,i:"https://i.imgur.com/0ZQZQ0M.png"},
-{n:"The Lovers",s:"Major",e:"Air",num:6,i:"https://i.imgur.com/0ZQZQ0M.png"},
-{n:"The Chariot",s:"Major",e:"Water",num:7,i:"https://i.imgur.com/0ZQZQ0M.png"},
-{n:"Strength",s:"Major",e:"Fire",num:8,i:"https://i.imgur.com/0ZQZQ0M.png"},
-{n:"The Hermit",s:"Major",e:"Earth",num:9,i:"https://i.imgur.com/0ZQZQ0M.png"},
-{n:"Wheel of Fortune",s:"Major",e:"Fire",num:10,i:"https://i.imgur.com/0ZQZQ0M.png"},
-{n:"Justice",s:"Major",e:"Air",num:11,i:"https://i.imgur.com/0ZQZQ0M.png"},
-{n:"The Hanged Man",s:"Major",e:"Water",num:12,i:"https://i.imgur.com/0ZQZQ0M.png"},
-{n:"Death",s:"Major",e:"Water",num:13,i:"https://i.imgur.com/0ZQZQ0M.png"},
-{n:"Temperance",s:"Major",e:"Fire",num:14,i:"https://i.imgur.com/0ZQZQ0M.png"},
-{n:"The Devil",s:"Major",e:"Earth",num:15,i:"https://i.imgur.com/0ZQZQ0M.png"},
-{n:"The Tower",s:"Major",e:"Fire",num:16,i:"https://i.imgur.com/0ZQZQ0M.png"},
-{n:"The Star",s:"Major",e:"Air",num:17,i:"https://i.imgur.com/0ZQZQ0M.png"},
-{n:"The Moon",s:"Major",e:"Water",num:18,i:"https://i.imgur.com/0ZQZQ0M.png"},
-{n:"The Sun",s:"Major",e:"Fire",num:19,i:"https://i.imgur.com/0ZQZQ0M.png"},
-{n:"Judgement",s:"Major",e:"Fire",num:20,i:"https://i.imgur.com/0ZQZQ0M.png"},
-{n:"The World",s:"Major",e:"Earth",num:21,i:"https://i.imgur.com/0ZQZQ0M.png"}
-];
+  let currentReadingType = "one";
+  let currentDeckType = "full";
+  let currentMode = "ic";
+  let currentTopic = "general";
+  let shadowOn = false;
+  let reversedOn = false;
 
-const suits=["Wands","Cups","Swords","Pentacles"];
-const elements={Wands:"Fire",Cups:"Water",Swords:"Air",Pentacles:"Earth"};
+  function setActivePill(rowEl, value, attr) {
+    const pills = rowEl.querySelectorAll(".pill");
+    pills.forEach(p => {
+      if (p.getAttribute(attr) === value) p.classList.add("active");
+      else p.classList.remove("active");
+    });
+  }
 
-for(let s of suits){
-for(let i=1;i<=14;i++){
-let name=i===1?"Ace":i===11?"Page":i===12?"Knight":i===13?"Queen":i===14?"King":i;
-tarotDeck.push({
-n:`${name} of ${s}`,
-s:"Minor",
-e:elements[s],
-num:i,
-i:"https://i.imgur.com/0ZQZQ0M.png"
-});
-}
-}
+  readingTypeRow.addEventListener("click", e => {
+    if (e.target.classList.contains("pill")) {
+      currentReadingType = e.target.getAttribute("data-reading");
+      setActivePill(readingTypeRow, currentReadingType, "data-reading");
+    }
+  });
 
-function shuffle(arr){
-let a=[...arr];
-for(let i=a.length-1;i>0;i--){
-let j=Math.floor(Math.random()*(i+1));
-[a[i],a[j]]=[a[j],a[i]];
-}
-return a;
-}
+  deckTypeRow.addEventListener("click", e => {
+    if (e.target.classList.contains("pill")) {
+      currentDeckType = e.target.getAttribute("data-deck");
+      setActivePill(deckTypeRow, currentDeckType, "data-deck");
+    }
+  });
 
-function pickCards(deck,count,reversed){
-let d=shuffle(deck);
-let out=[];
-for(let i=0;i<count;i++){
-let c={...d[i]};
-c.rev=reversed?Math.random()<0.5:false;
-out.push(c);
-}
-return out;
-}
+  modeRow.addEventListener("click", e => {
+    if (e.target.classList.contains("pill")) {
+      currentMode = e.target.getAttribute("data-mode");
+      setActivePill(modeRow, currentMode, "data-mode");
+    }
+  });
 
-function getReadingType(){
-let a=document.querySelector(".pill-row#readingTypeRow .pill.active");
-return a?a.dataset.reading:"one";
-}
+  topicRow.addEventListener("click", e => {
+    if (e.target.classList.contains("pill")) {
+      currentTopic = e.target.getAttribute("data-topic");
+      setActivePill(topicRow, currentTopic, "data-topic");
+    }
+  });
 
-function getDeckType(){
-let a=document.querySelector(".pill-row#deckTypeRow .pill.active");
-return a?a.dataset.deck:"full";
-}
+  shadowToggle.addEventListener("click", () => {
+    shadowOn = !shadowOn;
+    shadowToggle.dataset.shadow = shadowOn ? "on" : "off";
+    shadowToggle.textContent = `Shadow Meaning: ${shadowOn ? "On" : "Off"}`;
+    shadowToggle.classList.toggle("active", shadowOn);
+  });
 
-function getTopic(){
-let a=document.querySelector(".pill-row#topicRow .pill.active");
-return a?a.dataset.topic:"general";
-}
+  reversedToggle.addEventListener("click", () => {
+    reversedOn = !reversedOn;
+    reversedToggle.dataset.reversed = reversedOn ? "on" : "off";
+    reversedToggle.textContent = `Allow Reversed: ${reversedOn ? "On" : "Off"}`;
+    reversedToggle.classList.toggle("active", reversedOn);
+  });
 
-function getMode(){
-let a=document.querySelector(".pill-row#modeRow .pill.active");
-return a?a.dataset.mode:"ic";
-}
+  function getDeckByType(type) {
+    if (type === "major") return [...majorArcana];
+    if (type === "minor") return [...minorArcana];
+    return [...fullDeck];
+  }
 
-function getShadow(){
-return document.getElementById("shadowToggle").classList.contains("active");
-}
+  function drawRandomCards(deck, count) {
+    const copy = [...deck];
+    const drawn = [];
+    for (let i = 0; i < count && copy.length > 0; i++) {
+      const idx = Math.floor(Math.random() * copy.length);
+      const baseCard = copy.splice(idx, 1)[0];
+      const reversed = reversedOn ? Math.random() < 0.45 : false;
+      drawn.push({ ...baseCard, reversed });
+    }
+    return drawn;
+  }
 
-function getReversed(){
-return document.getElementById("reversedToggle").classList.contains("active");
-}
+  function getCardCountForReading(readingType) {
+    switch (readingType) {
+      case "one": return 1;
+      case "truefalse": return 1;
+      case "three": return 3;
+      case "five": return 5;
+      case "seven": return 7;
+      case "custom": return 4;
+      default: return 1;
+    }
+  }
 
-function filterDeck(){
-let t=getDeckType();
-if(t==="major")return tarotDeck.filter(c=>c.s==="Major");
-if(t==="minor")return tarotDeck.filter(c=>c.s==="Minor");
-return tarotDeck;
-}
+  function spreadLabel(readingType) {
+    switch (readingType) {
+      case "one": return "One‑Card Advice";
+      case "truefalse": return "True / False Focus";
+      case "three": return "3‑Card Deep Reading";
+      case "five": return "5‑Card Spread";
+      case "seven": return "7‑Card Story Spread";
+      case "custom": return "Custom Spread";
+      default: return "";
+    }
+  }
 
-function readingCount(type){
-if(type==="one")return 1;
-if(type==="truefalse")return 1;
-if(type==="three")return 3;
-if(type==="five")return 5;
-if(type==="seven")return 7;
-return 3;
-}
+  function modeLabel(mode) {
+    return mode === "ic"
+      ? "IC – In Character: The Oracle speaks in story, fate, and narrative."
+      : "OOC – Real Life: The Oracle speaks in reflection, growth, and self‑awareness.";
+  }
 
-function cardMeaning(card,topic,shadow){
-let base=`${card.n} speaks to ${topic} matters.`;
-if(card.s==="Major")base=`${card.n} is a major force influencing ${topic}.`;
-if(shadow)base+=` Its shadow warns of hidden tension.`;
-if(card.rev)base+=` Reversed, its energy twists or delays.`;
-return base;
-}
+  function topicLabel(topic) {
+    switch (topic) {
+      case "romance": return "Topic: Romance, connection, and relationships.";
+      case "career": return "Topic: Career, work, and material path.";
+      case "spiritual": return "Topic: Spiritual growth, intuition, and inner path.";
+      default: return "Topic: General energy and themes.";
+    }
+  }
 
-function synergy(cards){
-if(cards.length<2)return "";
-let e=cards.map(c=>c.e);
-let fire=e.filter(x=>x==="Fire").length;
-let water=e.filter(x=>x==="Water").length;
-let air=e.filter(x=>x==="Air").length;
-let earth=e.filter(x=>x==="Earth").length;
-let out="";
-if(fire>2)out+="Strong fire energy drives action. ";
-if(water>2)out+="Emotional currents shape the reading. ";
-if(air>2)out+="Thoughts and clarity dominate. ";
-if(earth>2)out+="Stability and grounding influence events. ";
-return out;
-}
+  function shadowLabel(on) {
+    return on
+      ? "Shadow Meaning: The Oracle leans into fears, blocks, and hidden patterns."
+      : "Shadow Meaning: Off – The Oracle focuses on balanced and constructive insight.";
+  }
 
-function oracle(cards,topic,mode,shadow,type){
-let txt="";
-for(let c of cards){
-txt+=cardMeaning(c,topic,shadow)+" ";
-}
-txt+=synergy(cards);
-if(type==="truefalse"){
-let yes=cards.filter(c=>c.e==="Fire"||c.e==="Air").length;
-let no=cards.filter(c=>c.e==="Water"||c.e==="Earth").length;
-txt+=yes>=no?"Outcome leans toward yes. ":"Outcome leans toward no. ";
-}
-if(mode==="ic")txt+="This applies to your character’s path.";
-else txt+="This applies to your real‑life situation.";
-return txt;
-}
+  const keywordHints = {
+    "The Fool": "new beginnings, leaps of faith, innocence",
+    "The Magician": "manifestation, skill, focused will",
+    "The High Priestess": "intuition, secrets, inner knowing",
+    "The Empress": "nurturing, abundance, creation",
+    "The Emperor": "structure, authority, control",
+    "The Hierophant": "tradition, guidance, spiritual teaching",
+    "The Lovers": "choices, union, relationships",
+    "The Chariot": "determination, victory, forward motion",
+    "Strength": "courage, patience, inner power",
+    "The Hermit": "solitude, wisdom, introspection",
+    "Wheel of Fortune": "cycles, fate, turning points",
+    "Justice": "balance, fairness, consequences",
+    "The Hanged Man": "surrender, new perspective, pause",
+    "Death": "endings, transformation, rebirth",
+    "Temperance": "moderation, harmony, blending",
+    "The Devil": "temptation, bondage, shadow work",
+    "The Tower": "sudden change, upheaval, revelation",
+    "The Star": "hope, healing, guidance",
+    "The Moon": "uncertainty, dreams, subconscious",
+    "The Sun": "joy, clarity, success",
+    "Judgement": "awakening, reckoning, calling",
+    "The World": "completion, wholeness, achievement"
+  };
 
-document.addEventListener("DOMContentLoaded",()=>{
-document.getElementById("generateBtn").addEventListener("click",()=>{
-setTimeout(()=>{
+  function reversedFlavor(card) {
+    if (!card.reversed) return "";
+    if (card.type === "Major") {
+      return "shadow, delay, or internalized version of its usual energy";
+    }
+    return "blocked, inverted, or turned inward expression of its suit’s energy";
+  }
 
-let type=getReadingType();
-let topic=getTopic();
-let mode=getMode();
-let shadow=getShadow();
-let reversed=getReversed();
+  function getSimpleCardEnergy(card) {
+    let base = keywordHints[card.name] || "";
+    if (!base && card.type === "Minor") {
+      if (card.name.includes("Pentacles")) base = "material matters, work, stability";
+      else if (card.name.includes("Cups")) base = "emotions, relationships, intuition";
+      else if (card.name.includes("Wands")) base = "action, passion, creativity";
+      else if (card.name.includes("Swords")) base = "thoughts, conflict, decisions";
+    }
+    if (!base) base = "subtle, situational energy";
 
-let deck=filterDeck();
-let count=readingCount(type);
-let cards=pickCards(deck,count,reversed);
+    if (card.reversed) {
+      base += " (reversed: " + reversedFlavor(card) + ")";
+    }
+    return base;
+  }
 
-let cg=document.getElementById("cardsGrid");
-cg.innerHTML="";
-cards.forEach(c=>{
-let d=document.createElement("div");
-d.className="card-display";
-d.innerHTML=`<div>${c.n}${c.rev?" (Reversed)":""}</div>`;
-cg.appendChild(d);
-});
+  function elementSummary(cards) {
+    const counts = { Fire: 0, Water: 0, Air: 0, Earth: 0, Spirit: 0 };
+    cards.forEach(c => {
+      if (c.element && counts[c.element] !== undefined) counts[c.element]++;
+    });
+    const active = Object.entries(counts).filter(([el, n]) => n > 0);
+    if (!active.length) return "";
+    let text = "Elemental balance: ";
+    text += active.map(([el, n]) => `${el} x${n}`).join(", ") + ". ";
+    if (counts.Fire > counts.Water && counts.Fire >= 2) text += "Fire dominates—action, intensity, and urgency are highlighted. ";
+    if (counts.Water > counts.Fire && counts.Water >= 2) text += "Water dominates—emotions, intuition, and sensitivity are highlighted. ";
+    if (counts.Air > counts.Earth && counts.Air >= 2) text += "Air dominates—thoughts, communication, and mental patterns are highlighted. ";
+    if (counts.Earth > counts.Air && counts.Earth >= 2) text += "Earth dominates—stability, practicality, and grounding are highlighted. ";
+    return text + "\n\n";
+  }
 
-document.getElementById("oracleText").textContent=
-oracle(cards,topic,mode,shadow,type);
+  function numerologySummary(cards) {
+    const nums = cards.map(c => (typeof c.number === "number" ? c.number : 0)).filter(n => n > 0);
+    if (!nums.length) return "";
+    const sum = nums.reduce((a, b) => a + b, 0);
+    const reduced = (function reduce(n) {
+      if (n < 10) return n;
+      return reduce(String(n).split("").reduce((a, b) => a + Number(b), 0));
+    })(sum);
+    return `Numerology: The sum of these card numbers is ${sum}, reducing to ${reduced}. This hints at a core theme of ${
+      reduced === 1 ? "new beginnings and self‑definition" :
+      reduced === 2 ? "duality, partnership, and balance" :
+      reduced === 3 ? "expression, creativity, and growth" :
+      reduced === 4 ? "structure, stability, and foundations" :
+      reduced === 5 ? "change, challenge, and freedom" :
+      reduced === 6 ? "harmony, responsibility, and care" :
+      reduced === 7 ? "reflection, mystery, and inner search" :
+      reduced === 8 ? "power, cycles, and manifestation" :
+      reduced === 9 ? "completion, release, and wisdom" : "ongoing cycles"
+    }.\n\n`;
+  }
 
-document.getElementById("oracleModeTag").textContent="Mode: "+mode.toUpperCase();
-document.getElementById("oracleTopicTag").textContent="Topic: "+topic;
-document.getElementById("oracleShadowTag").textContent="Shadow: "+(shadow?"On":"Off");
-document.getElementById("oracleSpreadTag").textContent="Spread: "+type;
+  function buildSynergy(cards) {
+    const names = cards.map(c => c.name);
+    let text = "";
 
-document.getElementById("loadingAnimation").style.display="none";
+    const hasFool = names.includes("The Fool");
+    const hasThreePentacles = names.includes("Three of Pentacles");
+    const hasTower = names.includes("The Tower");
+    const hasNineSwords = names.includes("Nine of Swords");
+    const hasStar = names.includes("The Star");
+    const hasMoon = names.includes("The Moon");
+    const hasDevil = names.includes("The Devil");
+    const hasLovers = names.includes("The Lovers");
+    const hasSun = names.includes("The Sun");
+    const hasDeath = names.includes("Death");
+    const hasJustice = names.includes("Justice");
 
-},3000);
-});
-});
-<script>
-document.querySelectorAll(".pill-row .pill").forEach(p=>{
-p.addEventListener("click",()=>{
-p.parentElement.querySelectorAll(".pill").forEach(x=>x.classList.remove("active"));
-p.classList.add("active");
-});
-});
+    if (hasFool && hasThreePentacles) {
+      text += "The Fool with the Three of Pentacles suggests a leap of faith supported by collaboration. The Oracle recommends trusting allies and learning as you go.\n\n";
+    }
+    if (hasTower && hasNineSwords) {
+      text += "The Tower with the Nine of Swords points to a breaking point where inner anxiety meets outer upheaval. The Oracle recommends grounding yourself and preparing for release.\n\n";
+    }
+    if (hasStar && hasMoon) {
+      text += "The Star with The Moon blends hope with mystery. The Oracle recommends following subtle signs while keeping faith that clarity will come in time.\n\n";
+    }
+    if (hasDevil && hasLovers) {
+      text += "The Devil with The Lovers highlights choices around attachment, temptation, or unhealthy bonds. The Oracle recommends choosing what supports your growth, not just what feels familiar.\n\n";
+    }
+    if (hasSun && hasTower) {
+      text += "The Sun with The Tower shows that even disruptive change may ultimately lead to clarity and liberation. The Oracle recommends trusting that what falls away makes room for joy.\n\n";
+    }
+    if (hasDeath && hasJustice) {
+      text += "Death with Justice speaks of karmic endings and necessary closures. The Oracle recommends honoring what is ending and accepting the balance being restored.\n\n";
+    }
 
-document.getElementById("shadowToggle").addEventListener("click",e=>{
-e.target.classList.toggle("active");
-});
+    if (!text && cards.length >= 2) {
+      text += "Together, these cards weave a layered story. The Oracle recommends noticing repeating symbols, suits, or numbers—those are the loudest messages.\n\n";
+    }
 
-document.getElementById("reversedToggle").addEventListener("click",e=>{
-e.target.classList.toggle("active");
-});
+    return text;
+  }
+
+  function topicFlavor(topic) {
+    switch (topic) {
+      case "romance":
+        return "In romance, these cards speak to the way hearts meet, clash, or grow together.\n\n";
+      case "career":
+        return "In career, these cards speak to your path, effort, and the structures you move through.\n\n";
+      case "spiritual":
+        return "In spiritual matters, these cards speak to your inner path, intuition, and connection to something greater.\n\n";
+      default:
+        return "For general life, these cards speak to the themes currently circling your orbit.\n\n";
+    }
+  }
+
+  function shadowFlavorText(on) {
+    if (!on) return "";
+    return "With shadow meaning enabled, the Oracle leans into fears, blocks, and patterns that might be hidden or avoided.\n\n";
+  }
+
+  function readingFlavor(readingType) {
+    switch (readingType) {
+      case "one":
+        return "As a one‑card advice pull, this card acts like a spotlight on what matters most right now.\n\n";
+      case "truefalse":
+        return "For a true / false style reading, the card(s) don’t give a simple yes or no—they show the energy around the situation.\n\n";
+      case "three":
+        return "In a three‑card deep reading, think of the spread as past / present / future or mind / body / spirit.\n\n";
+      case "five":
+        return "In a five‑card spread, the story is more layered—supporting energies, challenges, and hidden influences all show up here.\n\n";
+      case "seven":
+        return "In a seven‑card story spread, the cards read like chapters in a book. Notice the progression from the first card to the last.\n\n";
+      case "custom":
+        return "In a custom spread, let each position mean what you decide—roles, scenes, aspects, or steps in a process.\n\n";
+      default:
+        return "";
+    }
+  }
+
+  function modeFlavor(mode) {
+    if (mode === "ic") {
+      return "IC – In Character: The Oracle speaks to your character’s path, fate, and narrative arc. Use this reading to inspire scenes, choices, and story beats.\n\n";
+    } else {
+      return "OOC – Real Life: The Oracle speaks to your own growth, patterns, and inner world. Use this reading as a mirror—take what resonates and leave the rest.\n\n";
+    }
+  }
+
+  function buildOracleText(cards, readingType, mode, topic, shadow) {
+    if (!cards || cards.length === 0) return "No cards were drawn. Try again.";
+
+    const names = cards.map(c => c.name + (c.reversed ? " (reversed)" : ""));
+    const energies = cards.map(getSimpleCardEnergy);
+
+    let base = "";
+    if (cards.length === 1) {
+      base += `You drew **${names[0]}**.\n\n`;
+      base += `Energy: ${energies[0]}.\n\n`;
+    } else {
+      base += `You drew: ${names.join(", ")}.\n\n`;
+      base += `Energies at play:\n`;
+      cards.forEach((c, i) => {
+        base += `• ${c.name}${c.reversed ? " (reversed)" : ""}: ${energies[i]}\n`;
+      });
+      base += `\n`;
+    }
+
+    base += elementSummary(cards);
+    base += numerologySummary(cards);
+    base += buildSynergy(cards);
+    base += readingFlavor(readingType);
+    base += topicFlavor(topic);
+    base += shadowFlavorText(shadow);
+    base += modeFlavor(mode);
+
+    let recommendation = "The Oracle recommends:\n";
+    if (cards.length === 1) {
+      recommendation += "• Sitting with the single card’s message and asking: “Where is this already showing up in my life or story?”\n";
+    } else if (cards.length <= 3) {
+      recommendation += "• Looking at how the first card sets the tone, the middle card complicates it, and the last card points to where it’s heading.\n";
+    } else {
+      recommendation += "• Tracing the emotional journey from the first card to the last—notice where tension spikes, where relief appears, and where choice is implied.\n";
+    }
+    if (shadow) {
+      recommendation += "• Paying special attention to discomfort, resistance, or denial—those may be the exact places the cards are pointing toward.\n";
+    }
+
+    return base + "\n" + recommendation;
+  }
+
+  function renderCards(cards) {
+    cardsGrid.innerHTML = "";
+    if (!cards || cards.length === 0) {
+      cardsSub.textContent = "No cards drawn yet.";
+      return;
+    }
+
+    cardsSub.textContent = `You drew ${cards.length} card${cards.length > 1 ? "s" : ""}.`;
+
+    cards.forEach(card => {
+      const div = document.createElement("div");
+      div.className = "card-display";
+
+      if (card.img) {
+        const img = document.createElement("img");
+        img.src = card.img;
+        img.alt = card.name;
+        div.appendChild(img);
+      }
+
+      const nameEl = document.createElement("div");
+      nameEl.className = "card-name";
+      nameEl.textContent = card.name + (card.reversed ? " (reversed)" : "");
+      div.appendChild(nameEl);
+
+      const tagEl = document.createElement("div");
+      tagEl.className = "card-tag";
+      tagEl.textContent = card.type === "Major" ? "Major Arcana" : "Minor Arcana";
+      div.appendChild(tagEl);
+
+      const extraEl = document.createElement("div");
+      extraEl.className = "card-extra";
+      extraEl.textContent = `${card.element || "Spirit"} • ${card.number ? "Number " + card.number : "Archetype"}`;
+      div.appendChild(extraEl);
+
+      cardsGrid.appendChild(div);
+    });
+  }
+
+  generateBtn.addEventListener("click", () => {
+    const deck = getDeckByType(currentDeckType);
+    const count = getCardCountForReading(currentReadingType);
+    const drawn = drawRandomCards(deck, count);
+
+    renderCards(drawn);
+
+    oracleModeTag.textContent = modeLabel(currentMode);
+    oracleSpreadTag.textContent = spreadLabel(currentReadingType);
+    oracleTopicTag.textContent = topicLabel(currentTopic);
+    oracleShadowTag.textContent = shadowLabel(shadowOn);
+
+    const text = buildOracleText(drawn, currentReadingType, currentMode, currentTopic, shadowOn);
+    oracleText.innerHTML = text.replace(/\*\*(.+?)\*\*/g, "<span class='oracle-highlight'>$1</span>");
+  });
 </script>
 
 </body>
