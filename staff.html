@@ -219,25 +219,166 @@
 <!-- STAFF GRID -->
 <div class="staff-grid">
 
+  <!-- TEMPLATE FOR EACH STAFF MEMBER -->
+  <!-- Just duplicate this block when adding more later -->
+
   <!-- JAY -->
   <div class="card">
     <div class="content">
-
-      <!-- FRONT -->
       <div class="front">
-        <img src="https://i.imgur.com/yGV3T4S.png" alt="Jay">
+        <img src="https://i.imgur.com/yGV3T4S.png">
         <h2>Jay</h2>
         <p>Shop Keeper</p>
-
         <div class="hire-date">Hired: 4/27/2026 — 2:56 AM CST</div>
-        <div class="timer" id="jayTimer">Calculating…</div>
+        <div class="timer" id="timer-jay">Calculating…</div>
       </div>
-
-      <!-- BACK -->
       <div class="back">
         <p>"Little thing about myself is I see dead people."</p>
       </div>
+    </div>
+  </div>
 
+  <!-- NYX -->
+  <div class="card">
+    <div class="content">
+      <div class="front">
+        <img src="" alt="Waiting">
+        <h2>Nyx</h2>
+        <p>Shop Keeper</p>
+        <div class="hire-date">Hired: May 12th, 2026 — 7:01 PM CST</div>
+        <div class="timer" id="timer-nyx">Calculating…</div>
+      </div>
+      <div class="back">
+        <p>Waiting…</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- LILA -->
+  <div class="card">
+    <div class="content">
+      <div class="front">
+        <img src="" alt="Waiting">
+        <h2>Lila</h2>
+        <p>Shop Keeper</p>
+        <div class="hire-date">Hired: 4/9/2026 — 1:43 AM CST</div>
+        <div class="timer" id="timer-lila">Calculating…</div>
+      </div>
+      <div class="back">
+        <p>Waiting…</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- FAYE -->
+  <div class="card">
+    <div class="content">
+      <div class="front">
+        <img src="" alt="Waiting">
+        <h2>Faye</h2>
+        <p>Shop Keeper</p>
+        <div class="hire-date">Hired: 4/6/2026 — 7:21 AM CST</div>
+        <div class="timer" id="timer-faye">Calculating…</div>
+      </div>
+      <div class="back">
+        <p>Waiting…</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- TRAV -->
+  <div class="card">
+    <div class="content">
+      <div class="front">
+        <img src="" alt="Waiting">
+        <h2>Trav</h2>
+        <p>Manager</p>
+        <div class="hire-date">Hired: 3/25/2026 — 9:07 PM CST</div>
+        <div class="timer" id="timer-trav">Calculating…</div>
+      </div>
+      <div class="back">
+        <p>Waiting…</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOBY -->
+  <div class="card">
+    <div class="content">
+      <div class="front">
+        <img src="" alt="Waiting">
+        <h2>Toby</h2>
+        <p>Shop Keeper</p>
+        <div class="hire-date">Hired: 3/23/2026 — 8:33 PM CST</div>
+        <div class="timer" id="timer-toby">Calculating…</div>
+      </div>
+      <div class="back">
+        <p>Waiting…</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SHAUN -->
+  <div class="card">
+    <div class="content">
+      <div class="front">
+        <img src="" alt="Waiting">
+        <h2>Shaun</h2>
+        <p>Shop Keeper</p>
+        <div class="hire-date">Hired: 4/7/2026 — 6:33 PM CST</div>
+        <div class="timer" id="timer-shaun">Calculating…</div>
+      </div>
+      <div class="back">
+        <p>Waiting…</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- LOGAN -->
+  <div class="card">
+    <div class="content">
+      <div class="front">
+        <img src="" alt="Waiting">
+        <h2>Logan</h2>
+        <p>Shop Keeper</p>
+        <div class="hire-date">Hired: 4/26/2026 — 11:20 AM CST</div>
+        <div class="timer" id="timer-logan">Calculating…</div>
+      </div>
+      <div class="back">
+        <p>Waiting…</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- JAYMIA -->
+  <div class="card">
+    <div class="content">
+      <div class="front">
+        <img src="" alt="Waiting">
+        <h2>Jaymia</h2>
+        <p>Shop Keeper</p>
+        <div class="hire-date">Hired: 4/27/2026 — 10:14 PM CST</div>
+        <div class="timer" id="timer-jaymia">Calculating…</div>
+      </div>
+      <div class="back">
+        <p>Waiting…</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- RAINA -->
+  <div class="card">
+    <div class="content">
+      <div class="front">
+        <img src="" alt="Waiting">
+        <h2>Raina</h2>
+        <p>Shop Keeper</p>
+        <div class="hire-date">Hired: 4/27/2026 — 11:46 PM CST</div>
+        <div class="timer" id="timer-raina">Calculating…</div>
+      </div>
+      <div class="back">
+        <p>Waiting…</p>
+      </div>
     </div>
   </div>
 
@@ -268,8 +409,16 @@
     setInterval(updateTimer, 1000);
   }
 
-  // Jay's hire date
-  startEmploymentTimer("jayTimer", "April 27, 2026 02:56:00 CST");
+  startEmploymentTimer("timer-jay", "April 27, 2026 02:56:00 CST");
+  startEmploymentTimer("timer-nyx", "May 12, 2026 19:01:00 CST");
+  startEmploymentTimer("timer-lila", "April 9, 2026 01:43:00 CST");
+  startEmploymentTimer("timer-faye", "April 6, 2026 07:21:00 CST");
+  startEmploymentTimer("timer-trav", "March 25, 2026 21:07:00 CST");
+  startEmploymentTimer("timer-toby", "March 23, 2026 20:33:00 CST");
+  startEmploymentTimer("timer-shaun", "April 7, 2026 18:33:00 CST");
+  startEmploymentTimer("timer-logan", "April 26, 2026 11:20:00 CST");
+  startEmploymentTimer("timer-jaymia", "April 27, 2026 22:14:00 CST");
+  startEmploymentTimer("timer-raina", "April 27, 2026 23:46:00 CST");
 </script>
 
 </body>
