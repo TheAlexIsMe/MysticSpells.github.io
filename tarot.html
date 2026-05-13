@@ -19,7 +19,7 @@
 
   /* HERO */
   .hero {
-    padding: 60px 20px 20px;
+    padding: 60px 20px 10px;
     position: relative;
   }
 
@@ -67,11 +67,19 @@
     line-height: 1.5rem;
   }
 
+  /* LOGIN WRAPPER — THE FIX */
+  .login-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+    margin-bottom: 80px;
+  }
+
   /* LOGIN CARD */
   .login-card {
     width: 520px;
     max-width: 90%;
-    margin: 0 auto 70px;
     background: radial-gradient(circle at top, #4b2a88 0%, #1a102e 60%, #0b0716 100%);
     border-radius: 30px;
     padding: 35px 40px 40px;
@@ -219,26 +227,28 @@
   Each reading is <strong>$1,000</strong> and tips are always appreciated. This page is for authorized coven use only.
 </p>
 
-<!-- LOGIN CARD -->
-<div class="login-card">
-  <img src="https://i.imgur.com/6NZVG2f.png" class="login-logo" alt="Mystic Spells Logo">
-  <div class="login-heading">Tarot Access</div>
-  <div class="login-sub">Authorized personnel only. All access is logged.</div>
+<!-- LOGIN -->
+<div class="login-wrapper">
+  <div class="login-card">
+    <img src="https://i.imgur.com/6NZVG2f.png" class="login-logo" alt="Mystic Spells Logo">
+    <div class="login-heading">Tarot Access</div>
+    <div class="login-sub">Authorized personnel only. All access is logged.</div>
 
-  <form class="form" id="loginForm">
-    <label class="form-label">Username</label>
-    <input placeholder="Enter username" id="username" class="input" required>
+    <form class="form" id="loginForm">
+      <label class="form-label">Username</label>
+      <input placeholder="Enter username" id="username" class="input" required>
 
-    <label class="form-label">Password</label>
-    <input placeholder="Enter password" id="password" type="password" class="input" required>
+      <label class="form-label">Password</label>
+      <input placeholder="Enter password" id="password" type="password" class="input" required>
 
-    <input value="Unlock the Arcana" type="submit" class="login-button">
-  </form>
+      <input value="Unlock the Arcana" type="submit" class="login-button">
+    </form>
 
-  <p class="login-note">
-    Attempting to access this page without authorization may be considered a breach.
-    Customers: please visit the store and request a reading in person.
-  </p>
+    <p class="login-note">
+      Attempting to access this page without authorization may be considered a breach.
+      Customers: please visit the store and request a reading in person.
+    </p>
+  </div>
 </div>
 
 <footer>
