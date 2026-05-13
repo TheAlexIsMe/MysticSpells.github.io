@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Mystic Spells – Tarot Access</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Favicon -->
+<link rel="icon" href="https://i.imgur.com/6NZVG2f.png" type="image/png">
+
+<!-- Font -->
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+  body {
+    margin: 0;
+    font-family: "Montserrat", sans-serif;
+    background: radial-gradient(circle at center,
+      #3c1a6e 0%,
+      #1f1238 40%,
+      #0d0818 80%,
+      #000 100%
+    );
+    color: #e9ddff;
+    text-align: center;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+  }
+
+  /* HERO */
+  .hero {
+    padding: 80px 20px 40px;
+    position: relative;
+  }
+
+  .hero::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 420px;
+    height: 420px;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(circle, rgba(164,124,243,0.45), rgba(0,0,0,0));
+    border-radius: 50%;
+    filter: blur(40px);
+    z-index: -1;
+  }
+
+  .logo {
+    width: 160px;
+    margin: 0 auto 20px;
+    display: block;
+  }
+
+  h1 {
+    font-size: 52px;
+    margin-bottom: 10px;
+    color: #f2e6ff;
+  }
+
+  p.subtitle {
+    font-size: 20px;
+    max-width: 700px;
+    margin: 0 auto 20px;
+    color: #e8d8ff;
+  }
+
+  /* BUTTON ROW */
+  .button-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 14px;
+    margin-bottom: 40px;
+  }
+
+  .btn {
+    border: none;
+    width: 10em;
+    height: 3.5em;
+    border-radius: 2em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #1C1A1C;
+    cursor: pointer;
+    transition: all 450ms ease-in-out;
+    text-decoration: none;
+  }
+
+  .text {
+    font-weight: 600;
+    color: #FFFFFF;
+    font-size: 18px;
+    text-align: center;
+  }
+
+  .btn:hover {
+    background: linear-gradient(0deg,#A47CF3,#683FEA);
+    box-shadow: inset 0px 1px 0px rgba(255,255,255,0.4),
+                inset 0px -4px 0px rgba(0,0,0,0.2),
+                0px 0px 0px 4px rgba(255,255,255,0.2),
+                0px 0px 180px #9917FF;
+    transform: translateY(-2px);
+  }
+
+  /* TAROT INFO TEXT */
+  .tarot-info {
+    max-width: 700px;
+    margin: 0 auto 25px;
+    font-size: 16px;
+    color: #d8caff;
+    line-height: 1.5rem;
+  }
+
+  .tarot-info strong {
+    color: #f5e6ff;
+  }
+
+  /* LOGIN CARD (Mystic Spells theme) */
+  .login-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 60px;
+  }
+
+  .login-card {
+    max-width: 380px;
+    width: 100%;
+    background: radial-gradient(circle at top, #4b2a88 0%, #1a102e 60%, #0b0716 100%);
+    border-radius: 30px;
+    padding: 25px 30px 30px;
+    border: 2px solid rgba(255,255,255,0.18);
+    box-shadow: 0 0 35px rgba(164,124,243,0.5);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .login-card::before {
+    content: "";
+    position: absolute;
+    width: 220px;
+    height: 220px;
+    background: radial-gradient(circle, rgba(255,192,255,0.4), transparent);
+    top: -80px;
+    right: -60px;
+    filter: blur(6px);
+    opacity: 0.8;
+  }
+
+  .login-logo {
+    width: 90px;
+    margin: 0 auto 10px;
+    display: block;
+  }
+
+  .login-heading {
+    text-align: center;
+    font-weight: 700;
+    font-size: 26px;
+    color: #f5e6ff;
+    margin-bottom: 5px;
+  }
+
+  .login-sub {
+    text-align: center;
+    font-size: 13px;
+    color: #d0c0ff;
+    margin-bottom: 15px;
+  }
+
+  .form {
+    margin-top: 10px;
+  }
+
+  .form .input {
+    width: 100%;
+    background: rgba(10, 6, 20, 0.9);
+    border: 1px solid rgba(255,255,255,0.18);
+    padding: 14px 16px;
+    border-radius: 16px;
+    margin-top: 14px;
+    color: #f5e6ff;
+    box-shadow: 0 0 12px rgba(0,0,0,0.6);
+  }
+
+  .form .input::placeholder {
+    color: #a89ad0;
+    text-align: center;
+  }
+
+  .form .input:focus {
+    outline: none;
+    border-color: #A47CF3;
+    box-shadow: 0 0 18px rgba(164,124,243,0.7);
+  }
+
+  .form-label {
+    font-size: 12px;
+    color: #d0c0ff;
+    margin-top: 10px;
+    display: block;
+    text-align: center;
+  }
+
+  .form .login-button {
+    display: block;
+    width: 100%;
+    font-weight: 700;
+    background: linear-gradient(135deg,#A47CF3,#683FEA);
+    color: white;
+    padding-block: 14px;
+    margin: 22px auto 5px;
+    border-radius: 20px;
+    border: none;
+    box-shadow: 0 0 25px rgba(164,124,243,0.8);
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+  }
+
+  .form .login-button:hover {
+    transform: translateY(-1px) scale(1.02);
+    box-shadow: 0 0 35px rgba(164,124,243,1);
+  }
+
+  .form .login-button:active {
+    transform: scale(0.97);
+    box-shadow: 0 0 18px rgba(164,124,243,0.7);
+  }
+
+  .login-note {
+    margin-top: 10px;
+    font-size: 11px;
+    color: #cbbaf5;
+    text-align: center;
+  }
+
+  footer {
+    margin-top: 40px;
+    padding: 30px 0 10px;
+    color: #cfc4e8;
+    font-size: 14px;
+    opacity: 0.8;
+  }
+
+  /* FULL-SCREEN ERROR / LOCKOUT PAGE */
+  .lockout-overlay {
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(circle at center,#2b103f 0%,#050208 70%,#000 100%);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    color: #f5e6ff;
+  }
+
+  .lockout-content {
+    max-width: 700px;
+    padding: 40px 30px;
+    border-radius: 24px;
+    background: rgba(10, 5, 20, 0.95);
+    border: 2px solid rgba(255,255,255,0.18);
+    box-shadow: 0 0 40px rgba(164,124,243,0.8);
+    text-align: center;
+  }
+
+  .lockout-title {
+    font-size: 30px;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+
+  .lockout-sub {
+    font-size: 15px;
+    color: #d8caff;
+    line-height: 1.6rem;
+    margin-bottom: 25px;
+  }
+
+  .lockout-sub strong {
+    color: #ffffff;
+  }
+
+  /* TIMER LOADER (decorative) */
+  .loader {
+    display: inline-flex;
+    border: 2px solid #A47CF3;
+    --c: no-repeat linear-gradient(#A47CF3 0 0) 50%;
+    background: var(--c) calc(50% - 5px)/5px 5px,
+      var(--c) calc(50% + 5px)/5px 5px;
+    padding: 6px 10px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+  }
+
+  .loader::before,
+  .loader::after {
+    content: "12 00 23 40 31 45 60 17 45 32 29 42 50 08 14 07 46 11 03 55";
+    font-size: 22px;
+    font-family: monospace;
+    font-weight: bold;
+    line-height: 1em;
+    height: 1em;
+    width: 2ch;
+    color: #0000;
+    text-shadow: 0 0 0 #A47CF3;
+    overflow: hidden;
+    margin: 5px 10px;
+    animation: l3 1s steps(20) infinite;
+  }
+
+  .loader::before {
+    animation-duration: 1.5s;
+  }
+
+  @keyframes l3 {
+    100% {
+      text-shadow: 0 -20em 0 #A47CF3;
+    }
+  }
+
+  .timer-text {
+    margin-top: 5px;
+    font-size: 14px;
+    color: #e9ddff;
+  }
+
+  .timer-text span {
+    font-weight: 700;
+    color: #ffb3ff;
+  }
+
+  @media (max-width: 600px) {
+    .login-card {
+      padding: 22px 20px 26px;
+    }
+    .lockout-content {
+      margin: 0 15px;
+      padding: 30px 20px;
+    }
+  }
+</style>
+</head>
+
+<body>
+<div class="container" id="mainContent">
+
+  <!-- HERO -->
+  <div class="hero">
+    <img class="logo" src="https://i.imgur.com/6NZVG2f.png" alt="Mystic Spells Logo">
+    <h1>Mystic Spells</h1>
+    <p class="subtitle">Tarot access is reserved for in‑coven use only.</p>
+
+    <div class="button-row">
+      <a href="index.html" class="btn"><span class="text">Home</span></a>
+      <a href="calculator.html" class="btn"><span class="text">Calculator</span></a>
+      <a href="rules.html" class="btn"><span class="text">Rules</span></a>
+      <a href="items.html" class="btn"><span class="text">Items</span></a>
+      <a href="staff.html" class="btn"><span class="text">Staff</span></a>
+      <a href="location.html" class="btn"><span class="text">Location</span></a>
+    </div>
+  </div>
+
+  <p class="tarot-info">
+    <strong>In‑Character Tarot Readings:</strong> If you would like a reading done, please visit the store in‑city.
+    Each reading is <strong>$1,000</strong> and tips are always appreciated. This page is for authorized coven use only.
+  </p>
+
+  <!-- LOGIN CARD -->
+  <div class="login-wrapper">
+    <div class="login-card">
+      <img src="https://i.imgur.com/6NZVG2f.png" class="login-logo" alt="Mystic Spells Logo">
+      <div class="login-heading">Tarot Access</div>
+      <div class="login-sub">Authorized personnel only. All access is logged.</div>
+
+      <form class="form" id="loginForm">
+        <label class="form-label" for="username">Username</label>
+        <input
+          placeholder="Enter username"
+          id="username"
+          name="username"
+          type="text"
+          class="input"
+          required
+        />
+
+        <label class="form-label" for="password">Password</label>
+        <input
+          placeholder="Enter password"
+          id="password"
+          name="password"
+          type="password"
+          class="input"
+          required
+        />
+
+        <input value="Unlock the Arcana" type="submit" class="login-button" id="loginButton" />
+      </form>
+
+      <p class="login-note">
+        Attempting to access this page without authorization may be considered a breach.
+        Customers: please visit the store and request a reading in person.
+      </p>
+    </div>
+  </div>
+
+  <footer>
+    Mystic Spells © 2026 — Crafted under the moonlight.
+  </footer>
+</div>
+
+<!-- FULL-SCREEN LOCKOUT / ERROR -->
+<div class="lockout-overlay" id="lockoutOverlay">
+  <div class="lockout-content">
+    <div class="lockout-title">404 — Arcane Breach Detected</div>
+    <div class="lockout-sub">
+      You’ve been caught trying to bypass our systems.<br><br>
+      <strong>Employees:</strong> If you genuinely forgot your password, you may try again after the timer finishes.<br><br>
+      <strong>Customers:</strong> This portal is not for you. Please visit Mystic Spells in‑city and request a tarot reading at the counter.
+      Each reading is <strong>$1,000</strong>, and tips are always appreciated.<br><br>
+      All unauthorized access attempts are logged by the coven.
+    </div>
+
+    <div class="loader"></div>
+    <div class="timer-text">
+      Retry available in <span id="secondsRemaining">60</span> seconds.
+    </div>
+  </div>
+</div>
+
+<script>
+  const CORRECT_USERNAME = "AlexOwner";
+  const CORRECT_PASSWORD = "MysticSpells2026";
+
+  const loginForm = document.getElementById("loginForm");
+  const usernameInput = document.getElementById("username");
+  const passwordInput = document.getElementById("password");
+  const loginButton = document.getElementById("loginButton");
+
+  const lockoutOverlay = document.getElementById("lockoutOverlay");
+  const secondsSpan = document.getElementById("secondsRemaining");
+
+  let lockoutActive = false;
+  let lockoutInterval = null;
+  const LOCKOUT_SECONDS = 60;
+
+  function startLockout() {
+    lockoutActive = true;
+    let remaining = LOCKOUT_SECONDS;
+    secondsSpan.textContent = remaining.toString();
+
+    // Show overlay and disable form
+    lockoutOverlay.style.display = "flex";
+    usernameInput.disabled = true;
+    passwordInput.disabled = true;
+    loginButton.disabled = true;
+
+    lockoutInterval = setInterval(() => {
+      remaining--;
+      if (remaining <= 0) {
+        clearInterval(lockoutInterval);
+        lockoutInterval = null;
+        lockoutActive = false;
+        lockoutOverlay.style.display = "none";
+        usernameInput.disabled = false;
+        passwordInput.disabled = false;
+        loginButton.disabled = false;
+        usernameInput.value = "";
+        passwordInput.value = "";
+        usernameInput.focus();
+      }
+      secondsSpan.textContent = remaining.toString();
+    }, 1000);
+  }
+
+  loginForm.addEventListener("submit", function (e) {
+    e.preventDefault();
+    if (lockoutActive) return;
+
+    const user = usernameInput.value.trim();
+    const pass = passwordInput.value;
+
+    if (user === CORRECT_USERNAME && pass === CORRECT_PASSWORD) {
+      window.location.href = "tarot2.html";
+    } else {
+      startLockout();
+    }
+  });
+</script>
+
+</body>
+</html>
