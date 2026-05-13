@@ -87,70 +87,30 @@
     background-color: var(--uib-color);
     border-radius: 50%;
   }
-  .three-body__dot:nth-child(1) {
-    bottom: 5%; left: 0;
-    transform: rotate(60deg);
-    transform-origin: 50% 85%;
-  }
-  .three-body__dot:nth-child(1)::after {
-    bottom: 0; left: 0;
-    animation: wobble1 var(--uib-speed) infinite ease-in-out;
-    animation-delay: calc(var(--uib-speed) * -0.3);
-  }
-  .three-body__dot:nth-child(2) {
-    bottom: 5%; right: 0;
-    transform: rotate(-60deg);
-    transform-origin: 50% 85%;
-  }
-  .three-body__dot:nth-child(2)::after {
-    bottom: 0; left: 0;
-    animation: wobble1 var(--uib-speed) infinite calc(var(--uib-speed) * -0.15) ease-in-out;
-  }
-  .three-body__dot:nth-child(3) {
-    bottom: -5%; left: 0;
-    transform: translateX(116.666%);
-  }
-  .three-body__dot:nth-child(3)::after {
-    top: 0; left: 0;
-    animation: wobble2 var(--uib-speed) infinite ease-in-out;
-  }
 
-  @keyframes spin78236 {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-  }
-  @keyframes wobble1 {
-    0%,100% { transform: translateY(0%) scale(1); opacity: 1; }
-    50% { transform: translateY(-66%) scale(0.65); opacity: 0.8; }
-  }
-  @keyframes wobble2 {
-    0%,100% { transform: translateY(0%) scale(1); opacity: 1; }
-    50% { transform: translateY(66%) scale(0.65); opacity: 0.8; }
-  }
-
-  /* MAP CARD (MAGICAL BORDER) */
+  /* MAP CARD — NOW HUGE */
   .map-card {
     display: none;
     margin-top: 60px;
     position: relative;
     width: 100%;
-    max-width: 550px;
+    max-width: 900px; /* BIGGER */
     height: auto;
     margin-left: auto;
     margin-right: auto;
-    border-radius: 20px;
+    border-radius: 25px;
     overflow: hidden;
   }
 
   .map-bg {
     position: absolute;
-    top: 8px;
-    left: 8px;
-    right: 8px;
-    bottom: 8px;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
     background: rgba(30, 20, 50, 0.7);
-    backdrop-filter: blur(18px);
-    border-radius: 16px;
+    backdrop-filter: blur(22px);
+    border-radius: 20px;
     outline: 2px solid rgba(255,255,255,0.25);
     z-index: 2;
   }
@@ -160,12 +120,12 @@
     z-index: 1;
     top: 50%;
     left: 50%;
-    width: 260px;
-    height: 260px;
+    width: 380px;   /* BIGGER GLOW */
+    height: 380px;  /* BIGGER GLOW */
     border-radius: 50%;
     background-color: #A47CF3;
     opacity: 0.55;
-    filter: blur(35px);
+    filter: blur(45px);
     animation: blob-bounce 6s infinite ease-in-out;
   }
 
@@ -179,16 +139,16 @@
 
   .map-gif {
     width: 100%;
-    border-radius: 16px;
+    border-radius: 20px;
     z-index: 3;
     position: relative;
   }
 
   .location-text {
     margin-top: 25px;
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     color: #e9ddff;
-    line-height: 1.6rem;
+    line-height: 1.7rem;
   }
 
   footer {
