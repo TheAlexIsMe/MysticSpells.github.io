@@ -12,9 +12,9 @@
     margin: 0;
     font-family: "Cormorant Garamond", serif;
     background: radial-gradient(circle at center,
-      #4b2f7f 0%,
-      #2a1d4a 40%,
-      #1a1426 80%,
+      #3c1a6e 0%,
+      #1f1238 40%,
+      #0d0818 80%,
       #000 100%
     );
     color: #e9ddff;
@@ -22,31 +22,52 @@
   }
 
   .container {
-    max-width: 1100px;
+    max-width: 1200px;
     margin: auto;
     padding: 20px;
   }
 
+  /* 🌙 CINEMATIC HERO */
+  .hero {
+    padding: 80px 20px 60px;
+    position: relative;
+  }
+
+  .hero::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 420px;
+    height: 420px;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(circle, rgba(164,124,243,0.45), rgba(0,0,0,0));
+    border-radius: 50%;
+    filter: blur(40px);
+    z-index: -1;
+  }
+
   .logo {
-    width: 150px;
-    margin: 20px auto;
+    width: 160px;
+    margin: 0 auto 20px;
     display: block;
   }
 
   h1 {
-    font-size: 48px;
-    margin-bottom: 5px;
+    font-size: 56px;
+    margin-bottom: 10px;
     color: #f2e6ff;
+    letter-spacing: 2px;
   }
 
   p.subtitle {
-    font-size: 22px;
+    font-size: 24px;
     max-width: 700px;
-    margin: 0 auto 25px;
+    margin: 0 auto 35px;
     color: #e8d8ff;
   }
 
-  /* ✨ UIVERSE BUTTONS ✨ */
+  /* ✨ UIVERSE BUTTONS */
   .btn {
     border: none;
     width: 15em;
@@ -76,10 +97,10 @@
 
   .btn:hover {
     background: linear-gradient(0deg,#A47CF3,#683FEA);
-    box-shadow: inset 0px 1px 0px 0px rgba(255, 255, 255, 0.4),
-    inset 0px -4px 0px 0px rgba(0, 0, 0, 0.2),
-    0px 0px 0px 4px rgba(255, 255, 255, 0.2),
-    0px 0px 180px 0px #9917FF;
+    box-shadow: inset 0px 1px 0px rgba(255,255,255,0.4),
+                inset 0px -4px 0px rgba(0,0,0,0.2),
+                0px 0px 0px 4px rgba(255,255,255,0.2),
+                0px 0px 180px #9917FF;
     transform: translateY(-2px);
   }
 
@@ -92,7 +113,21 @@
     transform: scale(1.2);
   }
 
-  /* ✨ RULES CARD (Uiverse style) ✨ */
+  /* 🌙 CINEMATIC GRID */
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+    margin-top: 40px;
+  }
+
+  @media (max-width: 900px) {
+    .grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* ✨ RULES CARD */
   .card {
     --white: hsl(0, 0%, 100%);
     --paragraph: hsl(0, 0%, 83%);
@@ -104,11 +139,8 @@
     flex-direction: column;
     gap: 1rem;
 
-    padding: 1rem;
+    padding: 1.2rem;
     width: 100%;
-    max-width: 500px;
-    margin: 25px auto;
-
     background-color: #0f0d17;
     background-image: radial-gradient(at 88% 40%, #0f0d17 0px, transparent 85%),
                       radial-gradient(at 49% 30%, #0f0d17 0px, transparent 85%),
@@ -118,7 +150,7 @@
                       radial-gradient(at 100% 99%, #1a0f2b 0px, transparent 85%);
 
     border-radius: 1rem;
-    box-shadow: 0px -16px 24px 0px rgba(255, 255, 255, 0.15) inset;
+    box-shadow: 0px -16px 24px rgba(255,255,255,0.15) inset;
   }
 
   .card_title {
@@ -172,17 +204,13 @@
     color: var(--white);
   }
 
-  /* ✨ ANNOUNCEMENT CARD ✨ */
+  /* ✨ ANNOUNCEMENT CARD */
   .announce-card {
-    max-width: 500px;
-    margin: 25px auto;
     padding: 1.2rem;
     border-radius: 1rem;
-
     background: #1a1426;
     border: 1px solid rgba(255,255,255,0.18);
-
-    box-shadow: 0 0 25px rgba(164, 124, 243, 0.25);
+    box-shadow: 0 0 25px rgba(164,124,243,0.25);
   }
 
   .announce-header {
@@ -192,22 +220,14 @@
   }
 
   .announce-icon {
-    flex-shrink: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
     width: 2.4rem;
     height: 2.4rem;
-
     border-radius: 50%;
     background: linear-gradient(135deg, #A47CF3, #683FEA);
+    display: flex;
+    justify-content: center;
+    align-items: center;
     color: white;
-  }
-
-  .announce-icon svg {
-    width: 1.2rem;
-    height: 1.2rem;
   }
 
   .announce-title {
@@ -223,7 +243,7 @@
     line-height: 1.5rem;
   }
 
-  /* OWNER PHOTOS */
+  /* ✨ OWNERS CARD */
   .owner-photo {
     width: 160px;
     border-radius: 12px;
@@ -249,99 +269,91 @@
 <body>
 <div class="container">
 
-  <!-- LOGO -->
-  <img class="logo" src="https://i.imgur.com/6NZVG2f.png" alt="Mystic Spells Logo">
+  <!-- 🌙 HERO -->
+  <div class="hero">
+    <img class="logo" src="https://i.imgur.com/6NZVG2f.png" alt="Mystic Spells Logo">
+    <h1>Mystic Spells</h1>
+    <p class="subtitle">A moonlit cottage of potions, tarot, and spellwork in Euphoria RP.</p>
 
-  <!-- TITLE -->
-  <h1>Mystic Spells</h1>
-  <p class="subtitle">A moonlit cottage of potions, tarot, and spellwork in Euphoria RP.</p>
+    <!-- BUTTONS -->
+    <a href="tarot.html" class="btn">
+      <svg height="24" width="24" class="sparkle"><path d="M10,21.236..."/></svg>
+      <span class="text">Tarot Readings</span>
+    </a>
 
-  <!-- BUTTONS -->
-  <a href="index.html" class="btn">
-    <svg height="24" width="24" class="sparkle"><path d="M10,21.236..."/></svg>
-    <span class="text">Home</span>
-  </a>
+    <a href="calculator.html" class="btn">
+      <svg height="24" width="24" class="sparkle"><path d="M10,21.236..."/></svg>
+      <span class="text">Bundle Calculator</span>
+    </a>
 
-  <a href="tarot.html" class="btn">
-    <svg height="24" width="24" class="sparkle"><path d="M10,21.236..."/></svg>
-    <span class="text">Tarot Readings</span>
-  </a>
+    <a href="rules.html" class="btn">
+      <svg height="24" width="24" class="sparkle"><path d="M10,21.236..."/></svg>
+      <span class="text">Rules</span>
+    </a>
 
-  <a href="calculator.html" class="btn">
-    <svg height="24" width="24" class="sparkle"><path d="M10,21.236..."/></svg>
-    <span class="text">Bundle Calculator</span>
-  </a>
+    <a href="items.html" class="btn">
+      <svg height="24" width="24" class="sparkle"><path d="M10,21.236..."/></svg>
+      <span class="text">Items</span>
+    </a>
 
-  <a href="rules.html" class="btn">
-    <svg height="24" width="24" class="sparkle"><path d="M10,21.236..."/></svg>
-    <span class="text">Rules</span>
-  </a>
+    <a href="staff.html" class="btn">
+      <svg height="24" width="24" class="sparkle"><path d="M10,21.236..."/></svg>
+      <span class="text">Staff</span>
+    </a>
 
-  <a href="items.html" class="btn">
-    <svg height="24" width="24" class="sparkle"><path d="M10,21.236..."/></svg>
-    <span class="text">Items</span>
-  </a>
+    <a href="location.html" class="btn">
+      <svg height="24" width="24" class="sparkle"><path d="M10,21.236..."/></svg>
+      <span class="text">Location</span>
+    </a>
+  </div>
 
-  <a href="staff.html" class="btn">
-    <svg height="24" width="24" class="sparkle"><path d="M10,21.236..."/></svg>
-    <span class="text">Staff</span>
-  </a>
+  <!-- 🌙 CINEMATIC GRID -->
+  <div class="grid">
 
-  <a href="location.html" class="btn">
-    <svg height="24" width="24" class="sparkle"><path d="M10,21.236..."/></svg>
-    <span class="text">Location</span>
-  </a>
-
-  <!-- RULES CARD -->
-  <div class="card">
-    <div class="card_title__container">
+    <!-- RULES -->
+    <div class="card">
       <span class="card_title">Shop Rules</span>
       <p class="card_paragraph">Keep the coven magical, safe, and drama‑free.</p>
+      <hr class="line" />
+      <ul class="card__list">
+        <li class="card__list_item"><span class="check"><svg class="check_svg"><path d="M12.416..."/></svg></span><span class="list_text">RP only — no OOC</span></li>
+        <li class="card__list_item"><span class="check"><svg class="check_svg"><path d="M12.416..."/></svg></span><span class="list_text">No drama</span></li>
+        <li class="card__list_item"><span class="check"><svg class="check_svg"><path d="M12.416..."/></svg></span><span class="list_text">Call police first</span></li>
+        <li class="card__list_item"><span class="check"><svg class="check_svg"><path d="M12.416..."/></svg></span><span class="list_text">Respect everyone</span></li>
+        <li class="card__list_item"><span class="check"><svg class="check_svg"><path d="M12.416..."/></svg></span><span class="list_text">No guns</span></li>
+        <li class="card__list_item"><span class="check"><svg class="check_svg"><path d="M12.416..."/></svg></span><span class="list_text">No refunds</span></li>
+        <li class="card__list_item"><span class="check"><svg class="check_svg"><path d="M12.416..."/></svg></span><span class="list_text">Consume at your own risk</span></li>
+      </ul>
     </div>
 
+    <!-- ANNOUNCEMENTS -->
+    <div class="announce-card">
+      <div class="announce-header">
+        <span class="announce-icon">
+          <svg fill="currentColor" viewBox="0 0 20 20">
+            <path clip-rule="evenodd" fill-rule="evenodd"
+              d="M18 3a1 1 0 00-1.447-.894L8.763 6H5a3 3 0 000 6h.28l1.771 5.316A1 1 0 008 18h1a1 1 0 001-1v-4.382l6.553 3.276A1 1 0 0018 15V3z">
+            </path>
+          </svg>
+        </span>
+        <p class="announce-title">Latest Announcement</p>
+      </div>
+
+      <p class="announce-message">
+        <strong>Store Ban:</strong> INJECTED is banned from Mystic Spells.<br><br>
+        <strong>Coming Soon:</strong> Tarot readings, spell services, and full staff pages.
+      </p>
+    </div>
+
+  </div>
+
+  <!-- OWNERS (FULL WIDTH) -->
+  <div class="card" style="margin-top:40px;">
+    <span class="card_title">Owners</span>
+    <p class="card_paragraph">The witches behind the magic.</p>
     <hr class="line" />
 
     <ul class="card__list">
-      <li class="card__list_item"><span class="check"><svg class="check_svg"><path d="M12.416..."/></svg></span><span class="list_text">RP only — no OOC</span></li>
-      <li class="card__list_item"><span class="check"><svg class="check_svg"><path d="M12.416..."/></svg></span><span class="list_text">No drama</span></li>
-      <li class="card__list_item"><span class="check"><svg class="check_svg"><path d="M12.416..."/></svg></span><span class="list_text">Call police first</span></li>
-      <li class="card__list_item"><span class="check"><svg class="check_svg"><path d="M12.416..."/></svg></span><span class="list_text">Respect everyone</span></li>
-      <li class="card__list_item"><span class="check"><svg class="check_svg"><path d="M12.416..."/></svg></span><span class="list_text">No guns</span></li>
-      <li class="card__list_item"><span class="check"><svg class="check_svg"><path d="M12.416..."/></svg></span><span class="list_text">No refunds</span></li>
-      <li class="card__list_item"><span class="check"><svg class="check_svg"><path d="M12.416..."/></svg></span><span class="list_text">Consume at your own risk</span></li>
-    </ul>
-  </div>
-
-  <!-- ANNOUNCEMENTS -->
-  <div class="announce-card">
-    <div class="announce-header">
-      <span class="announce-icon">
-        <svg fill="currentColor" viewBox="0 0 20 20">
-          <path clip-rule="evenodd" fill-rule="evenodd"
-            d="M18 3a1 1 0 00-1.447-.894L8.763 6H5a3 3 0 000 6h.28l1.771 5.316A1 1 0 008 18h1a1 1 0 001-1v-4.382l6.553 3.276A1 1 0 0018 15V3z">
-          </path>
-        </svg>
-      </span>
-      <p class="announce-title">Latest Announcement</p>
-    </div>
-
-    <p class="announce-message">
-      <strong>Store Ban:</strong> INJECTED is banned from Mystic Spells.<br><br>
-      <strong>Coming Soon:</strong> Tarot readings, spell services, and full staff pages.
-    </p>
-  </div>
-
-  <!-- OWNERS -->
-  <div class="card">
-    <div class="card_title__container">
-      <span class="card_title">Owners</span>
-      <p class="card_paragraph">The witches behind the magic.</p>
-    </div>
-
-    <hr class="line" />
-
-    <ul class="card__list">
-
       <li class="card__list_item">
         <span class="list_text"><strong>Gothy — Owner</strong></span>
       </li>
@@ -351,7 +363,6 @@
         <span class="list_text"><strong>Alex — Co‑Owner</strong></span>
       </li>
       <img src="https://i.imgur.com/mnaXdnh.png" class="owner-photo">
-
     </ul>
   </div>
 
