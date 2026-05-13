@@ -9,9 +9,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600;700&display=swap" rel="stylesheet">
 
   <style>
-    /* ------------------------------
-       GLOBAL STYLING + READABILITY
-    ------------------------------ */
     * {
       box-sizing: border-box;
       margin: 0;
@@ -47,9 +44,7 @@
       padding: 1.5rem 1rem 3rem;
     }
 
-    /* ------------------------------
-       HEADER
-    ------------------------------ */
+    /* HEADER */
     header {
       display: flex;
       align-items: center;
@@ -65,21 +60,11 @@
       gap: 1rem;
     }
 
-    .brand-logo {
-      width: 70px;
-      height: 70px;
-      border-radius: 50%;
-      overflow: hidden;
-      border: 2px solid rgba(255, 255, 255, 0.7);
-      box-shadow: 0 0 25px rgba(255, 255, 255, 0.4);
-      background: rgba(0, 0, 0, 0.2);
-      flex-shrink: 0;
-    }
-
+    /* FIXED LOGO SIZE — NO CIRCLE */
     .brand-logo img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+      width: 120px;
+      height: auto;
+      display: block;
     }
 
     .brand-name {
@@ -117,9 +102,7 @@
       box-shadow: 0 6px 14px rgba(10, 0, 30, 0.6);
     }
 
-    /* ------------------------------
-       HERO
-    ------------------------------ */
+    /* HERO */
     .hero {
       text-align: center;
       margin-bottom: 2.5rem;
@@ -152,9 +135,7 @@
       flex-wrap: wrap;
     }
 
-    /* ------------------------------
-       BUTTONS
-    ------------------------------ */
+    /* BUTTONS */
     .button {
       background: rgba(25, 10, 45, 0.9);
       border-radius: 0.8em;
@@ -179,10 +160,393 @@
       letter-spacing: 0.15em;
       text-transform: uppercase;
     }
+
+    /* PANELS */
+    .sections-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1.6fr);
+      gap: 2rem;
+      margin-top: 2rem;
+      align-items: flex-start;
+    }
+
+    .panel {
+      background: rgba(25, 15, 45, 0.88);
+      border-radius: 18px;
+      padding: 1.2rem 1.4rem;
+      border: 1px solid rgba(255, 255, 255, 0.45);
+      box-shadow: 0 18px 40px rgba(10, 0, 30, 0.8);
+    }
+
+    .panel-title {
+      font-size: 36px;
+      margin-bottom: 0.4rem;
+    }
+
+    .panel-subtitle {
+      font-size: 24px;
+      margin-bottom: 0.8rem;
+      opacity: 0.95;
+    }
+
+    .rules-list {
+      list-style: none;
+      display: grid;
+      gap: 0.4rem;
+      font-size: 22px;
+      line-height: 1.6;
+    }
+
+    .rules-list li::before {
+      content: "✦ ";
+      color: #ffe0ff;
+    }
+
+    .announcement-item {
+      font-size: 22px;
+      margin-bottom: 0.4rem;
+    }
+
+    .announcement-item strong {
+      color: #ffe0b8;
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 0.6rem;
+    }
+
+    .pill {
+      font-size: 20px;
+      padding: 0.25rem 0.7rem;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      background: rgba(35, 20, 60, 0.9);
+      box-shadow: 0 4px 10px rgba(10, 0, 30, 0.7);
+    }
+
+    /* BUNDLES + ITEMS */
+    .section-block {
+      margin-top: 2.5rem;
+    }
+
+    .section-title {
+      font-size: 40px;
+      margin-bottom: 0.4rem;
+      text-align: center;
+    }
+
+    .section-subtitle {
+      font-size: 24px;
+      text-align: center;
+      opacity: 0.9;
+      margin-bottom: 1.2rem;
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 1.2rem;
+    }
+
+    .bundle-card,
+    .item-card {
+      background: rgba(25, 15, 45, 0.88);
+      border-radius: 16px;
+      padding: 1rem 1.1rem;
+      border: 1px solid rgba(255, 255, 255, 0.45);
+      box-shadow: 0 14px 30px rgba(10, 0, 30, 0.8);
+    }
+
+    .bundle-name {
+      font-size: 30px;
+      margin-bottom: 0.2rem;
+    }
+
+    .bundle-price {
+      font-size: 24px;
+      margin-bottom: 0.5rem;
+      color: #ffe0b8;
+    }
+
+    .bundle-list {
+      list-style: none;
+      font-size: 22px;
+      display: grid;
+      gap: 0.2rem;
+    }
+
+    .item-name {
+      font-size: 28px;
+      margin-bottom: 0.2rem;
+    }
+
+    .item-price {
+      font-size: 22px;
+      margin-bottom: 0.3rem;
+      color: #ffe0b8;
+    }
+
+    .item-desc {
+      font-size: 22px;
+      opacity: 0.95;
+    }
+
+    /* SPECIAL CARDS (Owners + Supporter + Worker) */
+    .special-section {
+      margin-top: 3rem;
+    }
+
+    .special-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+      justify-items: center;
+    }
+
+    .special-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .special-label {
+      font-size: 24px;
+    }
+
+    .special-card {
+      width: 220px;
+      height: 320px;
+      background-color: #1b1328;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid #4a3b66;
+      border-radius: 12px;
+      box-shadow: 0 18px 40px rgba(10, 0, 30, 0.9);
+      cursor: pointer;
+    }
+
+    .special-content {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      opacity: 0;
+      transition: all 0.3s 0.3s;
+      padding: 0.8rem;
+      text-align: center;
+      position: relative;
+      z-index: 3;
+    }
+
+    .special-name {
+      font-size: 32px;
+      margin-bottom: 0.2rem;
+    }
+
+    .special-role {
+      font-size: 26px;
+      margin-bottom: 0.4rem;
+      color: #ffe0b8;
+    }
+
+    .special-bio {
+      font-size: 22px;
+      line-height: 1.5;
+    }
+
+    .special-mask-wrap {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      inset: 0;
+      transform: scale(1.1);
+      display: flex;
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .special-mask {
+      width: 100%;
+      height: 100%;
+      background: #fff;
+      filter: blur(18px);
+      transition: all 0.5s 0.3s;
+    }
+
+    .special-mask-left {
+      transform: translateX(0%);
+    }
+
+    .special-mask-right {
+      transform: translateX(0%);
+    }
+
+    .special-loading-wrap {
+      width: 60px;
+      height: 60px;
+      margin: -30px 0 0 -30px;
+      position: absolute;
+      inset: 50%;
+      pointer-events: none;
+      transition: all 0.3s 0.3s;
+      z-index: 4;
+    }
+
+    .special-ball {
+      filter: blur(4px);
+    }
+
+    .special-ball1 {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      border: 6px solid #fff;
+      animation: animBall1 3s steps(4) infinite;
+    }
+
+    .special-ball2 {
+      width: 12px;
+      height: 12px;
+      margin: -6px 0 0 -6px;
+      position: absolute;
+      inset: 50%;
+      border-radius: 50%;
+      border: 6px solid #fff;
+      animation: animBall2 3s ease-in-out infinite;
+    }
+
+    @keyframes animBall1 {
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    @keyframes animBall2 {
+      50% {
+        transform: translateY(18px);
+      }
+    }
+
+    .special-card:hover .special-content {
+      opacity: 1;
+    }
+
+    .special-card:hover .special-mask-left {
+      transform: translateX(-100%);
+    }
+
+    .special-card:hover .special-mask-right {
+      transform: translateX(100%);
+    }
+
+    .special-card:hover .special-loading-wrap {
+      opacity: 0;
+    }
+
+    /* EMPLOYEE CARDS */
+    .employees-section {
+      margin-top: 3rem;
+    }
+
+    .employees-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1.2rem;
+      justify-items: center;
+    }
+
+    .emp-card {
+      width: 190px;
+      height: 254px;
+      background: #2b1f4f;
+      border-radius: 15px;
+      box-shadow: 1px 5px 60px 0px #100a886b;
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .emp-card-border-top {
+      width: 60%;
+      height: 3%;
+      background: #7f6df5;
+      margin: auto;
+      border-radius: 0px 0px 15px 15px;
+    }
+
+    .emp-img {
+      width: 70px;
+      height: 80px;
+      background: #7f6df5;
+      border-radius: 15px;
+      margin: auto;
+      margin-top: 25px;
+      overflow: hidden;
+    }
+
+    .emp-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .emp-name {
+      font-size: 26px;
+      color: white;
+      text-align: center;
+      padding-top: 10px;
+    }
+
+    .emp-role {
+      font-size: 22px;
+      color: white;
+      text-align: center;
+      padding-top: 3px;
+    }
+
+    .emp-card button {
+      padding: 8px 25px;
+      display: block;
+      margin: auto;
+      border-radius: 8px;
+      border: none;
+      margin-top: 30px;
+      background: #7f6df5;
+      color: white;
+      font-size: 22px;
+      cursor: pointer;
+      box-shadow: 0 6px 14px rgba(10, 0, 30, 0.8);
+      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+    }
+
+    .emp-card button:hover {
+      background: #5f4bf0;
+      transform: translateY(-1px);
+      box-shadow: 0 8px 18px rgba(10, 0, 30, 1);
+    }
+
+    /* FOOTER */
+    .footer {
+      margin-top: 3rem;
+      font-size: 22px;
+      text-align: center;
+      opacity: 0.9;
+    }
+
+    .footer span {
+      color: #ffe0b8;
+    }
   </style>
 </head>
-
-  <body>
+<body>
   <div class="page">
     <main class="content">
 
@@ -190,8 +554,7 @@
       <header>
         <div class="brand">
           <div class="brand-logo">
-            <!-- Replace with your logo later -->
-            <img src="https://i.imgur.com/6NZVG2f.png" alt="Mystic Spells Logo">
+            <img src="your-logo.png" alt="Mystic Spells Logo">
           </div>
 
           <div class="brand-text">
@@ -213,7 +576,7 @@
         </nav>
       </header>
 
-      <!-- HERO SECTION -->
+      <!-- HERO -->
       <section class="hero">
         <h1 class="hero-title">Welcome to Mystic Spells</h1>
 
@@ -224,28 +587,17 @@
         </p>
 
         <div class="hero-cta">
-          <a href="#bundles" class="button">
-            <div class="text">Shop Bundles</div>
-          </a>
-
-          <a href="#items" class="button">
-            <div class="text">View Items</div>
-          </a>
-
-          <a href="#rules" class="button">
-            <div class="text">Shop Rules</div>
-          </a>
-
-          <a href="#staff" class="button">
-            <div class="text">Meet the Coven</div>
-          </a>
+          <a href="#bundles" class="button"><div class="text">Shop Bundles</div></a>
+          <a href="#items" class="button"><div class="text">View Items</div></a>
+          <a href="#rules" class="button"><div class="text">Shop Rules</div></a>
+          <a href="#staff" class="button"><div class="text">Meet the Coven</div></a>
         </div>
       </section>
 
       <!-- RULES + ANNOUNCEMENTS -->
       <section class="sections-grid" id="rules">
 
-        <!-- RULES PANEL -->
+        <!-- RULES -->
         <div class="panel">
           <div class="panel-title">Mystic Spells Shop Rules</div>
           <div class="panel-subtitle">
@@ -264,7 +616,7 @@
           </ul>
         </div>
 
-        <!-- ANNOUNCEMENTS PANEL -->
+        <!-- ANNOUNCEMENTS -->
         <div class="panel" id="announcements">
           <div class="panel-title">Latest Announcements</div>
           <div class="panel-subtitle">
@@ -292,16 +644,13 @@
 
       </section>
 
-            <!-- BUNDLES SECTION -->
+      <!-- BUNDLES -->
       <section class="section-block" id="bundles">
         <h2 class="section-title">Potion Bundles</h2>
-        <p class="section-subtitle">
-          Curated sets for parties, protection, and pure chaos.
-        </p>
+        <p class="section-subtitle">Curated sets for parties, protection, and pure chaos.</p>
 
         <div class="cards-grid">
 
-          <!-- BUNDLE 1 -->
           <div class="bundle-card">
             <div class="bundle-name">🎀 Starlight Starburst</div>
             <div class="bundle-price">27,500</div>
@@ -311,7 +660,6 @@
             </ul>
           </div>
 
-          <!-- BUNDLE 2 -->
           <div class="bundle-card">
             <div class="bundle-name">🎀 Pretty &amp; Protected</div>
             <div class="bundle-price">25,000</div>
@@ -322,7 +670,6 @@
             </ul>
           </div>
 
-          <!-- BUNDLE 3 -->
           <div class="bundle-card">
             <div class="bundle-name">🎀 Ultimate Tea Party</div>
             <div class="bundle-price">32,000</div>
@@ -334,7 +681,6 @@
             </ul>
           </div>
 
-          <!-- BUNDLE 4 -->
           <div class="bundle-card">
             <div class="bundle-name">🎀 Midnight Moonbeam</div>
             <div class="bundle-price">25,500</div>
@@ -348,82 +694,59 @@
         </div>
       </section>
 
-
-      <!-- ITEMS SECTION -->
+      <!-- ITEMS -->
       <section class="section-block" id="items">
         <h2 class="section-title">Individual Potions &amp; Stews</h2>
-        <p class="section-subtitle">
-          Mix and match your own chaos.
-        </p>
+        <p class="section-subtitle">Mix and match your own chaos.</p>
 
         <div class="cards-grid">
 
-          <!-- ITEM 1 -->
           <div class="item-card">
             <div class="item-name">Spectral Rush</div>
             <div class="item-price">$500</div>
-            <div class="item-desc">
-              Speed and shield in a bottle. For when you need to move fast and not die trying.
-            </div>
+            <div class="item-desc">Speed and shield in a bottle. For when you need to move fast and not die trying.</div>
           </div>
 
-          <!-- ITEM 2 -->
           <div class="item-card">
             <div class="item-name">Suspicious Stew</div>
             <div class="item-price">$500 each</div>
-            <div class="item-desc">
-              Hunger and thirst relief with a side of mystery. Consume at your own risk.
-            </div>
+            <div class="item-desc">Hunger and thirst relief with a side of mystery. Consume at your own risk.</div>
           </div>
 
-          <!-- ITEM 3 -->
           <div class="item-card">
             <div class="item-name">Elixir of Renewal</div>
             <div class="item-price">$500 each</div>
-            <div class="item-desc">
-              Health restoration in a shimmering vial. Perfect for after the chaos hits.
-            </div>
+            <div class="item-desc">Health restoration in a shimmering vial. Perfect for after the chaos hits.</div>
           </div>
 
-          <!-- ITEM 4 -->
           <div class="item-card">
             <div class="item-name">Blood of Enemy</div>
             <div class="item-price">$300 each</div>
-            <div class="item-desc">
-              Thirst relief with a dark twist. Best not to ask whose blood it was.
-            </div>
+            <div class="item-desc">Thirst relief with a dark twist. Best not to ask whose blood it was.</div>
           </div>
 
         </div>
       </section>
 
-            <!-- SPECIAL CARDS: OWNERS + TOP SUPPORTER + TOP WORKER -->
+      <!-- SPECIAL CARDS -->
       <section class="special-section" id="staff">
         <h2 class="section-title">Coven Leaders &amp; Stars</h2>
-        <p class="section-subtitle">
-          The witches behind the moonlight.
-        </p>
+        <p class="section-subtitle">The witches behind the moonlight.</p>
 
         <div class="special-grid">
 
-          <!-- OWNER: GOTHY -->
           <div class="special-wrap">
             <div class="special-label">Owner</div>
-
             <div class="special-card">
               <div class="special-content">
                 <div class="special-name">Gothy</div>
                 <div class="special-role">Owner of Mystic Spells</div>
-                <div class="special-bio">
-                  The original moonlit witch of the cottage. Keeper of rules, chaos, and all things cursed &amp; cute.
-                </div>
+                <div class="special-bio">The original moonlit witch of the cottage. Keeper of rules, chaos, and all things cursed &amp; cute.</div>
               </div>
-
               <div class="special-mask-wrap">
                 <div class="special-mask special-mask-left"></div>
                 <div class="special-mask special-mask-right"></div>
               </div>
-
               <div class="special-loading-wrap">
                 <div class="special-ball special-ball1"></div>
                 <div class="special-ball special-ball2"></div>
@@ -431,24 +754,18 @@
             </div>
           </div>
 
-          <!-- CO-OWNER: ALEX -->
           <div class="special-wrap">
             <div class="special-label">Co‑Owner</div>
-
             <div class="special-card">
               <div class="special-content">
                 <div class="special-name">Alex</div>
                 <div class="special-role">Co‑Owner &amp; Spell Curator</div>
-                <div class="special-bio">
-                  The heart of Mystic Spells. Designs bundles, vibes, and the magic that keeps the coven glowing.
-                </div>
+                <div class="special-bio">The heart of Mystic Spells. Designs bundles, vibes, and the magic that keeps the coven glowing.</div>
               </div>
-
               <div class="special-mask-wrap">
                 <div class="special-mask special-mask-left"></div>
                 <div class="special-mask special-mask-right"></div>
               </div>
-
               <div class="special-loading-wrap">
                 <div class="special-ball special-ball1"></div>
                 <div class="special-ball special-ball2"></div>
@@ -456,24 +773,18 @@
             </div>
           </div>
 
-          <!-- TOP SUPPORTER -->
           <div class="special-wrap">
             <div class="special-label">Top Supporter</div>
-
             <div class="special-card">
               <div class="special-content">
                 <div class="special-name">Top Supporter</div>
                 <div class="special-role">Coven Favorite</div>
-                <div class="special-bio">
-                  The one who never leaves the shelves empty and always brings the best energy into the shop.
-                </div>
+                <div class="special-bio">The one who never leaves the shelves empty and always brings the best energy into the shop.</div>
               </div>
-
               <div class="special-mask-wrap">
                 <div class="special-mask special-mask-left"></div>
                 <div class="special-mask special-mask-right"></div>
               </div>
-
               <div class="special-loading-wrap">
                 <div class="special-ball special-ball1"></div>
                 <div class="special-ball special-ball2"></div>
@@ -481,24 +792,18 @@
             </div>
           </div>
 
-          <!-- TOP WORKER -->
           <div class="special-wrap">
             <div class="special-label">Top Worker</div>
-
             <div class="special-card">
               <div class="special-content">
                 <div class="special-name">Top Worker</div>
                 <div class="special-role">Most Enchanted Employee</div>
-                <div class="special-bio">
-                  Always on shift, always brewing, always making sure the coven is stocked and glowing.
-                </div>
+                <div class="special-bio">Always on shift, always brewing, always making sure the coven is stocked and glowing.</div>
               </div>
-
               <div class="special-mask-wrap">
                 <div class="special-mask special-mask-left"></div>
                 <div class="special-mask special-mask-right"></div>
               </div>
-
               <div class="special-loading-wrap">
                 <div class="special-ball special-ball1"></div>
                 <div class="special-ball special-ball2"></div>
@@ -509,120 +814,39 @@
         </div>
       </section>
 
-            <!-- EMPLOYEES SECTION -->
+      <!-- EMPLOYEES -->
       <section class="employees-section" id="staff-list">
         <h2 class="section-title">Mystic Spells Coven</h2>
-        <p class="section-subtitle">
-          The witches who keep the shelves stocked and the magic flowing.
-        </p>
+        <p class="section-subtitle">The witches who keep the shelves stocked and the magic flowing.</p>
 
         <div class="employees-grid">
 
-          <!-- EMPLOYEE: NYX -->
-          <div class="emp-card">
-            <div class="emp-card-border-top"></div>
-            <div class="emp-img">
-              <!-- Add Nyx's photo later -->
-            </div>
-            <span class="emp-name">Nyx</span>
-            <p class="emp-role">Employee</p>
-            <button onclick="location.href='nyx.html'">Get to know me</button>
-          </div>
+          <div class="emp-card"><div class="emp-card-border-top"></div><div class="emp-img"></div><span class="emp-name">Nyx</span><p class="emp-role">Employee</p><button onclick="location.href='nyx.html'">Get to know me</button></div>
 
-          <!-- EMPLOYEE: JAY -->
-          <div class="emp-card">
-            <div class="emp-card-border-top"></div>
-            <div class="emp-img"></div>
-            <span class="emp-name">Jay</span>
-            <p class="emp-role">Employee</p>
-            <button onclick="location.href='jay.html'">Get to know me</button>
-          </div>
+          <div class="emp-card"><div class="emp-card-border-top"></div><div class="emp-img"></div><span class="emp-name">Jay</span><p class="emp-role">Employee</p><button onclick="location.href='jay.html'">Get to know me</button></div>
 
-          <!-- EMPLOYEE: LILA -->
-          <div class="emp-card">
-            <div class="emp-card-border-top"></div>
-            <div class="emp-img"></div>
-            <span class="emp-name">Lila</span>
-            <p class="emp-role">Employee</p>
-            <button onclick="location.href='lila.html'">Get to know me</button>
-          </div>
+          <div class="emp-card"><div class="emp-card-border-top"></div><div class="emp-img"></div><span class="emp-name">Lila</span><p class="emp-role">Employee</p><button onclick="location.href='lila.html'">Get to know me</button></div>
 
-          <!-- EMPLOYEE: FAYE -->
-          <div class="emp-card">
-            <div class="emp-card-border-top"></div>
-            <div class="emp-img"></div>
-            <span class="emp-name">Faye</span>
-            <p class="emp-role">Employee</p>
-            <button onclick="location.href='faye.html'">Get to know me</button>
-          </div>
+          <div class="emp-card"><div class="emp-card-border-top"></div><div class="emp-img"></div><span class="emp-name">Faye</span><p class="emp-role">Employee</p><button onclick="location.href='faye.html'">Get to know me</button></div>
 
-          <!-- EMPLOYEE: TRAV -->
-          <div class="emp-card">
-            <div class="emp-card-border-top"></div>
-            <div class="emp-img"></div>
-            <span class="emp-name">Trav</span>
-            <p class="emp-role">Employee</p>
-            <button onclick="location.href='trav.html'">Get to know me</button>
-          </div>
+          <div class="emp-card"><div class="emp-card-border-top"></div><div class="emp-img"></div><span class="emp-name">Trav</span><p class="emp-role">Employee</p><button onclick="location.href='trav.html'">Get to know me</button></div>
 
-          <!-- EMPLOYEE: TOBY -->
-          <div class="emp-card">
-            <div class="emp-card-border-top"></div>
-            <div class="emp-img"></div>
-            <span class="emp-name">Toby</span>
-            <p class="emp-role">Employee</p>
-            <button onclick="location.href='toby.html'">Get to know me</button>
-          </div>
+          <div class="emp-card"><div class="emp-card-border-top"></div><div class="emp-img"></div><span class="emp-name">Toby</span><p class="emp-role">Employee</p><button onclick="location.href='toby.html'">Get to know me</button></div>
 
-          <!-- EMPLOYEE: SHAUN -->
-          <div class="emp-card">
-            <div class="emp-card-border-top"></div>
-            <div class="emp-img"></div>
-            <span class="emp-name">Shaun</span>
-            <p class="emp-role">Employee</p>
-            <button onclick="location.href='shaun.html'">Get to know me</button>
-          </div>
+          <div class="emp-card"><div class="emp-card-border-top"></div><div class="emp-img"></div><span class="emp-name">Shaun</span><p class="emp-role">Employee</p><button onclick="location.href='shaun.html'">Get to know me</button></div>
 
-          <!-- EMPLOYEE: LOGAN -->
-          <div class="emp-card">
-            <div class="emp-card-border-top"></div>
-            <div class="emp-img"></div>
-            <span class="emp-name">Logan</span>
-            <p class="emp-role">Employee</p>
-            <button onclick="location.href='logan.html'">Get to know me</button>
-          </div>
+          <div class="emp-card"><div class="emp-card-border-top"></div><div class="emp-img"></div><span class="emp-name">Logan</span><p class="emp-role">Employee</p><button onclick="location.href='logan.html'">Get to know me</button></div>
 
-          <!-- EMPLOYEE: JAYMIA -->
-          <div class="emp-card">
-            <div class="emp-card-border-top"></div>
-            <div class="emp-img"></div>
-            <span class="emp-name">Jaymia</span>
-            <p class="emp-role">Employee</p>
-            <button onclick="location.href='jaymia.html'">Get to know me</button>
-          </div>
+          <div class="emp-card"><div class="emp-card-border-top"></div><div class="emp-img"></div><span class="emp-name">Jaymia</span><p class="emp-role">Employee</p><button onclick="location.href='jaymia.html'">Get to know me</button></div>
 
-          <!-- EMPLOYEE: RAINA -->
-          <div class="emp-card">
-            <div class="emp-card-border-top"></div>
-            <div class="emp-img"></div>
-            <span class="emp-name">Raina</span>
-            <p class="emp-role">Employee</p>
-            <button onclick="location.href='raina.html'">Get to know me</button>
-          </div>
+          <div class="emp-card"><div class="emp-card-border-top"></div><div class="emp-img"></div><span class="emp-name">Raina</span><p class="emp-role">Employee</p><button onclick="location.href='raina.html'">Get to know me</button></div>
 
-          <!-- EMPLOYEE: SUSHI -->
-          <div class="emp-card">
-            <div class="emp-card-border-top"></div>
-            <div class="emp-img"></div>
-            <span class="emp-name">Sushi</span>
-            <p class="emp-role">Employee</p>
-            <button onclick="location.href='sushi.html'">Get to know me</button>
-          </div>
+          <div class="emp-card"><div class="emp-card-border-top"></div><div class="emp-img"></div><span class="emp-name">Sushi</span><p class="emp-role">Employee</p><button onclick="location.href='sushi.html'">Get to know me</button></div>
 
         </div>
       </section>
 
-            <!-- FOOTER -->
+      <!-- FOOTER -->
       <footer class="footer">
         <div>Mystic Spells • Euphoria RP • <span>Potions, Stews &amp; Spellwork</span></div>
         <div>Home of Spectral Rush, Suspicious Stew, Elixir of Renewal, and Blood of Enemy.</div>
