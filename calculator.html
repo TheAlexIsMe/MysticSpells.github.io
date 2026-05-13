@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Mystic Spells – Order Calculator</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+font-family:"Montserrat",sans-serif;
+background:radial-gradient(circle at center,#3c1a6e 0%,#1f1238 40%,#0d0818 80%,#000 100%);
+color:#e9ddff;
+padding:30px;
+}
+
+#pageWrapper{
+max-width:900px;
+margin:0 auto;
+background:rgba(10,0,25,0.55);
+backdrop-filter:blur(8px);
+padding:30px;
+border-radius:20px;
+box-shadow:0 0 35px rgba(164,124,243,0.4);
+}
+
+#titleArea{
+text-align:center;
+margin-bottom:25px;
+}
+
+#titleArea img{
+width:120px;
+margin-bottom:10px;
+}
+
+#titleArea h1{
+font-size:36px;
+color:#f2e6ff;
+}
+
+.sectionTitle{
+font-size:20px;
+font-weight:600;
+margin:20px 0 10px 0;
+color:#f2e6ff;
+}
+
+.table{
+width:100%;
+border-collapse:collapse;
+margin-bottom:20px;
+}
+
+.table th,.table td{
+padding:10px;
+border-bottom:1px solid rgba(255,255,255,0.15);
+}
+
+.table input{
+width:70px;
+padding:6px;
+border-radius:8px;
+border:none;
+background:rgba(255,255,255,0.1);
+color:white;
+text-align:center;
+}
+
+#discountRow{
+display:flex;
+align-items:center;
+gap:10px;
+margin:15px 0;
+}
+
+#discountToggle{
+width:22px;height:22px;
+cursor:pointer;
+}
+
+#totalBox{
+background:rgba(255,255,255,0.08);
+padding:15px;
+border-radius:12px;
+margin-top:20px;
+font-size:18px;
+}
+
+#manifestBox{
+white-space:pre-line;
+background:rgba(255,255,255,0.08);
+padding:15px;
+border-radius:12px;
+margin-top:20px;
+font-size:16px;
+min-height:120px;
+}
+</style>
+</head>
+
+<body>
+
+<div id="pageWrapper">
+
+  <div id="titleArea">
+    <img src="https://i.imgur.com/6NZVG2f.png">
+    <h1>Mystic Spells Order Calculator</h1>
+  </div>
+
+  <div class="sectionTitle">Singular Items</div>
+
+  <table class="table">
+    <tr>
+      <th>Item</th>
+      <th>Qty</th>
+      <th>Price</th>
+    </tr>
+    <tr>
+      <td>Elixir of Renewal</td>
+      <td><input id="B3" type="number" min="0" value="0"></td>
+      <td>500</td>
+    </tr>
+    <tr>
+      <td>Spectral Rush</td>
+      <td><input id="B4" type="number" min="0" value="0"></td>
+      <td>500</td>
+    </tr>
+    <tr>
+      <td>Suspicious Stew</td>
+      <td><input id="B5" type="number" min="0" value="0"></td>
+      <td>500</td>
+    </tr>
+    <tr>
+      <td>Blood of Enemy</td>
+      <td><input id="B6" type="number" min="0" value="0"></td>
+      <td>300</td>
+    </tr>
+  </table>
+
+  <div class="sectionTitle">Bundles</div>
+
+  <table class="table">
+    <tr>
+      <th>Bundle</th>
+      <th>Qty</th>
+      <th>Price</th>
+    </tr>
+    <tr>
+      <td>UTP</td>
+      <td><input id="F3" type="number" min="0" value="0"></td>
+      <td>32000</td>
+    </tr>
+    <tr>
+      <td>Pretty & Protected</td>
+      <td><input id="F4" type="number" min="0" value="0"></td>
+      <td>25000</td>
+    </tr>
+    <tr>
+      <td>Midnight Moonbeam</td>
+      <td><input id="F5" type="number" min="0" value="0"></td>
+      <td>25500</td>
+    </tr>
+    <tr>
+      <td>Starlight Starburst</td>
+      <td><input id="F6" type="number" min="0" value="0"></td>
+      <td>27500</td>
+    </tr>
+  </table>
+
+  <div id="discountRow">
+    <input type="checkbox" id="discountToggle">
+    <label for="discountToggle">PD / EMS Discount (15%)</label>
+  </div>
+
+  <div id="totalBox">Total: $0</div>
+  <div id="manifestBox">✨ Waiting for order...</div>
+</div>
+
+</div> <!-- end pageWrapper -->
+
+<script>
+// PRICE CONSTANTS
+const PRICES = {
+  B3: 500,   // Renewal
+  B4: 500,   // Rush
+  B5: 500,   // Stew
+  B6: 300,   // Blood
+
+  F3: 32000, // UTP
+  F4: 25000, // Pretty & Protected
+  F5: 25500, // Midnight Moonbeam
+  F6: 27500  // Starlight Starburst
+};
+
+// GET ELEMENTS
+const inputs = ["B3","B4","B5","B6","F3","F4","F5","F6"].map(id => document.getElementById(id));
+const discountToggle = document.getElementById("discountToggle");
+const totalBox = document.getElementById("totalBox");
+const manifestBox = document.getElementById("manifestBox");
+
+// MAIN UPDATE FUNCTION
+function updateCalculator() {
+
+  // Read all values as numbers
+  const B3 = Number(document.getElementById("B3").value);
+  const B4 = Number(document.getElementById("B4").value);
+  const B5 = Number(document.getElementById("B5").value);
+  const B6 = Number(document.getElementById("B6").value);
+
+  const F3 = Number(document.getElementById("F3").value);
+  const F4 = Number(document.getElementById("F4").value);
+  const F5 = Number(document.getElementById("F5").value);
+  const F6 = Number(document.getElementById("F6").value);
+
+  // Check if empty
+  const totalInput = B3 + B4 + B5 + B6 + F3 + F4 + F5 + F6;
+
+  if (totalInput === 0) {
+    totalBox.textContent = "Total: $0";
+    manifestBox.textContent = "✨ Waiting for order...";
+    return;
+  }
+
+  // CALCULATE TOTAL PRICE
+  let total =
+      (B3 * PRICES.B3) +
+      (B4 * PRICES.B4) +
+      (B5 * PRICES.B5) +
+      (B6 * PRICES.B6) +
+      (F3 * PRICES.F3) +
+      (F4 * PRICES.F4) +
+      (F5 * PRICES.F5) +
+      (F6 * PRICES.F6);
+
+  // APPLY DISCOUNT
+  if (discountToggle.checked) {
+    total = Math.round(total * 0.85);
+  }
+
+  totalBox.textContent = "Total: $" + total.toLocaleString();
+
+  // PACKING MANIFEST (EXACT EXCEL LOGIC)
+  const renewal = B3 + (F4*15) + (F3*20) + (F5*20);
+  const rush    = B4 + (F6*30) + (F4*35) + (F3*20) + (F5*10);
+  const stew    = B5 + (F6*30) + (F3*20);
+  const blood   = B6 + (F4*10) + (F3*20) + (F5*40);
+
+  manifestBox.textContent =
+`📦 PACKING MANIFEST
+-----------------------------------
+💗 RENEWAL: ${renewal}x
+⚡ RUSH: ${rush}x
+🍲 STEW: ${stew}x
+🍷 BLOOD: ${blood}x
+-----------------------------------`;
+}
+
+// EVENT LISTENERS — LIVE UPDATE
+inputs.forEach(input => {
+  input.addEventListener("input", updateCalculator);
+});
+
+discountToggle.addEventListener("change", updateCalculator);
+
+// INITIAL STATE
+updateCalculator();
+</script>
+
+</body>
+</html>
