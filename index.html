@@ -8,7 +8,7 @@
 <!-- Favicon -->
 <link rel="icon" href="https://i.imgur.com/6NZVG2f.png" type="image/png">
 
-<!-- New clean modern font -->
+<!-- Clean modern font -->
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
 
 <style>
@@ -31,7 +31,7 @@
     padding: 20px;
   }
 
-  /* 🌙 CINEMATIC HERO */
+  /* 🌙 HERO */
   .hero {
     padding: 80px 20px 60px;
     position: relative;
@@ -61,7 +61,6 @@
     font-size: 52px;
     margin-bottom: 10px;
     color: #f2e6ff;
-    letter-spacing: 1px;
   }
 
   p.subtitle {
@@ -71,7 +70,7 @@
     color: #e8d8ff;
   }
 
-  /* ✨ BUTTONS FIXED + CENTERED + SMALLER + NEW FONT */
+  /* BUTTON ROW */
   .button-row {
     display: flex;
     flex-wrap: wrap;
@@ -82,28 +81,22 @@
 
   .btn {
     border: none;
-    width: 10em;          /* smaller */
-    height: 3.5em;        /* smaller */
+    width: 10em;
+    height: 3.5em;
     border-radius: 2em;
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 8px;
     background: #1C1A1C;
     cursor: pointer;
     transition: all 450ms ease-in-out;
     text-decoration: none;
   }
 
-  .sparkle {
-    fill: #AAAAAA;
-    transition: all 800ms ease;
-  }
-
   .text {
     font-weight: 600;
     color: #FFFFFF;
-    font-size: 18px;     /* bigger text */
+    font-size: 18px;
     text-align: center;
   }
 
@@ -116,16 +109,11 @@
     transform: translateY(-2px);
   }
 
-  .btn:hover .sparkle {
-    fill: white;
-    transform: scale(1.2);
-  }
-
-  /* 🌙 CINEMATIC GRID */
+  /* GRID WITH EXTRA SPACE */
   .grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 25px;
+    gap: 45px; /* MORE SPACE BETWEEN RULES + ANNOUNCEMENTS */
     margin-top: 40px;
   }
 
@@ -135,48 +123,31 @@
     }
   }
 
-  /* ✨ RULES CARD */
+  /* CARDS */
   .card {
-    --white: hsl(0, 0%, 100%);
-    --paragraph: hsl(0, 0%, 83%);
-    --line: hsl(240, 9%, 17%);
-    --primary: hsl(189, 92%, 58%);
-
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-
-    padding: 1.2rem;
-    width: 100%;
     background-color: #0f0d17;
-    background-image: radial-gradient(at 88% 40%, #0f0d17 0px, transparent 85%),
-                      radial-gradient(at 49% 30%, #0f0d17 0px, transparent 85%),
-                      radial-gradient(at 14% 26%, #0f0d17 0px, transparent 85%),
-                      radial-gradient(at 0% 64%, #3a1a5f 0px, transparent 85%),
-                      radial-gradient(at 41% 94%, #4b2f7f 0px, transparent 85%),
-                      radial-gradient(at 100% 99%, #1a0f2b 0px, transparent 85%);
-
+    padding: 1.2rem;
     border-radius: 1rem;
     box-shadow: 0px -16px 24px rgba(255,255,255,0.15) inset;
   }
 
   .card_title {
     font-size: 1.4rem;
-    color: var(--white);
+    color: white;
   }
 
   .card_paragraph {
     margin-top: 0.25rem;
     font-size: 1rem;
-    color: var(--paragraph);
+    color: #cfc4e8;
   }
 
   .line {
     width: 100%;
     height: 0.1rem;
-    background-color: var(--line);
+    background-color: #2a2340;
     border: none;
+    margin: 10px 0;
   }
 
   .card__list {
@@ -185,34 +156,20 @@
     gap: 0.7rem;
   }
 
-  .card__list_item {
-    display: flex;
-    align-items: center;
-    gap: 0.7rem;
+  .list_text {
+    font-size: 1rem;
+    color: white;
   }
 
   .check {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 1.2rem;
-    height: 1.2rem;
-    background-color: var(--primary);
+    width: 1rem;
+    height: 1rem;
+    background-color: #4fc3f7;
     border-radius: 50%;
+    display: inline-block;
   }
 
-  .check_svg {
-    width: 0.8rem;
-    height: 0.8rem;
-    fill: black;
-  }
-
-  .list_text {
-    font-size: 1rem;
-    color: var(--white);
-  }
-
-  /* ✨ ANNOUNCEMENT CARD */
+  /* ANNOUNCEMENT CARD */
   .announce-card {
     padding: 1.2rem;
     border-radius: 1rem;
@@ -236,6 +193,7 @@
     justify-content: center;
     align-items: center;
     color: white;
+    font-weight: bold;
   }
 
   .announce-title {
@@ -251,7 +209,27 @@
     line-height: 1.5rem;
   }
 
-  /* ✨ OWNERS CARD */
+  /* OWNERS SPLIT */
+  .owners-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 35px;
+    margin-top: 40px;
+  }
+
+  @media (max-width: 900px) {
+    .owners-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .owner-box {
+    background-color: #0f0d17;
+    padding: 1.2rem;
+    border-radius: 1rem;
+    box-shadow: 0px -16px 24px rgba(255,255,255,0.15) inset;
+  }
+
   .owner-photo {
     width: 160px;
     border-radius: 12px;
@@ -271,66 +249,60 @@
     margin: 10px auto;
     font-size: 18px;
   }
+
+  .owner-title {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: white;
+    margin-top: 10px;
+  }
+
+  .owner-desc {
+    font-size: 1rem;
+    color: #cfc4e8;
+    margin-top: 8px;
+  }
+
 </style>
 </head>
 
 <body>
 <div class="container">
 
-  <!-- 🌙 HERO -->
+  <!-- HERO -->
   <div class="hero">
-    <img class="logo" src="https://i.imgur.com/6NZVG2f.png" alt="Mystic Spells Logo">
+    <img class="logo" src="https://i.imgur.com/6NZVG2f.png">
     <h1>Mystic Spells</h1>
     <p class="subtitle">A moonlit cottage of potions, tarot, and spellwork in Euphoria RP.</p>
 
-    <!-- BUTTONS ROW -->
     <div class="button-row">
-      <a href="tarot.html" class="btn">
-        <span class="text">Tarot</span>
-      </a>
-
-      <a href="calculator.html" class="btn">
-        <span class="text">Calculator</span>
-      </a>
-
-      <a href="rules.html" class="btn">
-        <span class="text">Rules</span>
-      </a>
-
-      <a href="items.html" class="btn">
-        <span class="text">Items</span>
-      </a>
-
-      <a href="staff.html" class="btn">
-        <span class="text">Staff</span>
-      </a>
-
-      <a href="location.html" class="btn">
-        <span class="text">Location</span>
-      </a>
+      <a href="tarot.html" class="btn"><span class="text">Tarot</span></a>
+      <a href="calculator.html" class="btn"><span class="text">Calculator</span></a>
+      <a href="rules.html" class="btn"><span class="text">Rules</span></a>
+      <a href="items.html" class="btn"><span class="text">Items</span></a>
+      <a href="staff.html" class="btn"><span class="text">Staff</span></a>
+      <a href="location.html" class="btn"><span class="text">Location</span></a>
     </div>
   </div>
 
-  <!-- 🌙 CINEMATIC GRID -->
+  <!-- RULES + ANNOUNCEMENTS -->
   <div class="grid">
 
-    <!-- RULES -->
     <div class="card">
       <span class="card_title">Shop Rules</span>
       <p class="card_paragraph">Keep the coven magical, safe, and drama‑free.</p>
       <hr class="line" />
       <ul class="card__list">
-        <li class="card__list_item"><span class="check"></span><span class="list_text">RP only — no OOC</span></li>
-        <li class="card__list_item"><span class="check"></span><span class="list_text">No drama</span></li>
-        <li class="card__list_item"><span class="check"></span><span class="list_text">Call police first</span></li>
-        <li class="card__list_item"><span class="check"></span><span class="list_text">Respect everyone</span></li>
-        <li class="card__list_item"><span class="check"></span><span class="list_text">No guns</span></li>
-        <li class="card__list_item"><span class="check"></span><span class="list_text">No refunds</span></li>
-        <li class="card__list_item"><span class="check"></span><span class="list_text">Consume at your own risk</span></li>
+        <li><span class="check"></span> <span class="list_text">RP only — no OOC</span></li>
+        <li><span class="check"></span> <span class="list_text">No drama</span></li>
+        <li><span class="check"></span> <span class="list_text">Call police first</span></li>
+        <li><span class="check"></span> <span class="list_text">Respect everyone</span></li>
+        <li><span class="check"></span> <span class="list_text">No guns</span></li>
+        <li><span class="check"></span> <span class="list_text">No refunds</span></li>
+        <li><span class="check"></span> <span class="list_text">Consume at your own risk</span></li>
       </ul>
     </div>
 
-    <!-- ANNOUNCEMENTS -->
     <div class="announce-card">
       <div class="announce-header">
         <span class="announce-icon">!</span>
@@ -345,28 +317,26 @@
 
   </div>
 
-  <!-- OWNERS (FULL WIDTH) -->
-  <div class="card" style="margin-top:40px;">
-    <span class="card_title">Owners</span>
-    <p class="card_paragraph">The witches behind the magic.</p>
-    <hr class="line" />
+  <!-- OWNERS SPLIT -->
+  <div class="owners-grid">
 
-    <ul class="card__list">
-      <li class="card__list_item">
-        <span class="list_text"><strong>Gothy — Owner</strong></span>
-      </li>
-      <div class="coming-soon">Coming Soon</div>
+    <!-- GOTHY -->
+    <div class="owner-box">
+      <img class="owner-photo coming-soon" src="">
+      <div class="owner-title">Gothy — Owner</div>
+      <p class="owner-desc">Coming Soon</p>
+    </div>
 
-      <li class="card__list_item">
-        <span class="list_text"><strong>Alex — Co‑Owner</strong></span>
-      </li>
-      <img src="https://i.imgur.com/mnaXdnh.png" class="owner-photo">
-
-      <p class="card_paragraph" style="text-align:center; margin-top:10px;">
+    <!-- ALEX -->
+    <div class="owner-box">
+      <img class="owner-photo" src="https://i.imgur.com/mnaXdnh.png">
+      <div class="owner-title">Alex — Co‑Owner</div>
+      <p class="owner-desc">
         Alex is a 20‑year‑old Co‑Owner of Mystic Spells, usually found in the city making magic happen.
         Lover of all things pink and proudly LGBTQ‑friendly — bringing warmth, vibes, and energy to the coven.
       </p>
-    </ul>
+    </div>
+
   </div>
 
 </div>
