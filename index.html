@@ -113,7 +113,7 @@
   .grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 45px; /* MORE SPACE BETWEEN RULES + ANNOUNCEMENTS */
+    gap: 55px; /* MORE SPACE */
     margin-top: 40px;
   }
 
@@ -123,59 +123,58 @@
     }
   }
 
-  /* CARDS */
-  .card {
-    background-color: #0f0d17;
-    padding: 1.2rem;
-    border-radius: 1rem;
-    box-shadow: 0px -16px 24px rgba(255,255,255,0.15) inset;
+  /* ✨ NEW SHOP RULES CARD (cleaner, more aesthetic) */
+  .rules-card {
+    background: linear-gradient(145deg, #120d1f, #1c1530);
+    padding: 1.8rem;
+    border-radius: 1.2rem;
+    box-shadow: 0 0 25px rgba(164,124,243,0.25);
+    text-align: left;
   }
 
-  .card_title {
-    font-size: 1.4rem;
-    color: white;
+  .rules-title {
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: #ffffff;
+    margin-bottom: 10px;
   }
 
-  .card_paragraph {
-    margin-top: 0.25rem;
+  .rules-sub {
     font-size: 1rem;
     color: #cfc4e8;
+    margin-bottom: 15px;
   }
 
-  .line {
-    width: 100%;
-    height: 0.1rem;
-    background-color: #2a2340;
-    border: none;
-    margin: 10px 0;
+  .rules-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
   }
 
-  .card__list {
+  .rules-list li {
     display: flex;
-    flex-direction: column;
-    gap: 0.7rem;
-  }
-
-  .list_text {
+    align-items: center;
+    gap: 10px;
+    margin: 8px 0;
     font-size: 1rem;
-    color: white;
+    color: #e9ddff;
   }
 
-  .check {
-    width: 1rem;
-    height: 1rem;
-    background-color: #4fc3f7;
+  .rules-dot {
+    width: 10px;
+    height: 10px;
+    background: #7aa7ff;
     border-radius: 50%;
-    display: inline-block;
   }
 
-  /* ANNOUNCEMENT CARD */
+  /* ✨ ANNOUNCEMENT CARD */
   .announce-card {
-    padding: 1.2rem;
-    border-radius: 1rem;
+    padding: 1.8rem;
+    border-radius: 1.2rem;
     background: #1a1426;
     border: 1px solid rgba(255,255,255,0.18);
     box-shadow: 0 0 25px rgba(164,124,243,0.25);
+    text-align: left;
   }
 
   .announce-header {
@@ -197,7 +196,7 @@
   }
 
   .announce-title {
-    font-size: 1.3rem;
+    font-size: 1.4rem;
     font-weight: 600;
     color: #f2e6ff;
   }
@@ -209,12 +208,32 @@
     line-height: 1.5rem;
   }
 
-  /* OWNERS SPLIT */
+  /* ✨ OWNERS BOX (two columns inside one box) */
+  .owners-box {
+    background: linear-gradient(145deg, #120d1f, #1c1530);
+    padding: 2rem;
+    border-radius: 1.2rem;
+    margin-top: 50px;
+    box-shadow: 0 0 25px rgba(164,124,243,0.25);
+  }
+
+  .owners-title {
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: white;
+    margin-bottom: 10px;
+  }
+
+  .owners-sub {
+    font-size: 1rem;
+    color: #cfc4e8;
+    margin-bottom: 20px;
+  }
+
   .owners-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 35px;
-    margin-top: 40px;
   }
 
   @media (max-width: 900px) {
@@ -223,21 +242,17 @@
     }
   }
 
-  .owner-box {
-    background-color: #0f0d17;
-    padding: 1.2rem;
-    border-radius: 1rem;
-    box-shadow: 0px -16px 24px rgba(255,255,255,0.15) inset;
+  .owner-card {
+    text-align: center;
   }
 
   .owner-photo {
     width: 160px;
     border-radius: 12px;
-    display: block;
-    margin: 10px auto;
+    margin-bottom: 10px;
   }
 
-  .coming-soon {
+  .coming-soon-box {
     width: 160px;
     height: 160px;
     border-radius: 12px;
@@ -246,21 +261,20 @@
     justify-content: center;
     align-items: center;
     color: #d8caff;
-    margin: 10px auto;
+    margin: 0 auto 10px;
     font-size: 18px;
   }
 
-  .owner-title {
+  .owner-name {
     font-size: 1.3rem;
     font-weight: 600;
     color: white;
-    margin-top: 10px;
+    margin-bottom: 8px;
   }
 
   .owner-desc {
     font-size: 1rem;
     color: #cfc4e8;
-    margin-top: 8px;
   }
 
 </style>
@@ -288,21 +302,23 @@
   <!-- RULES + ANNOUNCEMENTS -->
   <div class="grid">
 
-    <div class="card">
-      <span class="card_title">Shop Rules</span>
-      <p class="card_paragraph">Keep the coven magical, safe, and drama‑free.</p>
-      <hr class="line" />
-      <ul class="card__list">
-        <li><span class="check"></span> <span class="list_text">RP only — no OOC</span></li>
-        <li><span class="check"></span> <span class="list_text">No drama</span></li>
-        <li><span class="check"></span> <span class="list_text">Call police first</span></li>
-        <li><span class="check"></span> <span class="list_text">Respect everyone</span></li>
-        <li><span class="check"></span> <span class="list_text">No guns</span></li>
-        <li><span class="check"></span> <span class="list_text">No refunds</span></li>
-        <li><span class="check"></span> <span class="list_text">Consume at your own risk</span></li>
+    <!-- NEW RULES CARD -->
+    <div class="rules-card">
+      <div class="rules-title">Shop Rules</div>
+      <div class="rules-sub">Keep the coven magical, safe, and drama‑free.</div>
+
+      <ul class="rules-list">
+        <li><span class="rules-dot"></span> RP only — no OOC</li>
+        <li><span class="rules-dot"></span> No drama</li>
+        <li><span class="rules-dot"></span> Call police first</li>
+        <li><span class="rules-dot"></span> Respect everyone</li>
+        <li><span class="rules-dot"></span> No guns</li>
+        <li><span class="rules-dot"></span> No refunds</li>
+        <li><span class="rules-dot"></span> Consume at your own risk</li>
       </ul>
     </div>
 
+    <!-- ANNOUNCEMENTS -->
     <div class="announce-card">
       <div class="announce-header">
         <span class="announce-icon">!</span>
@@ -317,26 +333,31 @@
 
   </div>
 
-  <!-- OWNERS SPLIT -->
-  <div class="owners-grid">
+  <!-- OWNERS (ONE BOX, TWO COLUMNS) -->
+  <div class="owners-box">
+    <div class="owners-title">Owners</div>
+    <div class="owners-sub">The witches behind the magic.</div>
 
-    <!-- GOTHY -->
-    <div class="owner-box">
-      <img class="owner-photo coming-soon" src="">
-      <div class="owner-title">Gothy — Owner</div>
-      <p class="owner-desc">Coming Soon</p>
+    <div class="owners-grid">
+
+      <!-- GOTHY -->
+      <div class="owner-card">
+        <div class="coming-soon-box">Coming Soon</div>
+        <div class="owner-name">Gothy — Owner</div>
+        <p class="owner-desc">More info coming soon.</p>
+      </div>
+
+      <!-- ALEX -->
+      <div class="owner-card">
+        <img class="owner-photo" src="https://i.imgur.com/mnaXdnh.png">
+        <div class="owner-name">Alex — Co‑Owner</div>
+        <p class="owner-desc">
+          Alex is a 20‑year‑old Co‑Owner of Mystic Spells, usually found in the city making magic happen.
+          Lover of all things pink and proudly LGBTQ‑friendly — bringing warmth, vibes, and energy to the coven.
+        </p>
+      </div>
+
     </div>
-
-    <!-- ALEX -->
-    <div class="owner-box">
-      <img class="owner-photo" src="https://i.imgur.com/mnaXdnh.png">
-      <div class="owner-title">Alex — Co‑Owner</div>
-      <p class="owner-desc">
-        Alex is a 20‑year‑old Co‑Owner of Mystic Spells, usually found in the city making magic happen.
-        Lover of all things pink and proudly LGBTQ‑friendly — bringing warmth, vibes, and energy to the coven.
-      </p>
-    </div>
-
   </div>
 
 </div>
