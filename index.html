@@ -8,12 +8,13 @@
 <!-- Favicon -->
 <link rel="icon" href="https://i.imgur.com/6NZVG2f.png" type="image/png">
 
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&display=swap" rel="stylesheet">
+<!-- New clean modern font -->
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
 
 <style>
   body {
     margin: 0;
-    font-family: "Cormorant Garamond", serif;
+    font-family: "Montserrat", sans-serif;
     background: radial-gradient(circle at center,
       #3c1a6e 0%,
       #1f1238 40%,
@@ -57,29 +58,37 @@
   }
 
   h1 {
-    font-size: 56px;
+    font-size: 52px;
     margin-bottom: 10px;
     color: #f2e6ff;
-    letter-spacing: 2px;
+    letter-spacing: 1px;
   }
 
   p.subtitle {
-    font-size: 24px;
+    font-size: 22px;
     max-width: 700px;
     margin: 0 auto 35px;
     color: #e8d8ff;
   }
 
-  /* ✨ UIVERSE BUTTONS */
+  /* ✨ BUTTONS FIXED + CENTERED + SMALLER + NEW FONT */
+  .button-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 14px;
+    margin-bottom: 40px;
+  }
+
   .btn {
     border: none;
-    width: 15em;
-    height: 5em;
-    border-radius: 3em;
+    width: 10em;          /* smaller */
+    height: 3.5em;        /* smaller */
+    border-radius: 2em;
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 12px;
+    gap: 8px;
     background: #1C1A1C;
     cursor: pointer;
     transition: all 450ms ease-in-out;
@@ -93,8 +102,9 @@
 
   .text {
     font-weight: 600;
-    color: #AAAAAA;
-    font-size: medium;
+    color: #FFFFFF;
+    font-size: 18px;     /* bigger text */
+    text-align: center;
   }
 
   .btn:hover {
@@ -106,21 +116,9 @@
     transform: translateY(-2px);
   }
 
-  .btn:hover .text {
-    color: white;
-  }
-
   .btn:hover .sparkle {
     fill: white;
     transform: scale(1.2);
-  }
-
-  .button-row {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 18px;
-    margin-bottom: 40px;
   }
 
   /* 🌙 CINEMATIC GRID */
@@ -288,32 +286,26 @@
     <!-- BUTTONS ROW -->
     <div class="button-row">
       <a href="tarot.html" class="btn">
-        <svg height="24" width="24" class="sparkle"><path d="M10,21.236..."/></svg>
         <span class="text">Tarot</span>
       </a>
 
       <a href="calculator.html" class="btn">
-        <svg height="24" width="24" class="sparkle"><path d="M10,21.236..."/></svg>
         <span class="text">Calculator</span>
       </a>
 
       <a href="rules.html" class="btn">
-        <svg height="24" width="24" class="sparkle"><path d="M10,21.236..."/></svg>
         <span class="text">Rules</span>
       </a>
 
       <a href="items.html" class="btn">
-        <svg height="24" width="24" class="sparkle"><path d="M10,21.236..."/></svg>
         <span class="text">Items</span>
       </a>
 
       <a href="staff.html" class="btn">
-        <svg height="24" width="24" class="sparkle"><path d="M10,21.236..."/></svg>
         <span class="text">Staff</span>
       </a>
 
       <a href="location.html" class="btn">
-        <svg height="24" width="24" class="sparkle"><path d="M10,21.236..."/></svg>
         <span class="text">Location</span>
       </a>
     </div>
@@ -328,26 +320,20 @@
       <p class="card_paragraph">Keep the coven magical, safe, and drama‑free.</p>
       <hr class="line" />
       <ul class="card__list">
-        <li class="card__list_item"><span class="check"><svg class="check_svg"><path d="M12.416..."/></svg></span><span class="list_text">RP only — no OOC</span></li>
-        <li class="card__list_item"><span class="check"><svg class="check_svg"><path d="M12.416..."/></svg></span><span class="list_text">No drama</span></li>
-        <li class="card__list_item"><span class="check"><svg class="check_svg"><path d="M12.416..."/></svg></span><span class="list_text">Call police first</span></li>
-        <li class="card__list_item"><span class="check"><svg class="check_svg"><path d="M12.416..."/></svg></span><span class="list_text">Respect everyone</span></li>
-        <li class="card__list_item"><span class="check"><svg class="check_svg"><path d="M12.416..."/></svg></span><span class="list_text">No guns</span></li>
-        <li class="card__list_item"><span class="check"><svg class="check_svg"><path d="M12.416..."/></svg></span><span class="list_text">No refunds</span></li>
-        <li class="card__list_item"><span class="check"><svg class="check_svg"><path d="M12.416..."/></svg></span><span class="list_text">Consume at your own risk</span></li>
+        <li class="card__list_item"><span class="check"></span><span class="list_text">RP only — no OOC</span></li>
+        <li class="card__list_item"><span class="check"></span><span class="list_text">No drama</span></li>
+        <li class="card__list_item"><span class="check"></span><span class="list_text">Call police first</span></li>
+        <li class="card__list_item"><span class="check"></span><span class="list_text">Respect everyone</span></li>
+        <li class="card__list_item"><span class="check"></span><span class="list_text">No guns</span></li>
+        <li class="card__list_item"><span class="check"></span><span class="list_text">No refunds</span></li>
+        <li class="card__list_item"><span class="check"></span><span class="list_text">Consume at your own risk</span></li>
       </ul>
     </div>
 
     <!-- ANNOUNCEMENTS -->
     <div class="announce-card">
       <div class="announce-header">
-        <span class="announce-icon">
-          <svg fill="currentColor" viewBox="0 0 20 20">
-            <path clip-rule="evenodd" fill-rule="evenodd"
-              d="M18 3a1 1 0 00-1.447-.894L8.763 6H5a3 3 0 000 6h.28l1.771 5.316A1 1 0 008 18h1a1 1 0 001-1v-4.382l6.553 3.276A1 1 0 0018 15V3z">
-            </path>
-          </svg>
-        </span>
+        <span class="announce-icon">!</span>
         <p class="announce-title">Latest Announcement</p>
       </div>
 
