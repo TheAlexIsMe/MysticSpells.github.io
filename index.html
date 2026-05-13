@@ -1,715 +1,136 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Mystic Spells – Home</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+<title>Mystic Spells</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Cormorant Garamond -->
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&display=swap" rel="stylesheet">
 
-  <style>
-    /* GLOBAL RESET */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+<style>
+  body {
+    margin: 0;
+    font-family: "Cormorant Garamond", serif;
+    background: radial-gradient(circle at center,
+      #4b2f7f 0%,
+      #2a1d4a 40%,
+      #1a1426 80%,
+      #000 100%
+    );
+    color: #e9ddff;
+  }
 
-    body {
-      font-family: "Cormorant Garamond", serif;
-      font-size: 22px;
-      line-height: 1.55;
-      color: #1a1524; /* medium-dark body text */
-      background: radial-gradient(circle at center,
-        #4b2f7f 0%,   /* stronger violet center */
-        #2a1d4a 40%,
-        #1a1426 75%,
-        #0b0712 100%
-      );
-      min-height: 100vh;
-      overflow-x: hidden;
-    }
+  .container {
+    max-width: 1100px;
+    margin: auto;
+    padding: 20px;
+    text-align: center;
+  }
 
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
+  /* LOGO */
+  .logo {
+    width: 140px;
+    margin: 20px auto;
+    display: block;
+  }
 
-    /* PAGE WRAPPER */
-    .page {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
+  /* HERO */
+  h1 {
+    font-size: 48px;
+    margin-bottom: 5px;
+  }
 
-    .content {
-      max-width: 1200px; /* balanced medium layout */
-      margin: 0 auto;
-      padding: 2rem 1.5rem 4rem;
-    }
+  p.subtitle {
+    font-size: 24px;
+    max-width: 700px;
+    margin: 0 auto 25px;
+  }
 
-    /* HEADER */
-    header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 1.5rem;
-      margin-bottom: 2.5rem;
-    }
+  /* BUTTONS */
+  .btn {
+    display: inline-block;
+    padding: 10px 22px;
+    margin: 6px;
+    border-radius: 12px;
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.25);
+    color: #f2e6ff;
+    font-size: 22px;
+    transition: 0.2s;
+  }
+  .btn:hover {
+    background: rgba(255,255,255,0.22);
+  }
 
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-    }
+  /* PANELS */
+  .panel {
+    background: #1a1426;
+    border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 14px;
+    padding: 20px;
+    margin: 25px 0;
+    text-align: left;
+  }
 
-    /* FIXED LOGO SIZE */
-    .brand-logo img {
-      width: 120px;
-      height: auto;
-      display: block;
-    }
+  .panel h2 {
+    color: #f2e6ff;
+    margin-bottom: 10px;
+    font-size: 32px;
+  }
 
-    .brand-name {
-      font-size: 2.6rem;
-      color: #f2e6ff; /* light header text */
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
+  .panel p, .panel li {
+    color: #d8caff;
+    font-size: 22px;
+  }
 
-    .brand-tagline {
-      font-size: 1.2rem;
-      color: #e8d8ff;
-      opacity: 0.9;
-    }
-
-    nav {
-      display: flex;
-      gap: 0.6rem;
-      flex-wrap: wrap;
-    }
-
-    .nav-link {
-      font-size: 20px;
-      padding: 0.5rem 1.2rem;
-      border-radius: 10px; /* soft rounded */
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid rgba(255, 255, 255, 0.25);
-      color: #f2e6ff;
-      transition: 0.25s;
-    }
-
-    .nav-link:hover {
-      background: rgba(255, 255, 255, 0.18);
-      transform: translateY(-2px);
-    }
-
-    /* HERO */
-    .hero {
-      text-align: center;
-      margin-bottom: 2.5rem;
-    }
-
-    .hero-title {
-      font-size: 48px;
-      color: #f2e6ff;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      margin-bottom: 0.5rem;
-    }
-
-    .hero-subtitle {
-      font-size: 26px;
-      max-width: 700px;
-      margin: 0 auto;
-      color: #e8d8ff;
-      opacity: 0.95;
-    }
-
-    .hero-subtitle span {
-      color: #f8eaff;
-    }
-
-    .hero-cta {
-      margin-top: 1.8rem;
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      flex-wrap: wrap;
-    }
-
-    /* BUTTONS — soft rounded */
-    .button {
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 12px;
-      border: 1px solid rgba(255, 255, 255, 0.35);
-      padding: 0.7rem 1.8rem;
-      min-width: 180px;
-      text-align: center;
-      transition: 0.25s;
-      color: #f2e6ff;
-      font-size: 24px;
-      letter-spacing: 0.08em;
-    }
-
-    .button:hover {
-      background: rgba(255, 255, 255, 0.2);
-      transform: translateY(-2px);
-    }
-
-    /* PANELS — Deep Gothic */
-    .sections-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 2rem; /* comfort spacing */
-      margin-top: 2rem;
-    }
-
-    .panel {
-      background: #1a1426; /* deep gothic */
-      border-radius: 16px;
-      padding: 1.5rem 1.7rem;
-      border: 1px solid rgba(255, 255, 255, 0.25);
-      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
-    }
-
-    .panel-title {
-      font-size: 36px;
-      color: #f2e6ff;
-      margin-bottom: 0.4rem;
-    }
-
-    .panel-subtitle {
-      font-size: 24px;
-      color: #e8d8ff;
-      opacity: 0.95;
-      margin-bottom: 1rem;
-    }
-
-    .rules-list {
-      list-style: none;
-      display: grid;
-      gap: 0.4rem;
-      font-size: 22px;
-      color: #1a1524;
-    }
-
-    .rules-list li::before {
-      content: "✦ ";
-      color: #f2e6ff;
-    }
-
-    .announcement-item {
-      font-size: 22px;
-      margin-bottom: 0.5rem;
-      color: #1a1524;
-    }
-
-    .announcement-item strong {
-      color: #f2e6ff;
-    }
-
-    .pill-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-top: 0.8rem;
-    }
-
-    .pill {
-      font-size: 20px;
-      padding: 0.3rem 0.8rem;
-      border-radius: 10px;
-      background: rgba(255, 255, 255, 0.1);
-      border: 1px solid rgba(255, 255, 255, 0.25);
-      color: #f2e6ff;
-    }
-
-    /* SECTION TITLES */
-    .section-block {
-      margin-top: 3rem;
-    }
-
-    .section-title {
-      font-size: 40px;
-      color: #f2e6ff;
-      text-align: center;
-      margin-bottom: 0.4rem;
-    }
-
-    .section-subtitle {
-      font-size: 24px;
-      text-align: center;
-      color: #e8d8ff;
-      opacity: 0.9;
-      margin-bottom: 1.2rem;
-    }
-
-    /* CARDS */
-    .cards-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 1.5rem;
-    }
-
-    .bundle-card,
-    .item-card {
-      background: #1a1426;
-      border-radius: 16px;
-      padding: 1.2rem 1.4rem;
-      border: 1px solid rgba(255, 255, 255, 0.25);
-      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
-    }
-
-    .bundle-name,
-    .item-name {
-      font-size: 30px;
-      color: #f2e6ff;
-      margin-bottom: 0.3rem;
-    }
-
-    .bundle-price,
-    .item-price {
-      font-size: 24px;
-      color: #e8d8ff;
-      margin-bottom: 0.5rem;
-    }
-
-    .bundle-list,
-    .item-desc {
-      font-size: 22px;
-      color: #1a1524;
-    }
-
-    /* SPECIAL CARDS (Owners, Supporter, Worker) */
-    .special-section {
-      margin-top: 3rem;
-    }
-
-    .special-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 2rem;
-      justify-items: center;
-    }
-
-    .special-wrap {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.4rem;
-    }
-
-    .special-label {
-      font-size: 24px;
-      color: #f2e6ff;
-    }
-
-    .special-card {
-      width: 220px;
-      height: 320px;
-      background: #1a1426;
-      border-radius: 14px;
-      border: 1px solid rgba(255, 255, 255, 0.25);
-      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
-      position: relative;
-      overflow: hidden;
-      cursor: pointer;
-    }
-
-    .special-content {
-      opacity: 0;
-      transition: 0.3s;
-      color: #f2e6ff;
-      text-align: center;
-      padding: 1rem;
-      position: relative;
-      z-index: 3;
-    }
-
-    .special-name {
-      font-size: 32px;
-      margin-bottom: 0.2rem;
-    }
-
-    .special-role {
-      font-size: 26px;
-      margin-bottom: 0.4rem;
-      color: #e8d8ff;
-    }
-
-    .special-bio {
-      font-size: 22px;
-      color: #1a1524;
-    }
-
-    .special-card:hover .special-content {
-      opacity: 1;
-    }
-
-    /* EMPLOYEE CARDS */
-    .employees-section {
-      margin-top: 3rem;
-    }
-
-    .employees-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 1.5rem;
-      justify-items: center;
-    }
-
-    .emp-card {
-      width: 190px;
-      height: 254px;
-      background: #1a1426;
-      border-radius: 15px;
-      border: 1px solid rgba(255, 255, 255, 0.25);
-      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-    }
-
-    .emp-card-border-top {
-      width: 60%;
-      height: 3%;
-      background: #7f6df5;
-      margin: auto;
-      border-radius: 0 0 15px 15px;
-    }
-
-    .emp-img {
-      width: 70px;
-      height: 80px;
-      background: #7f6df5;
-      border-radius: 15px;
-      margin: 25px auto 0;
-      overflow: hidden;
-    }
-
-    .emp-img img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .emp-name {
-      font-size: 26px;
-      color: #f2e6ff;
-      text-align: center;
-      padding-top: 10px;
-    }
-
-    .emp-role {
-      font-size: 22px;
-      color: #e8d8ff;
-      text-align: center;
-      padding-top: 3px;
-    }
-
-    .emp-card button {
-      padding: 8px 25px;
-      margin: 30px auto 0;
-      border-radius: 10px;
-      border: none;
-      background: #7f6df5;
-      color: white;
-      font-size: 22px;
-      cursor: pointer;
-      transition: 0.25s;
-    }
-
-    .emp-card button:hover {
-      background: #6a58e8;
-      transform: translateY(-2px);
-    }
-
-    /* FOOTER */
-    .footer {
-      margin-top: 3rem;
-      text-align: center;
-      font-size: 22px;
-      color: #e8d8ff;
-      opacity: 0.9;
-    }
-
-    .footer span {
-      color: #f2e6ff;
-    }
-  </style>
+  ul { padding-left: 20px; }
+</style>
 </head>
+
 <body>
-  <div class="page">
-    <main class="content">
+<div class="container">
 
-      <!-- HEADER -->
-      <header>
-        <div class="brand">
-          <div class="brand-logo">
-            <img src="your-logo.png" alt="Mystic Spells Logo">
-          </div>
+  <!-- LOGO -->
+  <img class="logo" src="https://i.imgur.com/6NZVG2f.png" alt="Mystic Spells Logo">
 
-          <div class="brand-text">
-            <div class="brand-name">Mystic Spells</div>
-            <div class="brand-tagline">A moonlit cottage of potions, tarot, and spellwork in Euphoria RP.</div>
-          </div>
-        </div>
+  <!-- HERO -->
+  <h1>Mystic Spells</h1>
+  <p class="subtitle">A moonlit cottage of potions, tarot, and spellwork in Euphoria RP.</p>
 
-        <nav>
-          <a href="#bundles" class="nav-link">Bundles</a>
-          <a href="#items" class="nav-link">Items</a>
-          <a href="#rules" class="nav-link">Rules</a>
-          <a href="#readings" class="nav-link">Readings</a>
-          <a href="#spells" class="nav-link">Spells</a>
-          <a href="#announcements" class="nav-link">News</a>
-          <a href="#staff" class="nav-link">Staff</a>
-        </nav>
-      </header>
+  <!-- BUTTONS -->
+  <a href="bundles.html" class="btn">Bundles</a>
+  <a href="items.html" class="btn">Items</a>
+  <a href="rules.html" class="btn">Rules</a>
+  <a href="staff.html" class="btn">Staff</a>
 
-      <!-- HERO -->
-      <section class="hero">
-        <h1 class="hero-title">Welcome to Mystic Spells</h1>
-
-        <p class="hero-subtitle">
-          A moonlit cottage of potions, tarot, and spellwork in
-          <span>Euphoria RP</span>.  
-          Come for Spectral Rush, stay for the magic.
-        </p>
-
-        <div class="hero-cta">
-          <a href="#bundles" class="button">Shop Bundles</a>
-          <a href="#items" class="button">View Items</a>
-          <a href="#rules" class="button">Shop Rules</a>
-          <a href="#staff" class="button">Meet the Coven</a>
-        </div>
-      </section>
-
-      <!-- RULES + ANNOUNCEMENTS -->
-      <section class="sections-grid" id="rules">
-
-        <!-- RULES -->
-        <div class="panel">
-          <div class="panel-title">Mystic Spells Shop Rules</div>
-          <div class="panel-subtitle">To keep our coven cozy, magical, and drama‑free:</div>
-
-          <ul class="rules-list">
-            <li>Always RP in character — no OOC in the shop.</li>
-            <li>No drama — leave conflicts outside. We are here for magic, not mess.</li>
-            <li>Call authorities first — any problem, call the police. Violence only in self‑defense.</li>
-            <li>Respect everyone — no bias, no exclusion. All witches and visitors are welcome.</li>
-            <li>No guns — leave firearms outside. This is a safe magical space.</li>
-            <li>Keep it magical — Mystic Spells is a place to hang, chill, and enjoy.</li>
-            <li>No refunds — all sales are final.</li>
-            <li>Consume at your own risk — we are not responsible for what happens when you use our potions.</li>
-          </ul>
-        </div>
-
-        <!-- ANNOUNCEMENTS -->
-        <div class="panel" id="announcements">
-          <div class="panel-title">Latest Announcements</div>
-          <div class="panel-subtitle">Pinboard for bans, events, and coven news.</div>
-
-          <div class="announcement-item">
-            <strong>Store Ban:</strong> INJECTED IS BANNED FROM THE STORE.
-          </div>
-
-          <div class="announcement-item">
-            <strong>Note:</strong> All items and potions are for RP storytelling and entertainment.
-          </div>
-
-          <div class="announcement-item">
-            <strong>Coming Soon:</strong> Full tarot reading menu & spell service listings.
-          </div>
-
-          <div class="pill-row">
-            <div class="pill">No OOC in shop</div>
-            <div class="pill">No refunds</div>
-            <div class="pill">Consume at your own risk</div>
-          </div>
-        </div>
-
-      </section>
-
-      <!-- BUNDLES -->
-      <section class="section-block" id="bundles">
-        <h2 class="section-title">Potion Bundles</h2>
-        <p class="section-subtitle">Curated sets for parties, protection, and pure chaos.</p>
-
-        <div class="cards-grid">
-
-          <div class="bundle-card">
-            <div class="bundle-name">🎀 Starlight Starburst</div>
-            <div class="bundle-price">27,500</div>
-            <ul class="bundle-list">
-              <li>30x Spectral Rush</li>
-              <li>30x Suspicious Stew</li>
-            </ul>
-          </div>
-
-          <div class="bundle-card">
-            <div class="bundle-name">🎀 Pretty &amp; Protected</div>
-            <div class="bundle-price">25,000</div>
-            <ul class="bundle-list">
-              <li>35x Spectral Rush</li>
-              <li>15x Elixir of Renewal</li>
-              <li>10x Blood of Enemy</li>
-            </ul>
-          </div>
-
-          <div class="bundle-card">
-            <div class="bundle-name">🎀 Ultimate Tea Party</div>
-            <div class="bundle-price">32,000</div>
-            <ul class="bundle-list">
-              <li>20x Suspicious Stew</li>
-              <li>20x Spectral Rush</li>
-              <li>20x Elixir of Renewal</li>
-              <li>20x Blood of Enemy</li>
-            </ul>
-          </div>
-
-          <div class="bundle-card">
-            <div class="bundle-name">🎀 Midnight Moonbeam</div>
-            <div class="bundle-price">25,500</div>
-            <ul class="bundle-list">
-              <li>40x Blood of Enemy</li>
-              <li>20x Elixir of Renewal</li>
-              <li>10x Spectral Rush</li>
-            </ul>
-          </div>
-
-        </div>
-      </section>
-
-      <!-- ITEMS -->
-      <section class="section-block" id="items">
-        <h2 class="section-title">Individual Potions &amp; Stews</h2>
-        <p class="section-subtitle">Mix and match your own chaos.</p>
-
-        <div class="cards-grid">
-
-          <div class="item-card">
-            <div class="item-name">Spectral Rush</div>
-            <div class="item-price">$500</div>
-            <div class="item-desc">Speed and shield in a bottle. For when you need to move fast and not die trying.</div>
-          </div>
-
-          <div class="item-card">
-            <div class="item-name">Suspicious Stew</div>
-            <div class="item-price">$500 each</div>
-            <div class="item-desc">Hunger and thirst relief with a side of mystery. Consume at your own risk.</div>
-          </div>
-
-          <div class="item-card">
-            <div class="item-name">Elixir of Renewal</div>
-            <div class="item-price">$500 each</div>
-            <div class="item-desc">Health restoration in a shimmering vial. Perfect for after the chaos hits.</div>
-          </div>
-
-          <div class="item-card">
-            <div class="item-name">Blood of Enemy</div>
-            <div class="item-price">$300 each</div>
-            <div class="item-desc">Thirst relief with a dark twist. Best not to ask whose blood it was.</div>
-          </div>
-
-        </div>
-      </section>
-
-      <!-- SPECIAL CARDS -->
-      <section class="special-section" id="staff">
-        <h2 class="section-title">Coven Leaders &amp; Stars</h2>
-        <p class="section-subtitle">The witches behind the moonlight.</p>
-
-        <div class="special-grid">
-
-          <div class="special-wrap">
-            <div class="special-label">Owner</div>
-            <div class="special-card">
-              <div class="special-content">
-                <div class="special-name">Gothy</div>
-                <div class="special-role">Owner of Mystic Spells</div>
-                <div class="special-bio">The original moonlit witch of the cottage. Keeper of rules, chaos, and all things cursed &amp; cute.</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="special-wrap">
-            <div class="special-label">Co‑Owner</div>
-            <div class="special-card">
-              <div class="special-content">
-                <div class="special-name">Alex</div>
-                <div class="special-role">Co‑Owner &amp; Spell Curator</div>
-                <div class="special-bio">The heart of Mystic Spells. Designs bundles, vibes, and the magic that keeps the coven glowing.</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="special-wrap">
-            <div class="special-label">Top Supporter</div>
-            <div class="special-card">
-              <div class="special-content">
-                <div class="special-name">Top Supporter</div>
-                <div class="special-role">Coven Favorite</div>
-                <div class="special-bio">The one who never leaves the shelves empty and always brings the best energy into the shop.</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="special-wrap">
-            <div class="special-label">Top Worker</div>
-            <div class="special-card">
-              <div class="special-content">
-                <div class="special-name">Top Worker</div>
-                <div class="special-role">Most Enchanted Employee</div>
-                <div class="special-bio">Always on shift, always brewing, always making sure the coven is stocked and glowing.</div>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </section>
-
-      <!-- EMPLOYEES -->
-      <section class="employees-section" id="staff-list">
-        <h2 class="section-title">Mystic Spells Coven</h2>
-        <p class="section-subtitle">The witches who keep the shelves stocked and the magic flowing.</p>
-
-        <div class="employees-grid">
-
-          <div class="emp-card"><div class="emp-card-border-top"></div><div class="emp-img"></div><span class="emp-name">Nyx</span><p class="emp-role">Employee</p><button onclick="location.href='nyx.html'">Get to know me</button></div>
-
-          <div class="emp-card"><div class="emp-card-border-top"></div><div class="emp-img"></div><span class="emp-name">Jay</span><p class="emp-role">Employee</p><button onclick="location.href='jay.html'">Get to know me</button></div>
-
-          <div class="emp-card"><div class="emp-card-border-top"></div><div class="emp-img"></div><span class="emp-name">Lila</span><p class="emp-role">Employee</p><button onclick="location.href='lila.html'">Get to know me</button></div>
-
-          <div class="emp-card"><div class="emp-card-border-top"></div><div class="emp-img"></div><span class="emp-name">Faye</span><p class="emp-role">Employee</p><button onclick="location.href='faye.html'">Get to know me</button></div>
-
-          <div class="emp-card"><div class="emp-card-border-top"></div><div class="emp-img"></div><span class="emp-name">Trav</span><p class="emp-role">Employee</p><button onclick="location.href='trav.html'">Get to know me</button></div>
-
-          <div class="emp-card"><div class="emp-card-border-top"></div><div class="emp-img"></div><span class="emp-name">Toby</span><p class="emp-role">Employee</p><button onclick="location.href='toby.html'">Get to know me</button></div>
-
-          <div class="emp-card"><div class="emp-card-border-top"></div><div class="emp-img"></div><span class="emp-name">Shaun</span><p class="emp-role">Employee</p><button onclick="location.href='shaun.html'">Get to know me</button></div>
-
-          <div class="emp-card"><div class="emp-card-border-top"></div><div class="emp-img"></div><span class="emp-name">Logan</span><p class="emp-role">Employee</p><button onclick="location.href='logan.html'">Get to know me</button></div>
-
-          <div class="emp-card"><div class="emp-card-border-top"></div><div class="emp-img"></div><span class="emp-name">Jaymia</span><p class="emp-role">Employee</p><button onclick="location.href='jaymia.html'">Get to know me</button></div>
-
-          <div class="emp-card"><div class="emp-card-border-top"></div><div class="emp-img"></div><span class="emp-name">Raina</span><p class="emp-role">Employee</p><button onclick="location.href='raina.html'">Get to know me</button></div>
-
-          <div class="emp-card"><div class="emp-card-border-top"></div><div class="emp-img"></div><span class="emp-name">Sushi</span><p class="emp-role">Employee</p><button onclick="location.href='sushi.html'">Get to know me</button></div>
-
-        </div>
-      </section>
-
-      <!-- FOOTER -->
-      <footer class="footer">
-        <div>Mystic Spells • Euphoria RP • <span>Potions, Stews &amp; Spellwork</span></div>
-        <div>Home of Spectral Rush, Suspicious Stew, Elixir of Renewal, and Blood of Enemy.</div>
-      </footer>
-
-    </main>
+  <!-- RULES PANEL -->
+  <div class="panel">
+    <h2>Shop Rules</h2>
+    <ul>
+      <li>Always RP in character — no OOC in the shop.</li>
+      <li>No drama — leave conflicts outside.</li>
+      <li>Call authorities first — violence only in self‑defense.</li>
+      <li>Respect everyone — all witches welcome.</li>
+      <li>No guns — this is a safe magical space.</li>
+      <li>No refunds — all sales final.</li>
+      <li>Consume at your own risk.</li>
+    </ul>
   </div>
+
+  <!-- ANNOUNCEMENTS PANEL -->
+  <div class="panel">
+    <h2>Announcements</h2>
+    <p><strong>Store Ban:</strong> INJECTED is banned.</p>
+    <p><strong>Coming Soon:</strong> Tarot readings & spell services.</p>
+  </div>
+
+  <!-- YOUR PHOTO -->
+  <div class="panel">
+    <h2>Owner – Alex</h2>
+    <img src="https://i.imgur.com/mnaXdnh.png" style="width:160px;border-radius:12px;margin-bottom:10px;">
+    <p>The heart of Mystic Spells.</p>
+  </div>
+
+</div>
 </body>
 </html>
