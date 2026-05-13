@@ -109,28 +109,28 @@
     transform: translateY(-2px);
   }
 
-  /* CALCULATOR SECTION */
-  .calc-section {
-    margin-top: 40px;
+  /* CARD STYLE (matches homepage) */
+  .card {
+    background: linear-gradient(145deg, #120d1f, #1c1530);
+    padding: 1.8rem;
+    border-radius: 1.2rem;
+    box-shadow: 0 0 25px rgba(164,124,243,0.25);
     text-align: left;
+    margin-bottom: 40px;
   }
 
-  .sectionTitle {
-    font-size: 28px;
+  .card-title {
+    font-size: 1.6rem;
     font-weight: 600;
+    color: #ffffff;
     margin-bottom: 15px;
-    color: #f2e6ff;
-    text-shadow: 0 0 10px rgba(164,124,243,0.6);
   }
 
+  /* TABLES */
   .table {
     width: 100%;
     border-collapse: collapse;
-    margin-bottom: 25px;
-    background: rgba(255,255,255,0.05);
-    border-radius: 14px;
-    overflow: hidden;
-    backdrop-filter: blur(6px);
+    margin-bottom: 10px;
   }
 
   .table th {
@@ -193,8 +193,8 @@
     <p class="subtitle">A moonlit cottage of potions, tarot, and spellwork in Euphoria RP.</p>
 
     <div class="button-row">
+      <a href="index.html" class="btn"><span class="text">Home</span></a>
       <a href="tarot.html" class="btn"><span class="text">Tarot</span></a>
-      <a href="calculator.html" class="btn"><span class="text">Calculator</span></a>
       <a href="rules.html" class="btn"><span class="text">Rules</span></a>
       <a href="items.html" class="btn"><span class="text">Items</span></a>
       <a href="staff.html" class="btn"><span class="text">Staff</span></a>
@@ -202,10 +202,9 @@
     </div>
   </div>
 
-  <!-- CALCULATOR -->
-  <div class="calc-section">
-
-    <div class="sectionTitle">Singular Items</div>
+  <!-- CARD 1 — SINGULAR ITEMS -->
+  <div class="card">
+    <div class="card-title">Singular Items</div>
 
     <table class="table">
       <tr><th>Item</th><th>Qty</th><th>Price</th></tr>
@@ -214,8 +213,11 @@
       <tr><td>Suspicious Stew</td><td><input id="B5" type="number" min="0" value="0"></td><td>500</td></tr>
       <tr><td>Blood of Enemy</td><td><input id="B6" type="number" min="0" value="0"></td><td>300</td></tr>
     </table>
+  </div>
 
-    <div class="sectionTitle">Bundles</div>
+  <!-- CARD 2 — BUNDLES -->
+  <div class="card">
+    <div class="card-title">Bundles</div>
 
     <table class="table">
       <tr><th>Bundle</th><th>Qty</th><th>Price</th></tr>
@@ -224,6 +226,11 @@
       <tr><td>Midnight Moonbeam</td><td><input id="F5" type="number" min="0" value="0"></td><td>25500</td></tr>
       <tr><td>Starlight Starburst</td><td><input id="F6" type="number" min="0" value="0"></td><td>27500</td></tr>
     </table>
+  </div>
+
+  <!-- CARD 3 — TOTAL + MANIFEST -->
+  <div class="card">
+    <div class="card-title">Order Summary</div>
 
     <div id="discountRow">
       <input type="checkbox" id="discountToggle">
@@ -232,7 +239,6 @@
 
     <div id="totalBox">Total: $0</div>
     <div id="manifestBox">✨ Waiting for order...</div>
-
   </div>
 
 </div>
