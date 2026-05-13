@@ -5,173 +5,239 @@
 <title>Mystic Spells – Calculator</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<!-- Favicon -->
+<link rel="icon" href="https://i.imgur.com/6NZVG2f.png" type="image/png">
+
+<!-- Font -->
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{
-font-family:"Montserrat",sans-serif;
-background:radial-gradient(circle at center,#3c1a6e 0%,#1f1238 40%,#0d0818 80%,#000 100%);
-color:#e9ddff;
-}
+  body {
+    margin: 0;
+    font-family: "Montserrat", sans-serif;
+    background: radial-gradient(circle at center,
+      #3c1a6e 0%,
+      #1f1238 40%,
+      #0d0818 80%,
+      #000 100%
+    );
+    color: #e9ddff;
+    text-align: center;
+  }
 
-/* HEADER */
-#header{
-text-align:center;
-padding:30px 0 10px 0;
-}
-#header img{
-width:160px;
-filter:drop-shadow(0 0 12px rgba(164,124,243,0.7));
-}
+  .container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+  }
 
-/* NAV BAR */
-#navBar{
-display:flex;
-justify-content:center;
-gap:18px;
-margin-bottom:40px;
-}
-.navBtn{
-padding:10px 22px;
-border-radius:999px;
-border:1px solid rgba(255,255,255,0.2);
-background:rgba(10,0,25,0.55);
-color:#e9ddff;
-font-size:15px;
-cursor:pointer;
-transition:.25s;
-backdrop-filter:blur(6px);
-}
-.navBtn:hover{
-background:linear-gradient(135deg,#A47CF3,#683FEA);
-box-shadow:0 0 20px rgba(164,124,243,0.7);
-}
+  /* HERO */
+  .hero {
+    padding: 80px 20px 40px;
+    position: relative;
+  }
 
-/* PAGE CONTENT */
-#content{
-max-width:1100px;
-margin:0 auto;
-padding:0 20px 60px 20px;
-}
+  .hero::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 420px;
+    height: 420px;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(circle, rgba(164,124,243,0.45), rgba(0,0,0,0));
+    border-radius: 50%;
+    filter: blur(40px);
+    z-index: -1;
+  }
 
-/* SECTION TITLES */
-.sectionTitle{
-font-size:24px;
-font-weight:600;
-margin:20px 0 10px 0;
-color:#f2e6ff;
-text-shadow:0 0 10px rgba(164,124,243,0.6);
-}
+  .logo {
+    width: 160px;
+    margin: 0 auto 20px;
+    display: block;
+  }
 
-/* TABLES */
-.table{
-width:100%;
-border-collapse:collapse;
-margin-bottom:25px;
-background:rgba(255,255,255,0.05);
-border-radius:14px;
-overflow:hidden;
-backdrop-filter:blur(6px);
-}
-.table th{
-background:rgba(255,255,255,0.08);
-padding:12px;
-font-size:15px;
-}
-.table td{
-padding:12px;
-border-bottom:1px solid rgba(255,255,255,0.08);
-}
-.table tr:last-child td{
-border-bottom:none;
-}
-.table input{
-width:70px;
-padding:6px;
-border-radius:8px;
-border:none;
-background:rgba(255,255,255,0.12);
-color:white;
-text-align:center;
-}
+  h1 {
+    font-size: 52px;
+    margin-bottom: 10px;
+    color: #f2e6ff;
+  }
 
-/* DISCOUNT */
-#discountRow{
-display:flex;
-align-items:center;
-gap:10px;
-margin:20px 0;
-font-size:16px;
-}
+  p.subtitle {
+    font-size: 22px;
+    max-width: 700px;
+    margin: 0 auto 35px;
+    color: #e8d8ff;
+  }
 
-/* TOTAL + MANIFEST */
-#totalBox,#manifestBox{
-background:rgba(255,255,255,0.08);
-padding:18px;
-border-radius:14px;
-margin-top:20px;
-font-size:18px;
-white-space:pre-line;
-backdrop-filter:blur(6px);
-}
-#manifestBox{
-font-size:16px;
-min-height:120px;
-}
+  /* BUTTON ROW */
+  .button-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 14px;
+    margin-bottom: 40px;
+  }
+
+  .btn {
+    border: none;
+    width: 10em;
+    height: 3.5em;
+    border-radius: 2em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #1C1A1C;
+    cursor: pointer;
+    transition: all 450ms ease-in-out;
+    text-decoration: none;
+  }
+
+  .text {
+    font-weight: 600;
+    color: #FFFFFF;
+    font-size: 18px;
+    text-align: center;
+  }
+
+  .btn:hover {
+    background: linear-gradient(0deg,#A47CF3,#683FEA);
+    box-shadow: inset 0px 1px 0px rgba(255,255,255,0.4),
+                inset 0px -4px 0px rgba(0,0,0,0.2),
+                0px 0px 0px 4px rgba(255,255,255,0.2),
+                0px 0px 180px #9917FF;
+    transform: translateY(-2px);
+  }
+
+  /* CALCULATOR SECTION */
+  .calc-section {
+    margin-top: 40px;
+    text-align: left;
+  }
+
+  .sectionTitle {
+    font-size: 28px;
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: #f2e6ff;
+    text-shadow: 0 0 10px rgba(164,124,243,0.6);
+  }
+
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 25px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 14px;
+    overflow: hidden;
+    backdrop-filter: blur(6px);
+  }
+
+  .table th {
+    background: rgba(255,255,255,0.08);
+    padding: 12px;
+    font-size: 15px;
+  }
+
+  .table td {
+    padding: 12px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .table tr:last-child td {
+    border-bottom: none;
+  }
+
+  .table input {
+    width: 70px;
+    padding: 6px;
+    border-radius: 8px;
+    border: none;
+    background: rgba(255,255,255,0.12);
+    color: white;
+    text-align: center;
+  }
+
+  #discountRow {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 20px 0;
+    font-size: 16px;
+  }
+
+  #totalBox, #manifestBox {
+    background: rgba(255,255,255,0.08);
+    padding: 18px;
+    border-radius: 14px;
+    margin-top: 20px;
+    font-size: 18px;
+    white-space: pre-line;
+    backdrop-filter: blur(6px);
+  }
+
+  #manifestBox {
+    font-size: 16px;
+    min-height: 120px;
+  }
 </style>
 </head>
 
 <body>
+<div class="container">
 
-<!-- HEADER -->
-<div id="header">
-  <img src="https://i.imgur.com/6NZVG2f.png">
-</div>
+  <!-- HERO -->
+  <div class="hero">
+    <img class="logo" src="https://i.imgur.com/6NZVG2f.png">
+    <h1>Mystic Spells</h1>
+    <p class="subtitle">A moonlit cottage of potions, tarot, and spellwork in Euphoria RP.</p>
 
-<!-- NAV BAR -->
-<div id="navBar">
-  <button class="navBtn" onclick="location.href='tarot.html'">Tarot</button>
-  <button class="navBtn" onclick="location.href='calculator.html'">Calculator</button>
-  <button class="navBtn" onclick="location.href='rules.html'">Rules</button>
-  <button class="navBtn" onclick="location.href='items.html'">Items</button>
-  <button class="navBtn" onclick="location.href='staff.html'">Staff</button>
-  <button class="navBtn" onclick="location.href='location.html'">Location</button>
-</div>
-
-<!-- MAIN CONTENT -->
-<div id="content">
-
-  <div class="sectionTitle">Singular Items</div>
-
-  <table class="table">
-    <tr><th>Item</th><th>Qty</th><th>Price</th></tr>
-    <tr><td>Elixir of Renewal</td><td><input id="B3" type="number" min="0" value="0"></td><td>500</td></tr>
-    <tr><td>Spectral Rush</td><td><input id="B4" type="number" min="0" value="0"></td><td>500</td></tr>
-    <tr><td>Suspicious Stew</td><td><input id="B5" type="number" min="0" value="0"></td><td>500</td></tr>
-    <tr><td>Blood of Enemy</td><td><input id="B6" type="number" min="0" value="0"></td><td>300</td></tr>
-  </table>
-
-  <div class="sectionTitle">Bundles</div>
-
-  <table class="table">
-    <tr><th>Bundle</th><th>Qty</th><th>Price</th></tr>
-    <tr><td>UTP</td><td><input id="F3" type="number" min="0" value="0"></td><td>32000</td></tr>
-    <tr><td>Pretty & Protected</td><td><input id="F4" type="number" min="0" value="0"></td><td>25000</td></tr>
-    <tr><td>Midnight Moonbeam</td><td><input id="F5" type="number" min="0" value="0"></td><td>25500</td></tr>
-    <tr><td>Starlight Starburst</td><td><input id="F6" type="number" min="0" value="0"></td><td>27500</td></tr>
-  </table>
-
-  <div id="discountRow">
-    <input type="checkbox" id="discountToggle">
-    <label for="discountToggle">PD / EMS Discount (15%)</label>
+    <div class="button-row">
+      <a href="tarot.html" class="btn"><span class="text">Tarot</span></a>
+      <a href="calculator.html" class="btn"><span class="text">Calculator</span></a>
+      <a href="rules.html" class="btn"><span class="text">Rules</span></a>
+      <a href="items.html" class="btn"><span class="text">Items</span></a>
+      <a href="staff.html" class="btn"><span class="text">Staff</span></a>
+      <a href="location.html" class="btn"><span class="text">Location</span></a>
+    </div>
   </div>
 
-  <div id="totalBox">Total: $0</div>
-  <div id="manifestBox">✨ Waiting for order...</div>
+  <!-- CALCULATOR -->
+  <div class="calc-section">
+
+    <div class="sectionTitle">Singular Items</div>
+
+    <table class="table">
+      <tr><th>Item</th><th>Qty</th><th>Price</th></tr>
+      <tr><td>Elixir of Renewal</td><td><input id="B3" type="number" min="0" value="0"></td><td>500</td></tr>
+      <tr><td>Spectral Rush</td><td><input id="B4" type="number" min="0" value="0"></td><td>500</td></tr>
+      <tr><td>Suspicious Stew</td><td><input id="B5" type="number" min="0" value="0"></td><td>500</td></tr>
+      <tr><td>Blood of Enemy</td><td><input id="B6" type="number" min="0" value="0"></td><td>300</td></tr>
+    </table>
+
+    <div class="sectionTitle">Bundles</div>
+
+    <table class="table">
+      <tr><th>Bundle</th><th>Qty</th><th>Price</th></tr>
+      <tr><td>UTP</td><td><input id="F3" type="number" min="0" value="0"></td><td>32000</td></tr>
+      <tr><td>Pretty & Protected</td><td><input id="F4" type="number" min="0" value="0"></td><td>25000</td></tr>
+      <tr><td>Midnight Moonbeam</td><td><input id="F5" type="number" min="0" value="0"></td><td>25500</td></tr>
+      <tr><td>Starlight Starburst</td><td><input id="F6" type="number" min="0" value="0"></td><td>27500</td></tr>
+    </table>
+
+    <div id="discountRow">
+      <input type="checkbox" id="discountToggle">
+      <label for="discountToggle">PD / EMS Discount (15%)</label>
+    </div>
+
+    <div id="totalBox">Total: $0</div>
+    <div id="manifestBox">✨ Waiting for order...</div>
+
+  </div>
 
 </div>
 
 <script>
-// PRICE CONSTANTS
 const PRICES = {
   B3: 500, B4: 500, B5: 500, B6: 300,
   F3: 32000, F4: 25000, F5: 25500, F6: 27500
