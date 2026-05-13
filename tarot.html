@@ -15,9 +15,6 @@
     background: radial-gradient(circle at center,#3c1a6e 0%,#1f1238 40%,#0d0818 80%,#000 100%);
     color: #e9ddff;
     text-align: center;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
   }
 
   /* HERO */
@@ -70,18 +67,11 @@
     line-height: 1.5rem;
   }
 
-  /* LOGIN SECTION */
-  .login-wrapper {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding-bottom: 60px;
-  }
-
   /* LOGIN CARD */
   .login-card {
     width: 520px;
+    max-width: 90%;
+    margin: 0 auto 70px;
     background: radial-gradient(circle at top, #4b2a88 0%, #1a102e 60%, #0b0716 100%);
     border-radius: 30px;
     padding: 35px 40px 40px;
@@ -210,7 +200,7 @@
 
 <!-- HERO -->
 <div class="hero">
-  <img class="logo" src="https://i.imgur.com/6NZVG2f.png">
+  <img class="logo" src="https://i.imgur.com/6NZVG2f.png" alt="Mystic Spells Logo">
   <h1>Mystic Spells</h1>
   <p class="subtitle">Tarot access is reserved for in‑coven use only.</p>
 
@@ -229,28 +219,26 @@
   Each reading is <strong>$1,000</strong> and tips are always appreciated. This page is for authorized coven use only.
 </p>
 
-<!-- LOGIN -->
-<div class="login-wrapper">
-  <div class="login-card">
-    <img src="https://i.imgur.com/6NZVG2f.png" class="login-logo">
-    <div class="login-heading">Tarot Access</div>
-    <div class="login-sub">Authorized personnel only. All access is logged.</div>
+<!-- LOGIN CARD -->
+<div class="login-card">
+  <img src="https://i.imgur.com/6NZVG2f.png" class="login-logo" alt="Mystic Spells Logo">
+  <div class="login-heading">Tarot Access</div>
+  <div class="login-sub">Authorized personnel only. All access is logged.</div>
 
-    <form class="form" id="loginForm">
-      <label class="form-label">Username</label>
-      <input placeholder="Enter username" id="username" class="input" required>
+  <form class="form" id="loginForm">
+    <label class="form-label">Username</label>
+    <input placeholder="Enter username" id="username" class="input" required>
 
-      <label class="form-label">Password</label>
-      <input placeholder="Enter password" id="password" type="password" class="input" required>
+    <label class="form-label">Password</label>
+    <input placeholder="Enter password" id="password" type="password" class="input" required>
 
-      <input value="Unlock the Arcana" type="submit" class="login-button">
-    </form>
+    <input value="Unlock the Arcana" type="submit" class="login-button">
+  </form>
 
-    <p class="login-note">
-      Attempting to access this page without authorization may be considered a breach.
-      Customers: please visit the store and request a reading in person.
-    </p>
-  </div>
+  <p class="login-note">
+    Attempting to access this page without authorization may be considered a breach.
+    Customers: please visit the store and request a reading in person.
+  </p>
 </div>
 
 <footer>
