@@ -2,13 +2,13 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Mystic Spells – Calculator</title>
+<title>Mystic Spells</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <!-- Favicon -->
 <link rel="icon" href="https://i.imgur.com/6NZVG2f.png" type="image/png">
 
-<!-- Font -->
+<!-- Clean modern font -->
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
 
 <style>
@@ -31,9 +31,9 @@
     padding: 20px;
   }
 
-  /* HERO */
+  /* 🌙 HERO */
   .hero {
-    padding: 80px 20px 40px;
+    padding: 80px 20px 60px;
     position: relative;
   }
 
@@ -109,77 +109,174 @@
     transform: translateY(-2px);
   }
 
-  /* CALCULATOR SECTION */
-  .calc-section {
+  /* GRID WITH EXTRA SPACE */
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 55px; /* MORE SPACE */
     margin-top: 40px;
+  }
+
+  @media (max-width: 900px) {
+    .grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* ✨ NEW SHOP RULES CARD (cleaner, more aesthetic) */
+  .rules-card {
+    background: linear-gradient(145deg, #120d1f, #1c1530);
+    padding: 1.8rem;
+    border-radius: 1.2rem;
+    box-shadow: 0 0 25px rgba(164,124,243,0.25);
     text-align: left;
   }
 
-  .sectionTitle {
-    font-size: 28px;
+  .rules-title {
+    font-size: 1.6rem;
     font-weight: 600;
+    color: #ffffff;
+    margin-bottom: 10px;
+  }
+
+  .rules-sub {
+    font-size: 1rem;
+    color: #cfc4e8;
     margin-bottom: 15px;
-    color: #f2e6ff;
-    text-shadow: 0 0 10px rgba(164,124,243,0.6);
   }
 
-  .table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 25px;
-    background: rgba(255,255,255,0.05);
-    border-radius: 14px;
-    overflow: hidden;
-    backdrop-filter: blur(6px);
+  .rules-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
   }
 
-  .table th {
-    background: rgba(255,255,255,0.08);
-    padding: 12px;
-    font-size: 15px;
-  }
-
-  .table td {
-    padding: 12px;
-    border-bottom: 1px solid rgba(255,255,255,0.08);
-  }
-
-  .table tr:last-child td {
-    border-bottom: none;
-  }
-
-  .table input {
-    width: 70px;
-    padding: 6px;
-    border-radius: 8px;
-    border: none;
-    background: rgba(255,255,255,0.12);
-    color: white;
-    text-align: center;
-  }
-
-  #discountRow {
+  .rules-list li {
     display: flex;
     align-items: center;
     gap: 10px;
-    margin: 20px 0;
-    font-size: 16px;
+    margin: 8px 0;
+    font-size: 1rem;
+    color: #e9ddff;
   }
 
-  #totalBox, #manifestBox {
-    background: rgba(255,255,255,0.08);
-    padding: 18px;
-    border-radius: 14px;
-    margin-top: 20px;
+  .rules-dot {
+    width: 10px;
+    height: 10px;
+    background: #7aa7ff;
+    border-radius: 50%;
+  }
+
+  /* ✨ ANNOUNCEMENT CARD */
+  .announce-card {
+    padding: 1.8rem;
+    border-radius: 1.2rem;
+    background: #1a1426;
+    border: 1px solid rgba(255,255,255,0.18);
+    box-shadow: 0 0 25px rgba(164,124,243,0.25);
+    text-align: left;
+  }
+
+  .announce-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .announce-icon {
+    width: 2.4rem;
+    height: 2.4rem;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #A47CF3, #683FEA);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-weight: bold;
+  }
+
+  .announce-title {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #f2e6ff;
+  }
+
+  .announce-message {
+    margin-top: 1rem;
+    font-size: 1.05rem;
+    color: #d8caff;
+    line-height: 1.5rem;
+  }
+
+  /* ✨ OWNERS BOX (two columns inside one box) */
+  .owners-box {
+    background: linear-gradient(145deg, #120d1f, #1c1530);
+    padding: 2rem;
+    border-radius: 1.2rem;
+    margin-top: 50px;
+    box-shadow: 0 0 25px rgba(164,124,243,0.25);
+  }
+
+  .owners-title {
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: white;
+    margin-bottom: 10px;
+  }
+
+  .owners-sub {
+    font-size: 1rem;
+    color: #cfc4e8;
+    margin-bottom: 20px;
+  }
+
+  .owners-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 35px;
+  }
+
+  @media (max-width: 900px) {
+    .owners-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .owner-card {
+    text-align: center;
+  }
+
+  .owner-photo {
+    width: 160px;
+    border-radius: 12px;
+    margin-bottom: 10px;
+  }
+
+  .coming-soon-box {
+    width: 160px;
+    height: 160px;
+    border-radius: 12px;
+    background: rgba(255,255,255,0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #d8caff;
+    margin: 0 auto 10px;
     font-size: 18px;
-    white-space: pre-line;
-    backdrop-filter: blur(6px);
   }
 
-  #manifestBox {
-    font-size: 16px;
-    min-height: 120px;
+  .owner-name {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: white;
+    margin-bottom: 8px;
   }
+
+  .owner-desc {
+    font-size: 1rem;
+    color: #cfc4e8;
+  }
+
 </style>
 </head>
 
@@ -202,92 +299,67 @@
     </div>
   </div>
 
-  <!-- CALCULATOR -->
-  <div class="calc-section">
+  <!-- RULES + ANNOUNCEMENTS -->
+  <div class="grid">
 
-    <div class="sectionTitle">Singular Items</div>
+    <!-- NEW RULES CARD -->
+    <div class="rules-card">
+      <div class="rules-title">Shop Rules</div>
+      <div class="rules-sub">Keep the coven magical, safe, and drama‑free.</div>
 
-    <table class="table">
-      <tr><th>Item</th><th>Qty</th><th>Price</th></tr>
-      <tr><td>Elixir of Renewal</td><td><input id="B3" type="number" min="0" value="0"></td><td>500</td></tr>
-      <tr><td>Spectral Rush</td><td><input id="B4" type="number" min="0" value="0"></td><td>500</td></tr>
-      <tr><td>Suspicious Stew</td><td><input id="B5" type="number" min="0" value="0"></td><td>500</td></tr>
-      <tr><td>Blood of Enemy</td><td><input id="B6" type="number" min="0" value="0"></td><td>300</td></tr>
-    </table>
-
-    <div class="sectionTitle">Bundles</div>
-
-    <table class="table">
-      <tr><th>Bundle</th><th>Qty</th><th>Price</th></tr>
-      <tr><td>UTP</td><td><input id="F3" type="number" min="0" value="0"></td><td>32000</td></tr>
-      <tr><td>Pretty & Protected</td><td><input id="F4" type="number" min="0" value="0"></td><td>25000</td></tr>
-      <tr><td>Midnight Moonbeam</td><td><input id="F5" type="number" min="0" value="0"></td><td>25500</td></tr>
-      <tr><td>Starlight Starburst</td><td><input id="F6" type="number" min="0" value="0"></td><td>27500</td></tr>
-    </table>
-
-    <div id="discountRow">
-      <input type="checkbox" id="discountToggle">
-      <label for="discountToggle">PD / EMS Discount (15%)</label>
+      <ul class="rules-list">
+        <li><span class="rules-dot"></span> RP only — no OOC</li>
+        <li><span class="rules-dot"></span> No drama</li>
+        <li><span class="rules-dot"></span> Call police first</li>
+        <li><span class="rules-dot"></span> Respect everyone</li>
+        <li><span class="rules-dot"></span> No guns</li>
+        <li><span class="rules-dot"></span> No refunds</li>
+        <li><span class="rules-dot"></span> Consume at your own risk</li>
+      </ul>
     </div>
 
-    <div id="totalBox">Total: $0</div>
-    <div id="manifestBox">✨ Waiting for order...</div>
+    <!-- ANNOUNCEMENTS -->
+    <div class="announce-card">
+      <div class="announce-header">
+        <span class="announce-icon">!</span>
+        <p class="announce-title">Latest Announcement</p>
+      </div>
+
+      <p class="announce-message">
+        <strong>Store Ban:</strong> INJECTED is banned from Mystic Spells.<br><br>
+        <strong>Coming Soon:</strong> Tarot readings, spell services, and full staff pages.
+      </p>
+    </div>
 
   </div>
 
+  <!-- OWNERS (ONE BOX, TWO COLUMNS) -->
+  <div class="owners-box">
+    <div class="owners-title">Owners</div>
+    <div class="owners-sub">The witches behind the magic.</div>
+
+    <div class="owners-grid">
+
+      <!-- GOTHY -->
+      <div class="owner-card">
+        <div class="coming-soon-box">Coming Soon</div>
+        <div class="owner-name">Gothy — Owner</div>
+        <p class="owner-desc">More info coming soon.</p>
+      </div>
+
+      <!-- ALEX -->
+      <div class="owner-card">
+        <img class="owner-photo" src="https://i.imgur.com/mnaXdnh.png">
+        <div class="owner-name">Alex — Co‑Owner</div>
+        <p class="owner-desc">
+          Alex is a 20‑year‑old Co‑Owner of Mystic Spells, usually found in the city making magic happen.
+          Lover of all things pink and proudly LGBTQ‑friendly — bringing warmth, vibes, and energy to the coven.
+        </p>
+      </div>
+
+    </div>
+  </div>
+
 </div>
-
-<script>
-const PRICES = {
-  B3: 500, B4: 500, B5: 500, B6: 300,
-  F3: 32000, F4: 25000, F5: 25500, F6: 27500
-};
-
-const ids = ["B3","B4","B5","B6","F3","F4","F5","F6"];
-const inputs = ids.map(id => document.getElementById(id));
-const discountToggle = document.getElementById("discountToggle");
-const totalBox = document.getElementById("totalBox");
-const manifestBox = document.getElementById("manifestBox");
-
-function updateCalculator(){
-  const vals = {};
-  ids.forEach(id => vals[id] = Number(document.getElementById(id).value));
-
-  const totalInput = Object.values(vals).reduce((a,b)=>a+b,0);
-  if(totalInput === 0){
-    totalBox.textContent = "Total: $0";
-    manifestBox.textContent = "✨ Waiting for order...";
-    return;
-  }
-
-  let total = 0;
-  ids.forEach(id => total += vals[id] * PRICES[id]);
-
-  if(discountToggle.checked){
-    total = Math.round(total * 0.85);
-  }
-
-  totalBox.textContent = "Total: $" + total.toLocaleString();
-
-  const renewal = vals.B3 + (vals.F4*15) + (vals.F3*20) + (vals.F5*20);
-  const rush    = vals.B4 + (vals.F6*30) + (vals.F4*35) + (vals.F3*20) + (vals.F5*10);
-  const stew    = vals.B5 + (vals.F6*30) + (vals.F3*20);
-  const blood   = vals.B6 + (vals.F4*10) + (vals.F3*20) + (vals.F5*40);
-
-  manifestBox.textContent =
-`📦 PACKING MANIFEST
------------------------------------
-💗 RENEWAL: ${renewal}x
-⚡ RUSH: ${rush}x
-🍲 STEW: ${stew}x
-🩸 BLOOD: ${blood}x
------------------------------------`;
-}
-
-inputs.forEach(i => i.addEventListener("input", updateCalculator));
-discountToggle.addEventListener("change", updateCalculator);
-updateCalculator();
-</script>
-
 </body>
 </html>
