@@ -277,8 +277,10 @@
 </div>
 
 <script>
-  const CORRECT_USERNAME = "AlexOwner";
-  const CORRECT_PASSWORD = "MysticSpells2026";
+  const VALID_LOGINS = [
+    { user: "AlexOwner", pass: "MysticSpells2026" },
+    { user: "nyx", pass: "0508" }
+  ];
 
   const loginForm = document.getElementById("loginForm");
   const usernameInput = document.getElementById("username");
@@ -322,7 +324,11 @@
     const user = usernameInput.value.trim();
     const pass = passwordInput.value;
 
-    if (user === CORRECT_USERNAME && pass === CORRECT_PASSWORD) {
+    const match = VALID_LOGINS.some(
+      acc => acc.user === user && acc.pass === pass
+    );
+
+    if (match) {
       window.location.href = "tarot2.html";
     } else {
       startLockout();
