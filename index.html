@@ -5,6 +5,9 @@
 <title>Mystic Spells</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<!-- Favicon -->
+<link rel="icon" href="https://i.imgur.com/6NZVG2f.png" type="image/png">
+
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&display=swap" rel="stylesheet">
 
 <style>
@@ -80,7 +83,6 @@
     background: #1C1A1C;
     cursor: pointer;
     transition: all 450ms ease-in-out;
-    margin: 10px auto;
     text-decoration: none;
   }
 
@@ -111,6 +113,14 @@
   .btn:hover .sparkle {
     fill: white;
     transform: scale(1.2);
+  }
+
+  .button-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 18px;
+    margin-bottom: 40px;
   }
 
   /* 🌙 CINEMATIC GRID */
@@ -275,36 +285,38 @@
     <h1>Mystic Spells</h1>
     <p class="subtitle">A moonlit cottage of potions, tarot, and spellwork in Euphoria RP.</p>
 
-    <!-- BUTTONS -->
-    <a href="tarot.html" class="btn">
-      <svg height="24" width="24" class="sparkle"><path d="M10,21.236..."/></svg>
-      <span class="text">Tarot Readings</span>
-    </a>
+    <!-- BUTTONS ROW -->
+    <div class="button-row">
+      <a href="tarot.html" class="btn">
+        <svg height="24" width="24" class="sparkle"><path d="M10,21.236..."/></svg>
+        <span class="text">Tarot</span>
+      </a>
 
-    <a href="calculator.html" class="btn">
-      <svg height="24" width="24" class="sparkle"><path d="M10,21.236..."/></svg>
-      <span class="text">Bundle Calculator</span>
-    </a>
+      <a href="calculator.html" class="btn">
+        <svg height="24" width="24" class="sparkle"><path d="M10,21.236..."/></svg>
+        <span class="text">Calculator</span>
+      </a>
 
-    <a href="rules.html" class="btn">
-      <svg height="24" width="24" class="sparkle"><path d="M10,21.236..."/></svg>
-      <span class="text">Rules</span>
-    </a>
+      <a href="rules.html" class="btn">
+        <svg height="24" width="24" class="sparkle"><path d="M10,21.236..."/></svg>
+        <span class="text">Rules</span>
+      </a>
 
-    <a href="items.html" class="btn">
-      <svg height="24" width="24" class="sparkle"><path d="M10,21.236..."/></svg>
-      <span class="text">Items</span>
-    </a>
+      <a href="items.html" class="btn">
+        <svg height="24" width="24" class="sparkle"><path d="M10,21.236..."/></svg>
+        <span class="text">Items</span>
+      </a>
 
-    <a href="staff.html" class="btn">
-      <svg height="24" width="24" class="sparkle"><path d="M10,21.236..."/></svg>
-      <span class="text">Staff</span>
-    </a>
+      <a href="staff.html" class="btn">
+        <svg height="24" width="24" class="sparkle"><path d="M10,21.236..."/></svg>
+        <span class="text">Staff</span>
+      </a>
 
-    <a href="location.html" class="btn">
-      <svg height="24" width="24" class="sparkle"><path d="M10,21.236..."/></svg>
-      <span class="text">Location</span>
-    </a>
+      <a href="location.html" class="btn">
+        <svg height="24" width="24" class="sparkle"><path d="M10,21.236..."/></svg>
+        <span class="text">Location</span>
+      </a>
+    </div>
   </div>
 
   <!-- 🌙 CINEMATIC GRID -->
@@ -363,6 +375,11 @@
         <span class="list_text"><strong>Alex — Co‑Owner</strong></span>
       </li>
       <img src="https://i.imgur.com/mnaXdnh.png" class="owner-photo">
+
+      <p class="card_paragraph" style="text-align:center; margin-top:10px;">
+        Alex is a 20‑year‑old Co‑Owner of Mystic Spells, usually found in the city making magic happen.
+        Lover of all things pink and proudly LGBTQ‑friendly — bringing warmth, vibes, and energy to the coven.
+      </p>
     </ul>
   </div>
 
