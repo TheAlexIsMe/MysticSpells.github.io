@@ -105,7 +105,7 @@
   /* CARD */
   .card {
     width: 280px;
-    height: 380px;
+    height: 420px;
     perspective: 1000px;
   }
 
@@ -162,6 +162,19 @@
     color: #d8caff;
   }
 
+  .hire-date {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #bfa8ff;
+  }
+
+  .timer {
+    margin-top: 6px;
+    font-size: 14px;
+    color: #e9ddff;
+    font-weight: 600;
+  }
+
   /* BACK */
   .back {
     background: #1a0f33;
@@ -215,6 +228,9 @@
         <img src="https://i.imgur.com/yGV3T4S.png" alt="Jay">
         <h2>Jay</h2>
         <p>Shop Keeper</p>
+
+        <div class="hire-date">Hired: 4/27/2026 — 2:56 AM CST</div>
+        <div class="timer" id="jayTimer">Calculating…</div>
       </div>
 
       <!-- BACK -->
@@ -230,6 +246,31 @@
 <footer>
   Mystic Spells © 2026 — Crafted under the moonlight.
 </footer>
+
+<script>
+  function startEmploymentTimer(elementId, hireDateString) {
+    const hireDate = new Date(hireDateString);
+
+    function updateTimer() {
+      const now = new Date();
+      const diff = now - hireDate;
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((diff / (1000 * 60)) % 60);
+      const seconds = Math.floor((diff / 1000) % 60);
+
+      document.getElementById(elementId).textContent =
+        `${days} days, ${hours} hrs, ${minutes} min, ${seconds} sec`;
+    }
+
+    updateTimer();
+    setInterval(updateTimer, 1000);
+  }
+
+  // Jay's hire date
+  startEmploymentTimer("jayTimer", "April 27, 2026 02:56:00 CST");
+</script>
 
 </body>
 </html>
