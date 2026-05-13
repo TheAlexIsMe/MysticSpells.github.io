@@ -128,27 +128,67 @@
     50% { transform: translateY(66%) scale(0.65); opacity: 0.8; }
   }
 
-  /* UNDER CONSTRUCTION CARD */
-  .ucard {
+  /* MAP CARD (MAGICAL BORDER) */
+  .map-card {
     display: none;
     margin-top: 60px;
-    background: linear-gradient(145deg,#120d1f,#1c1530);
-    padding: 2rem;
-    border-radius: 1.2rem;
-    box-shadow: 0 0 25px rgba(164,124,243,0.25);
-    max-width: 600px;
+    position: relative;
+    width: 100%;
+    max-width: 550px;
+    height: auto;
     margin-left: auto;
     margin-right: auto;
+    border-radius: 20px;
+    overflow: hidden;
   }
-  .uc-title {
-    font-size: 2rem;
-    font-weight: 600;
-    color: #ffffff;
-    margin-bottom: 10px;
+
+  .map-bg {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    right: 8px;
+    bottom: 8px;
+    background: rgba(30, 20, 50, 0.7);
+    backdrop-filter: blur(18px);
+    border-radius: 16px;
+    outline: 2px solid rgba(255,255,255,0.25);
+    z-index: 2;
   }
-  .uc-sub {
-    font-size: 1.1rem;
-    color: #cfc4e8;
+
+  .map-blob {
+    position: absolute;
+    z-index: 1;
+    top: 50%;
+    left: 50%;
+    width: 260px;
+    height: 260px;
+    border-radius: 50%;
+    background-color: #A47CF3;
+    opacity: 0.55;
+    filter: blur(35px);
+    animation: blob-bounce 6s infinite ease-in-out;
+  }
+
+  @keyframes blob-bounce {
+    0%   { transform: translate(-100%, -100%); }
+    25%  { transform: translate(0%, -100%); }
+    50%  { transform: translate(0%, 0%); }
+    75%  { transform: translate(-100%, 0%); }
+    100% { transform: translate(-100%, -100%); }
+  }
+
+  .map-gif {
+    width: 100%;
+    border-radius: 16px;
+    z-index: 3;
+    position: relative;
+  }
+
+  .location-text {
+    margin-top: 25px;
+    font-size: 1.2rem;
+    color: #e9ddff;
+    line-height: 1.6rem;
   }
 
   footer {
@@ -190,10 +230,18 @@
     <p style="margin-top:20px; color:#cfc4e8;">Locating the cottage...</p>
   </div>
 
-  <!-- UNDER CONSTRUCTION -->
-  <div class="ucard" id="ucard">
-    <div class="uc-title">404 — Under Construction</div>
-    <div class="uc-sub">The map spell fizzled... location details coming soon.</div>
+  <!-- MAP CARD -->
+  <div class="map-card" id="mapCard">
+    <div class="map-bg"></div>
+    <div class="map-blob"></div>
+    <img class="map-gif" src="https://i.imgur.com/MknltoY.gif">
+  </div>
+
+  <div class="location-text" id="locationText" style="display:none;">
+    <strong>📍 Postal 568</strong><br>
+    💜 Purple Heart on the map<br>
+    Corner of <strong>Vinewood Blvd</strong> & <strong>Alta St</strong><br>
+    Downtown Vinewood — <strong>7134</strong>
   </div>
 
   <footer>
@@ -205,7 +253,8 @@
 <script>
 setTimeout(() => {
   document.getElementById("loader").style.display = "none";
-  document.getElementById("ucard").style.display = "block";
+  document.getElementById("mapCard").style.display = "block";
+  document.getElementById("locationText").style.display = "block";
 }, 7000);
 </script>
 
