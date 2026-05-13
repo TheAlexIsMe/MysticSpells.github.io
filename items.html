@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Mystic Spells – Items</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="icon" href="https://i.imgur.com/6NZVG2f.png" type="image/png">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+  body {
+    margin: 0;
+    font-family: "Montserrat", sans-serif;
+    background: radial-gradient(circle at center,
+      #3c1a6e 0%,
+      #1f1238 40%,
+      #0d0818 80%,
+      #000 100%
+    );
+    color: #e9ddff;
+    text-align: center;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+  }
+
+  /* HERO */
+  .hero {
+    padding: 80px 20px 60px;
+    position: relative;
+  }
+
+  .hero::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 420px;
+    height: 420px;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(circle, rgba(164,124,243,0.45), rgba(0,0,0,0));
+    border-radius: 50%;
+    filter: blur(40px);
+    z-index: -1;
+  }
+
+  .logo {
+    width: 160px;
+    margin: 0 auto 20px;
+    display: block;
+  }
+
+  h1 {
+    font-size: 52px;
+    margin-bottom: 10px;
+    color: #f2e6ff;
+  }
+
+  p.subtitle {
+    font-size: 22px;
+    max-width: 700px;
+    margin: 0 auto 35px;
+    color: #e8d8ff;
+  }
+
+  /* BUTTON ROW */
+  .button-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 14px;
+    margin-bottom: 40px;
+  }
+
+  .btn {
+    border: none;
+    width: 10em;
+    height: 3.5em;
+    border-radius: 2em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #1C1A1C;
+    cursor: pointer;
+    transition: all 450ms ease-in-out;
+    text-decoration: none;
+  }
+
+  .text {
+    font-weight: 600;
+    color: #FFFFFF;
+    font-size: 18px;
+    text-align: center;
+  }
+
+  .btn:hover {
+    background: linear-gradient(0deg,#A47CF3,#683FEA);
+    box-shadow: inset 0px 1px 0px rgba(255,255,255,0.4),
+                inset 0px -4px 0px rgba(0,0,0,0.2),
+                0px 0px 0px 4px rgba(255,255,255,0.2),
+                0px 0px 180px #9917FF;
+    transform: translateY(-2px);
+  }
+
+  /* ITEMS GRID */
+  .items-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 55px;
+    margin-top: 40px;
+  }
+
+  @media (max-width: 900px) {
+    .items-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* ITEM CARD */
+  .item-card {
+    background: linear-gradient(145deg, #120d1f, #1c1530);
+    padding: 2rem;
+    border-radius: 1.2rem;
+    box-shadow: 0 0 25px rgba(164,124,243,0.25);
+    text-align: center;
+  }
+
+  .item-img {
+    width: 180px;
+    border-radius: 12px;
+    margin-bottom: 15px;
+    box-shadow: 0 0 20px rgba(164,124,243,0.4);
+  }
+
+  .item-name {
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: white;
+    margin-bottom: 10px;
+  }
+
+  .item-desc {
+    font-size: 1rem;
+    color: #cfc4e8;
+    margin-bottom: 10px;
+  }
+
+  .coming-soon {
+    font-size: 0.9rem;
+    color: #9f8ad6;
+    margin-top: 10px;
+    opacity: 0.8;
+  }
+
+  /* FOOTER */
+  footer {
+    margin-top: 60px;
+    padding: 30px 0;
+    color: #cfc4e8;
+    font-size: 14px;
+    opacity: 0.8;
+  }
+</style>
+</head>
+
+<body>
+<div class="container">
+
+  <!-- HERO -->
+  <div class="hero">
+    <img class="logo" src="https://i.imgur.com/6NZVG2f.png">
+    <h1>Mystic Spells</h1>
+    <p class="subtitle">A moonlit cottage of potions, tarot, and spellwork in Euphoria RP.</p>
+
+    <div class="button-row">
+      <a href="index.html" class="btn"><span class="text">Home</span></a>
+      <a href="tarot.html" class="btn"><span class="text">Tarot</span></a>
+      <a href="calculator.html" class="btn"><span class="text">Calculator</span></a>
+      <a href="rules.html" class="btn"><span class="text">Rules</span></a>
+      <a href="staff.html" class="btn"><span class="text">Staff</span></a>
+      <a href="location.html" class="btn"><span class="text">Location</span></a>
+    </div>
+  </div>
+
+  <!-- ITEMS GRID -->
+  <div class="items-grid">
+
+    <!-- BLOOD OF ENEMY -->
+    <div class="item-card">
+      <img class="item-img" src="https://i.imgur.com/JIsxS9w.png">
+      <div class="item-name">Blood of Enemy</div>
+      <div class="item-desc">A forbidden crimson extract used in dark rituals and high‑tier spellwork.</div>
+      <div class="coming-soon">✨ Higher‑quality image coming soon</div>
+    </div>
+
+    <!-- SUSPICIOUS STEW -->
+    <div class="item-card">
+      <img class="item-img" src="https://i.imgur.com/GWhyBDl.png">
+      <div class="item-name">Suspicious Stew</div>
+      <div class="item-desc">A chaotic brew with unpredictable magical effects. Consume at your own risk.</div>
+      <div class="coming-soon">✨ Higher‑quality image coming soon</div>
+    </div>
+
+    <!-- SPECTRAL RUSH -->
+    <div class="item-card">
+      <img class="item-img" src="https://i.imgur.com/Ei4AGZX.png">
+      <div class="item-name">Spectral Rush</div>
+      <div class="item-desc">A shimmering potion that boosts agility and sharpens the senses.</div>
+      <div class="coming-soon">✨ Higher‑quality image coming soon</div>
+    </div>
+
+    <!-- ELIXIR OF RENEWAL -->
+    <div class="item-card">
+      <img class="item-img" src="https://i.imgur.com/MJ3jGel.png">
+      <div class="item-name">Elixir of Renewal</div>
+      <div class="item-desc">A restorative blend that revitalizes the body and spirit.</div>
+      <div class="coming-soon">✨ Higher‑quality image coming soon</div>
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    Mystic Spells © 2026 — Crafted under the moonlight.
+  </footer>
+
+</div>
+</body>
+</html>
