@@ -5,101 +5,50 @@
 <title>Mystic Spells – Calculator</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- Favicon -->
 <link rel="icon" href="https://i.imgur.com/6NZVG2f.png" type="image/png">
-
-<!-- Font -->
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
 
 <style>
   body {
     margin: 0;
     font-family: "Montserrat", sans-serif;
-    background: radial-gradient(circle at center,
-      #3c1a6e 0%,
-      #1f1238 40%,
-      #0d0818 80%,
-      #000 100%
-    );
+    background: radial-gradient(circle at center,#3c1a6e 0%,#1f1238 40%,#0d0818 80%,#000 100%);
     color: #e9ddff;
     text-align: center;
   }
 
-  .container {
-    max-width: 1200px;
-    margin: auto;
-    padding: 20px;
-  }
+  .container { max-width: 1200px; margin: auto; padding: 20px; }
 
   /* HERO */
   .hero {
     padding: 80px 20px 40px;
     position: relative;
   }
-
   .hero::before {
     content: "";
     position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 420px;
-    height: 420px;
+    top: 50%; left: 50%;
+    width: 420px; height: 420px;
     transform: translate(-50%, -50%);
     background: radial-gradient(circle, rgba(164,124,243,0.45), rgba(0,0,0,0));
-    border-radius: 50%;
-    filter: blur(40px);
-    z-index: -1;
+    border-radius: 50%; filter: blur(40px); z-index: -1;
   }
-
-  .logo {
-    width: 160px;
-    margin: 0 auto 20px;
-    display: block;
-  }
-
-  h1 {
-    font-size: 52px;
-    margin-bottom: 10px;
-    color: #f2e6ff;
-  }
-
-  p.subtitle {
-    font-size: 22px;
-    max-width: 700px;
-    margin: 0 auto 35px;
-    color: #e8d8ff;
-  }
+  .logo { width: 160px; margin: 0 auto 20px; display: block; }
+  h1 { font-size: 52px; margin-bottom: 10px; color: #f2e6ff; }
+  p.subtitle { font-size: 22px; max-width: 700px; margin: 0 auto 35px; color: #e8d8ff; }
 
   /* BUTTON ROW */
   .button-row {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 14px;
-    margin-bottom: 40px;
+    display: flex; flex-wrap: wrap; justify-content: center;
+    gap: 14px; margin-bottom: 40px;
   }
-
   .btn {
-    border: none;
-    width: 10em;
-    height: 3.5em;
-    border-radius: 2em;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: #1C1A1C;
-    cursor: pointer;
-    transition: all 450ms ease-in-out;
+    border: none; width: 10em; height: 3.5em; border-radius: 2em;
+    display: flex; justify-content: center; align-items: center;
+    background: #1C1A1C; cursor: pointer; transition: all 450ms ease-in-out;
     text-decoration: none;
   }
-
-  .text {
-    font-weight: 600;
-    color: #FFFFFF;
-    font-size: 18px;
-    text-align: center;
-  }
-
+  .text { font-weight: 600; color: #FFFFFF; font-size: 18px; }
   .btn:hover {
     background: linear-gradient(0deg,#A47CF3,#683FEA);
     box-shadow: inset 0px 1px 0px rgba(255,255,255,0.4),
@@ -109,76 +58,80 @@
     transform: translateY(-2px);
   }
 
-  /* CARD STYLE (matches homepage) */
+  /* CARD STYLE */
   .card {
-    background: linear-gradient(145deg, #120d1f, #1c1530);
-    padding: 1.8rem;
-    border-radius: 1.2rem;
+    background: linear-gradient(145deg,#120d1f,#1c1530);
+    padding: 1.8rem; border-radius: 1.2rem;
     box-shadow: 0 0 25px rgba(164,124,243,0.25);
-    text-align: left;
-    margin-bottom: 40px;
+    text-align: left; margin-bottom: 40px;
   }
-
   .card-title {
-    font-size: 1.6rem;
-    font-weight: 600;
-    color: #ffffff;
-    margin-bottom: 15px;
+    font-size: 1.6rem; font-weight: 600;
+    color: white; margin-bottom: 15px;
   }
 
-  /* TABLES */
-  .table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 10px;
-  }
-
+  /* TABLE */
+  .table { width: 100%; border-collapse: collapse; margin-bottom: 10px; }
   .table th {
     background: rgba(255,255,255,0.08);
-    padding: 12px;
-    font-size: 15px;
+    padding: 12px; font-size: 15px;
   }
-
   .table td {
     padding: 12px;
     border-bottom: 1px solid rgba(255,255,255,0.08);
   }
-
-  .table tr:last-child td {
-    border-bottom: none;
-  }
-
+  .table tr:last-child td { border-bottom: none; }
   .table input {
-    width: 70px;
-    padding: 6px;
-    border-radius: 8px;
-    border: none;
-    background: rgba(255,255,255,0.12);
-    color: white;
-    text-align: center;
+    width: 70px; padding: 6px; border-radius: 8px;
+    border: none; background: rgba(255,255,255,0.12);
+    color: white; text-align: center;
   }
 
+  /* SUMMARY */
   #discountRow {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin: 20px 0;
-    font-size: 16px;
+    display: flex; align-items: center; gap: 10px;
+    margin: 20px 0; font-size: 16px;
   }
-
   #totalBox, #manifestBox {
     background: rgba(255,255,255,0.08);
-    padding: 18px;
-    border-radius: 14px;
-    margin-top: 20px;
-    font-size: 18px;
-    white-space: pre-line;
-    backdrop-filter: blur(6px);
+    padding: 18px; border-radius: 14px;
+    margin-top: 20px; font-size: 18px;
+    white-space: pre-line; backdrop-filter: blur(6px);
+  }
+  #manifestBox { font-size: 16px; min-height: 120px; }
+
+  /* BUTTONS UNDER SUMMARY */
+  .action-row {
+    display: flex; gap: 15px; margin-top: 20px;
+  }
+  .action-btn {
+    flex: 1;
+    padding: 12px;
+    border-radius: 10px;
+    border: none;
+    background: #683FEA;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: .25s;
+  }
+  .action-btn:hover {
+    background: #A47CF3;
+    box-shadow: 0 0 15px rgba(164,124,243,0.5);
   }
 
-  #manifestBox {
-    font-size: 16px;
-    min-height: 120px;
+  /* FOOTER */
+  footer {
+    margin-top: 60px;
+    padding: 30px 0;
+    color: #cfc4e8;
+    font-size: 14px;
+    opacity: 0.8;
+  }
+
+  /* MOBILE TWO-COLUMN */
+  @media (max-width: 900px) {
+    .action-row { flex-direction: column; }
   }
 </style>
 </head>
@@ -205,7 +158,6 @@
   <!-- CARD 1 — SINGULAR ITEMS -->
   <div class="card">
     <div class="card-title">Singular Items</div>
-
     <table class="table">
       <tr><th>Item</th><th>Qty</th><th>Price</th></tr>
       <tr><td>Elixir of Renewal</td><td><input id="B3" type="number" min="0" value="0"></td><td>500</td></tr>
@@ -218,7 +170,6 @@
   <!-- CARD 2 — BUNDLES -->
   <div class="card">
     <div class="card-title">Bundles</div>
-
     <table class="table">
       <tr><th>Bundle</th><th>Qty</th><th>Price</th></tr>
       <tr><td>UTP</td><td><input id="F3" type="number" min="0" value="0"></td><td>32000</td></tr>
@@ -228,7 +179,7 @@
     </table>
   </div>
 
-  <!-- CARD 3 — TOTAL + MANIFEST -->
+  <!-- CARD 3 — SUMMARY -->
   <div class="card">
     <div class="card-title">Order Summary</div>
 
@@ -239,7 +190,17 @@
 
     <div id="totalBox">Total: $0</div>
     <div id="manifestBox">✨ Waiting for order...</div>
+
+    <div class="action-row">
+      <button class="action-btn" onclick="copyManifest()">Copy Manifest</button>
+      <button class="action-btn" onclick="window.print()">Print Receipt</button>
+    </div>
   </div>
+
+  <!-- FOOTER -->
+  <footer>
+    Mystic Spells © 2026 — Crafted under the moonlight.
+  </footer>
 
 </div>
 
@@ -288,6 +249,11 @@ function updateCalculator(){
 🍲 STEW: ${stew}x
 🩸 BLOOD: ${blood}x
 -----------------------------------`;
+}
+
+function copyManifest(){
+  navigator.clipboard.writeText(manifestBox.textContent);
+  alert("Manifest copied!");
 }
 
 inputs.forEach(i => i.addEventListener("input", updateCalculator));
