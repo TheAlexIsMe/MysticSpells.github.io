@@ -5,8 +5,8 @@
 <title>Mystic Spells – Staff</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link rel="icon" href="https://i.imgur.com/6NZVG2f.png" type="image/png">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+<link rel="icon" href="https://i.imgur.com/6NZVG2f.png" type="image/png">
 
 <style>
   body {
@@ -17,13 +17,12 @@
     text-align: center;
   }
 
-  .container { max-width: 1200px; margin: auto; padding: 20px; }
-
   /* HERO */
   .hero {
-    padding: 80px 20px 60px;
+    padding: 60px 20px 10px;
     position: relative;
   }
+
   .hero::before {
     content: "";
     position: absolute;
@@ -31,129 +30,154 @@
     width: 420px; height: 420px;
     transform: translate(-50%, -50%);
     background: radial-gradient(circle, rgba(164,124,243,0.45), rgba(0,0,0,0));
-    border-radius: 50%; filter: blur(40px); z-index: -1;
+    border-radius: 50%;
+    filter: blur(40px);
+    z-index: -1;
   }
-  .logo { width: 160px; margin: 0 auto 20px; display: block; }
-  h1 { font-size: 52px; margin-bottom: 10px; color: #f2e6ff; }
-  p.subtitle { font-size: 22px; max-width: 700px; margin: 0 auto 35px; color: #e8d8ff; }
 
-  /* BUTTON ROW */
-  .button-row {
-    display: flex; flex-wrap: wrap; justify-content: center;
-    gap: 14px; margin-bottom: 40px;
+  .logo {
+    width: 160px;
+    margin: 0 auto 10px;
+    display: block;
   }
+
+  h1 {
+    font-size: 52px;
+    margin-bottom: 10px;
+    color: #f2e6ff;
+  }
+
+  p.subtitle {
+    font-size: 20px;
+    max-width: 700px;
+    margin: 0 auto 20px;
+    color: #e8d8ff;
+  }
+
+  /* NAV BUTTONS */
+  .button-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 14px;
+    margin-bottom: 40px;
+  }
+
   .btn {
-    border: none; width: 10em; height: 3.5em; border-radius: 2em;
-    display: flex; justify-content: center; align-items: center;
-    background: #1C1A1C; cursor: pointer; transition: all 450ms ease-in-out;
+    border: none;
+    width: 10em;
+    height: 3.5em;
+    border-radius: 2em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #1C1A1C;
+    cursor: pointer;
+    transition: all 450ms ease-in-out;
     text-decoration: none;
   }
-  .text { font-weight: 600; color: #FFFFFF; font-size: 18px; }
+
+  .text {
+    font-weight: 600;
+    color: #FFFFFF;
+    font-size: 18px;
+  }
+
   .btn:hover {
     background: linear-gradient(0deg,#A47CF3,#683FEA);
-    box-shadow: inset 0px 1px 0px rgba(255,255,255,0.4),
-                inset 0px -4px 0px rgba(0,0,0,0.2),
-                0px 0px 0px 4px rgba(255,255,255,0.2),
-                0px 0px 180px #9917FF;
+    box-shadow:
+      inset 0px 1px 0px rgba(255,255,255,0.4),
+      inset 0px -4px 0px rgba(0,0,0,0.2),
+      0px 0px 0px 4px rgba(255,255,255,0.2),
+      0px 0px 180px #9917FF;
     transform: translateY(-2px);
   }
 
-  /* LOADER */
-  .loader-wrapper {
-    margin-top: 80px;
+  /* STAFF GRID */
+  .staff-grid {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 40px;
+    padding: 40px 20px 80px;
   }
 
-  .three-body {
-    --uib-size: 35px;
-    --uib-speed: 0.8s;
-    --uib-color: #A47CF3;
-    position: relative;
-    display: inline-block;
-    height: var(--uib-size);
-    width: var(--uib-size);
-    animation: spin78236 calc(var(--uib-speed) * 2.5) infinite linear;
+  /* CARD */
+  .card {
+    width: 260px;
+    height: 360px;
+    perspective: 1000px;
   }
-  .three-body__dot {
-    position: absolute;
-    height: 100%;
-    width: 30%;
-  }
-  .three-body__dot:after {
-    content: '';
-    position: absolute;
-    height: 0%;
+
+  .content {
     width: 100%;
-    padding-bottom: 100%;
-    background-color: var(--uib-color);
-    border-radius: 50%;
-  }
-  .three-body__dot:nth-child(1) {
-    bottom: 5%; left: 0;
-    transform: rotate(60deg);
-    transform-origin: 50% 85%;
-  }
-  .three-body__dot:nth-child(1)::after {
-    bottom: 0; left: 0;
-    animation: wobble1 var(--uib-speed) infinite ease-in-out;
-    animation-delay: calc(var(--uib-speed) * -0.3);
-  }
-  .three-body__dot:nth-child(2) {
-    bottom: 5%; right: 0;
-    transform: rotate(-60deg);
-    transform-origin: 50% 85%;
-  }
-  .three-body__dot:nth-child(2)::after {
-    bottom: 0; left: 0;
-    animation: wobble1 var(--uib-speed) infinite calc(var(--uib-speed) * -0.15) ease-in-out;
-  }
-  .three-body__dot:nth-child(3) {
-    bottom: -5%; left: 0;
-    transform: translateX(116.666%);
-  }
-  .three-body__dot:nth-child(3)::after {
-    top: 0; left: 0;
-    animation: wobble2 var(--uib-speed) infinite ease-in-out;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 400ms ease;
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(164,124,243,0.5);
   }
 
-  @keyframes spin78236 {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-  }
-  @keyframes wobble1 {
-    0%,100% { transform: translateY(0%) scale(1); opacity: 1; }
-    50% { transform: translateY(-66%) scale(0.65); opacity: 0.8; }
-  }
-  @keyframes wobble2 {
-    0%,100% { transform: translateY(0%) scale(1); opacity: 1; }
-    50% { transform: translateY(66%) scale(0.65); opacity: 0.8; }
+  .card:hover .content {
+    transform: rotateY(180deg);
   }
 
-  /* UNDER CONSTRUCTION CARD */
-  .ucard {
-    display: none;
-    margin-top: 60px;
-    background: linear-gradient(145deg,#120d1f,#1c1530);
-    padding: 2rem;
-    border-radius: 1.2rem;
-    box-shadow: 0 0 25px rgba(164,124,243,0.25);
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
+  .front, .back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 12px;
+    overflow: hidden;
   }
-  .uc-title {
-    font-size: 2rem;
-    font-weight: 600;
-    color: #ffffff;
-    margin-bottom: 10px;
+
+  /* FRONT */
+  .front {
+    background: #120a22;
+    border: 2px solid rgba(255,255,255,0.15);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20px;
   }
-  .uc-sub {
-    font-size: 1.1rem;
-    color: #cfc4e8;
+
+  .front img {
+    width: 120px;
+    height: 120px;
+    border-radius: 100%;
+    object-fit: cover;
+    border: 3px solid #A47CF3;
+    box-shadow: 0 0 20px rgba(164,124,243,0.7);
+  }
+
+  .front h2 {
+    margin-top: 15px;
+    font-size: 24px;
+    color: #f2e6ff;
+  }
+
+  .front p {
+    margin-top: 5px;
+    font-size: 16px;
+    color: #d8caff;
+  }
+
+  /* BACK */
+  .back {
+    background: #1a0f33;
+    transform: rotateY(180deg);
+    border: 2px solid rgba(255,255,255,0.15);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 25px;
+    color: #e9ddff;
+    font-size: 16px;
+    line-height: 1.4rem;
   }
 
   footer {
-    margin-top: 60px;
-    padding: 30px 0;
+    padding: 20px 0 10px;
     color: #cfc4e8;
     font-size: 14px;
     opacity: 0.8;
@@ -162,52 +186,50 @@
 </head>
 
 <body>
-<div class="container">
 
-  <!-- HERO -->
-  <div class="hero">
-    <img class="logo" src="https://i.imgur.com/6NZVG2f.png">
-    <h1>Mystic Spells</h1>
-    <p class="subtitle">A moonlit cottage of potions, tarot, and spellwork in Euphoria RP.</p>
+<!-- HERO -->
+<div class="hero">
+  <img class="logo" src="https://i.imgur.com/6NZVG2f.png" alt="Mystic Spells Logo">
+  <h1>Mystic Spells Staff</h1>
+  <p class="subtitle">Meet the coven members who keep the magic alive.</p>
 
-    <div class="button-row">
-      <a href="index.html" class="btn"><span class="text">Home</span></a>
-      <a href="tarot.html" class="btn"><span class="text">Tarot</span></a>
-      <a href="calculator.html" class="btn"><span class="text">Calculator</span></a>
-      <a href="rules.html" class="btn"><span class="text">Rules</span></a>
-      <a href="items.html" class="btn"><span class="text">Items</span></a>
-      <a href="location.html" class="btn"><span class="text">Location</span></a>
+  <div class="button-row">
+    <a href="index.html" class="btn"><span class="text">Home</span></a>
+    <a href="calculator.html" class="btn"><span class="text">Calculator</span></a>
+    <a href="rules.html" class="btn"><span class="text">Rules</span></a>
+    <a href="items.html" class="btn"><span class="text">Items</span></a>
+    <a href="staff.html" class="btn"><span class="text">Staff</span></a>
+    <a href="location.html" class="btn"><span class="text">Location</span></a>
+  </div>
+</div>
+
+<!-- STAFF GRID -->
+<div class="staff-grid">
+
+  <!-- JAY -->
+  <div class="card">
+    <div class="content">
+
+      <!-- FRONT -->
+      <div class="front">
+        <img src="https://i.imgur.com/yGV3T4S.png" alt="Jay">
+        <h2>Jay</h2>
+        <p>Shop Keeper</p>
+      </div>
+
+      <!-- BACK -->
+      <div class="back">
+        <p>"Little thing about myself is I see dead people."</p>
+      </div>
+
     </div>
   </div>
-
-  <!-- LOADING -->
-  <div class="loader-wrapper" id="loader">
-    <div class="three-body">
-      <div class="three-body__dot"></div>
-      <div class="three-body__dot"></div>
-      <div class="three-body__dot"></div>
-    </div>
-    <p style="margin-top:20px; color:#cfc4e8;">Loading staff directory...</p>
-  </div>
-
-  <!-- UNDER CONSTRUCTION -->
-  <div class="ucard" id="ucard">
-    <div class="uc-title">404 — Under Construction</div>
-    <div class="uc-sub">Our coven is still gathering the staff list. Check back soon.</div>
-  </div>
-
-  <footer>
-    Mystic Spells © 2026 — Crafted under the moonlight.
-  </footer>
 
 </div>
 
-<script>
-setTimeout(() => {
-  document.getElementById("loader").style.display = "none";
-  document.getElementById("ucard").style.display = "block";
-}, 7000);
-</script>
+<footer>
+  Mystic Spells © 2026 — Crafted under the moonlight.
+</footer>
 
 </body>
 </html>
