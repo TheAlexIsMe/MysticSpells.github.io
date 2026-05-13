@@ -4,6 +4,8 @@
   <meta charset="UTF-8" />
   <title>Mystic Spells – Home</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Soft witchy script font -->
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
     * {
       box-sizing: border-box;
@@ -12,9 +14,9 @@
     }
 
     body {
-      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-      background: #000;
-      color: #f5f5f5;
+      font-family: "Dancing Script", cursive;
+      background: radial-gradient(circle at top, #f5f2ff 0%, #c7b7ff 25%, #7b5bb8 55%, #2b1f3f 100%);
+      color: #fdf7ff;
       min-height: 100vh;
       overflow-x: hidden;
     }
@@ -24,266 +26,21 @@
       text-decoration: none;
     }
 
-    /* Loader */
-    #loader-screen {
-      position: fixed;
-      inset: 0;
-      background: #000;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 9999;
-      transition: opacity 0.8s ease;
-    }
-
-    .loader-wrapper {
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 180px;
-      height: 180px;
-      font-family: "Inter", sans-serif;
-      font-size: 1.1em;
-      font-weight: 300;
-      color: #fdf5c9;
-      border-radius: 50%;
-      background-color: transparent;
-      user-select: none;
-      letter-spacing: 0.08em;
-      text-align: center;
-      flex-direction: column;
-      gap: 0.5rem;
-    }
-
-    .loader-logo {
-      width: 70px;
-      height: 70px;
-      border-radius: 50%;
-      overflow: hidden;
-      box-shadow: 0 0 25px rgba(255, 215, 160, 0.7);
-    }
-
-    .loader-logo img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .loader {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      aspect-ratio: 1 / 1;
-      border-radius: 50%;
-      background-color: transparent;
-      animation: loader-rotate 2s linear infinite;
-      z-index: 0;
-    }
-
-    @keyframes loader-rotate {
-      0% {
-        transform: rotate(90deg);
-        box-shadow:
-          0 10px 20px 0 #fff inset,
-          0 20px 30px 0 #ad5fff inset,
-          0 60px 60px 0 #471eec inset;
-      }
-      50% {
-        transform: rotate(270deg);
-        box-shadow:
-          0 10px 20px 0 #fff inset,
-          0 20px 10px 0 #d60a47 inset,
-          0 40px 60px 0 #311e80 inset;
-      }
-      100% {
-        transform: rotate(450deg);
-        box-shadow:
-          0 10px 20px 0 #fff inset,
-          0 20px 30px 0 #ad5fff inset,
-          0 60px 60px 0 #471eec inset;
-      }
-    }
-
-    .loader-letter {
-      display: inline-block;
-      opacity: 0.4;
-      transform: translateY(0);
-      animation: loader-letter-anim 2s infinite;
-      z-index: 1;
-      border-radius: 50ch;
-      border: none;
-      padding: 0 1px;
-    }
-
-    .loader-letter:nth-child(1) { animation-delay: 0s; }
-    .loader-letter:nth-child(2) { animation-delay: 0.1s; }
-    .loader-letter:nth-child(3) { animation-delay: 0.2s; }
-    .loader-letter:nth-child(4) { animation-delay: 0.3s; }
-    .loader-letter:nth-child(5) { animation-delay: 0.4s; }
-    .loader-letter:nth-child(6) { animation-delay: 0.5s; }
-    .loader-letter:nth-child(7) { animation-delay: 0.6s; }
-    .loader-letter:nth-child(8) { animation-delay: 0.7s; }
-    .loader-letter:nth-child(9) { animation-delay: 0.8s; }
-    .loader-letter:nth-child(10) { animation-delay: 0.9s; }
-    .loader-letter:nth-child(11) { animation-delay: 1.0s; }
-    .loader-letter:nth-child(12) { animation-delay: 1.1s; }
-
-    @keyframes loader-letter-anim {
-      0%, 100% {
-        opacity: 0.4;
-        transform: translateY(0);
-      }
-      20% {
-        opacity: 1;
-        transform: scale(1.15);
-      }
-      40% {
-        opacity: 0.7;
-        transform: translateY(0);
-      }
-    }
-
-    /* Background */
-    .black-hole {
-      position: relative;
-      width: 100%;
-      min-height: 100vh;
-      overflow: hidden;
-    }
-
-    .black-hole::before {
-      content: "";
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 150%;
-      height: 140%;
-      background: radial-gradient(ellipse at 50% 55%, transparent 10%, black 50%);
-      z-index: 2;
-      pointer-events: none;
-    }
-
-    .black-hole::after {
-      content: "";
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 100%;
-      height: 100%;
-      background: radial-gradient(ellipse at 50% 75%, #a900ff 20%, transparent 75%);
-      mix-blend-mode: overlay;
-      z-index: 5;
-      pointer-events: none;
-    }
-
-    .aura {
-      position: absolute;
-      top: -71.5%;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 30%;
-      height: 400%;
-      background: linear-gradient(
-        20deg,
-        #00f8f1,
-        #ffbd1e20 16.5%,
-        #fe848f 33%,
-        #fe848f20 49.5%,
-        #00f8f1 66%,
-        #00f8f160 85.5%,
-        #ffbd1e 100%
-      );
-      background-size: 100% 200%;
-      border-radius: 0 0 100% 100%;
-      filter: blur(50px);
-      mix-blend-mode: plus-lighter;
-      opacity: 0.75;
-      z-index: 3;
-      animation: aura-glow 5s infinite linear;
-      pointer-events: none;
-    }
-
-    .overlay {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: repeating-linear-gradient(
-        transparent,
-        transparent 1px,
-        white 1px,
-        white 2px
-      );
-      mix-blend-mode: overlay;
-      opacity: 0.15;
-      z-index: 10;
-      pointer-events: none;
-    }
-
-    .tunnel {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 80%;
-      height: 80%;
-      z-index: 1;
-      pointer-events: none;
-    }
-
-    .ring {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      border-radius: 50%;
-      border: 1px solid #444;
-      animation: ring-pulse 10s infinite linear;
-    }
-
-    @keyframes aura-glow {
-      0% { background-position: 0 100%; }
-      100% { background-position: 0 300%; }
-    }
-
-    @keyframes ring-pulse {
-      0% {
-        width: 0;
-        height: 0;
-        opacity: 1;
-      }
-      100% {
-        width: 100%;
-        height: 100%;
-        opacity: 0;
-      }
-    }
-
-    .ring:nth-child(1) { animation-delay: 0s;  width: 10%;  height: 10%; }
-    .ring:nth-child(2) { animation-delay: 1s;  width: 20%;  height: 20%; }
-    .ring:nth-child(3) { animation-delay: 2s;  width: 30%;  height: 30%; }
-    .ring:nth-child(4) { animation-delay: 3s;  width: 40%;  height: 40%; }
-    .ring:nth-child(5) { animation-delay: 4s;  width: 50%;  height: 50%; }
-    .ring:nth-child(6) { animation-delay: 5s;  width: 60%;  height: 60%; }
-    .ring:nth-child(7) { animation-delay: 6s;  width: 70%;  height: 70%; }
-    .ring:nth-child(8) { animation-delay: 7s;  width: 80%;  height: 80%; }
-    .ring:nth-child(9) { animation-delay: 8s;  width: 90%;  height: 90%; }
-    .ring:nth-child(10){ animation-delay: 9s;  width: 100%; height: 100%; }
-
     /* Layout */
+    .page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      backdrop-filter: blur(4px);
+    }
+
     .content {
-      position: relative;
-      z-index: 20;
-      padding: 1.5rem 1rem 3rem;
       max-width: 1200px;
       margin: 0 auto;
+      padding: 1.5rem 1rem 3rem;
     }
 
+    /* Header */
     header {
       display: flex;
       align-items: center;
@@ -304,7 +61,9 @@
       height: 70px;
       border-radius: 50%;
       overflow: hidden;
-      box-shadow: 0 0 25px rgba(255, 215, 160, 0.7);
+      border: 2px solid rgba(255, 255, 255, 0.7);
+      box-shadow: 0 0 25px rgba(255, 255, 255, 0.4);
+      background: rgba(0, 0, 0, 0.2);
       flex-shrink: 0;
     }
 
@@ -317,20 +76,18 @@
     .brand-text {
       display: flex;
       flex-direction: column;
-      gap: 0.2rem;
+      gap: 0.1rem;
     }
 
     .brand-name {
-      font-size: 1.4rem;
-      letter-spacing: 0.18em;
+      font-size: 2rem;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: #fdf5c9;
     }
 
     .brand-tagline {
-      font-size: 0.8rem;
-      color: #d0c7ff;
-      max-width: 260px;
+      font-size: 1rem;
+      opacity: 0.9;
     }
 
     nav {
@@ -341,47 +98,45 @@
     }
 
     .nav-link {
-      font-size: 0.8rem;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      padding: 0.4rem 0.8rem;
+      font-size: 0.95rem;
+      padding: 0.35rem 0.9rem;
       border-radius: 999px;
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      background: rgba(5, 5, 15, 0.7);
-      backdrop-filter: blur(6px);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      background: rgba(25, 15, 45, 0.7);
       cursor: pointer;
-      transition: background 0.2s, transform 0.2s, border-color 0.2s;
+      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 10px rgba(10, 0, 30, 0.4);
     }
 
     .nav-link:hover {
-      background: rgba(255, 255, 255, 0.06);
-      border-color: rgba(255, 255, 255, 0.4);
+      background: rgba(255, 255, 255, 0.12);
       transform: translateY(-1px);
+      box-shadow: 0 6px 14px rgba(10, 0, 30, 0.6);
     }
 
+    /* Hero */
     .hero {
       text-align: center;
       margin-bottom: 2.5rem;
-      padding: 1rem 0;
+      padding: 1.2rem 0 0.5rem;
     }
 
     .hero-title {
-      font-size: 2rem;
-      margin-bottom: 0.6rem;
+      font-size: 2.6rem;
+      margin-bottom: 0.4rem;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
-      letter-spacing: 0.2em;
-      color: #fdf5c9;
     }
 
     .hero-subtitle {
-      font-size: 0.95rem;
-      max-width: 520px;
+      font-size: 1.2rem;
+      max-width: 600px;
       margin: 0 auto;
-      color: #d0c7ff;
+      opacity: 0.95;
     }
 
     .hero-subtitle span {
-      color: #f7d38a;
+      color: #ffe0ff;
     }
 
     .hero-cta {
@@ -394,143 +149,456 @@
 
     /* Button */
     .button {
-      --color-back: #050b10;
+      --color-back: rgba(25, 10, 45, 0.9);
       background: var(--color-back);
-      border-radius: 0.5em;
+      border-radius: 0.8em;
       box-shadow:
         inset 0px -6px 18px -6px rgba(3, 15, 20, 0),
-        inset rgba(54, 69, 75, 1) -1px -1px 6px 0px,
+        inset rgba(255, 255, 255, 0.4) -1px -1px 6px 0px,
         inset 12px 0px 12px -6px rgba(3, 15, 20, 0),
         inset -12px 0px 12px -6px rgba(3, 15, 20, 0),
-        rgba(54, 69, 75, 1) -1px -1px 6px 0px;
-      border: solid 2px #030f14;
+        rgba(10, 0, 30, 0.7) -1px -1px 6px 0px;
+      border: solid 2px rgba(255, 255, 255, 0.7);
       cursor: pointer;
-      font-size: 15px;
-      padding: 0.7em 1.7em;
+      font-size: 1.1rem;
+      padding: 0.6em 1.8em;
       outline: none;
       transition: all 0.3s;
       user-select: none;
-      min-width: 180px;
+      min-width: 190px;
       text-align: center;
     }
 
     .button:hover {
       box-shadow:
-        inset 0px -6px 18px -6px rgba(3, 15, 20, 1),
-        inset 0px 6px 18px -6px rgba(3, 15, 20, 1),
+        inset 0px -6px 18px -6px rgba(255, 255, 255, 0.4),
+        inset 0px 6px 18px -6px rgba(255, 255, 255, 0.4),
         inset 12px 0px 12px -6px rgba(3, 15, 20, 0),
         inset -12px 0px 12px -6px rgba(3, 15, 20, 0),
-        -1px -1px 6px 0px rgba(54, 69, 75, 1);
+        -1px -1px 10px 0px rgba(10, 0, 30, 0.9);
+      transform: translateY(-1px);
     }
 
     .button:active {
       box-shadow:
-        inset 0px -12px 12px -6px rgba(3, 15, 20, 1),
-        inset 0px 12px 12px -6px rgba(3, 15, 20, 1),
+        inset 0px -12px 12px -6px rgba(255, 255, 255, 0.5),
+        inset 0px 12px 12px -6px rgba(255, 255, 255, 0.5),
         inset 12px 0px 12px -6px rgba(3, 15, 20, 1),
         inset -12px 0px 12px -6px rgba(3, 15, 20, 1),
-        -1px -1px 6px 0px rgba(54, 69, 75, 1);
+        -1px -1px 6px 0px rgba(10, 0, 30, 1);
+      transform: translateY(1px);
     }
 
-    .text {
-      color: #d0a756;
+    .button .text {
+      color: #ffe0b8;
       font-weight: 700;
-      margin: auto;
-      transition: all 0.3s;
-      width: fit-content;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
+      transition: all 0.3s;
     }
 
     .button:hover .text {
-      transform: scale(0.9);
+      transform: scale(0.95);
     }
 
     .button:active .text {
-      transform: scale(0.8);
+      transform: scale(0.9);
     }
 
-    /* Sections */
-    .sections {
+    /* Sections layout */
+    .sections-grid {
       display: grid;
-      grid-template-columns: minmax(0, 2fr) minmax(0, 1.4fr);
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1.6fr);
       gap: 2rem;
-      margin-top: 1.5rem;
+      margin-top: 2rem;
       align-items: flex-start;
     }
 
-    .card-panel {
-      background: rgba(5, 5, 15, 0.8);
+    .panel {
+      background: rgba(20, 10, 40, 0.9);
       border-radius: 18px;
       padding: 1.2rem 1.4rem;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      backdrop-filter: blur(10px);
-      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      box-shadow: 0 18px 40px rgba(10, 0, 30, 0.8);
     }
 
     .panel-title {
-      font-size: 0.9rem;
-      text-transform: uppercase;
-      letter-spacing: 0.18em;
-      margin-bottom: 0.6rem;
-      color: #fdf5c9;
+      font-size: 1.4rem;
+      margin-bottom: 0.4rem;
     }
 
     .panel-subtitle {
-      font-size: 0.8rem;
-      color: #d0c7ff;
+      font-size: 1rem;
       margin-bottom: 0.8rem;
+      opacity: 0.9;
     }
 
-    .list {
+    .rules-list {
       list-style: none;
-      font-size: 0.85rem;
       display: grid;
-      gap: 0.35rem;
+      gap: 0.4rem;
+      font-size: 1rem;
     }
 
-    .list li span {
-      color: #f7d38a;
+    .rules-list li::before {
+      content: "✦ ";
+      color: #ffe0ff;
+    }
+
+    .announcement-item {
+      font-size: 1rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .announcement-item strong {
+      color: #ffe0b8;
     }
 
     .pill-row {
       display: flex;
       flex-wrap: wrap;
       gap: 0.4rem;
-      margin-top: 0.4rem;
+      margin-top: 0.6rem;
     }
 
     .pill {
-      font-size: 0.75rem;
-      padding: 0.25rem 0.6rem;
+      font-size: 0.95rem;
+      padding: 0.25rem 0.7rem;
       border-radius: 999px;
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      background: rgba(10, 10, 20, 0.8);
-      color: #f5f5f5;
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      background: rgba(35, 20, 60, 0.9);
+      box-shadow: 0 4px 10px rgba(10, 0, 30, 0.7);
     }
 
-    .announcement-item {
-      font-size: 0.8rem;
-      margin-bottom: 0.4rem;
-    }
-
-    .announcement-item strong {
-      color: #f7d38a;
-    }
-
-    .footer {
+    /* Bundles & Items */
+    .section-block {
       margin-top: 2.5rem;
-      font-size: 0.75rem;
+    }
+
+    .section-title {
+      font-size: 1.9rem;
+      margin-bottom: 0.4rem;
       text-align: center;
-      color: #a8a0d0;
+    }
+
+    .section-subtitle {
+      font-size: 1.1rem;
+      text-align: center;
+      opacity: 0.9;
+      margin-bottom: 1.2rem;
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 1.2rem;
+    }
+
+    .bundle-card,
+    .item-card {
+      background: rgba(20, 10, 40, 0.9);
+      border-radius: 16px;
+      padding: 1rem 1.1rem;
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      box-shadow: 0 14px 30px rgba(10, 0, 30, 0.8);
+    }
+
+    .bundle-name {
+      font-size: 1.4rem;
+      margin-bottom: 0.2rem;
+    }
+
+    .bundle-price {
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+      color: #ffe0b8;
+    }
+
+    .bundle-list {
+      list-style: none;
+      font-size: 1rem;
+      display: grid;
+      gap: 0.2rem;
+    }
+
+    .item-name {
+      font-size: 1.3rem;
+      margin-bottom: 0.2rem;
+    }
+
+    .item-price {
+      font-size: 1.05rem;
+      margin-bottom: 0.3rem;
+      color: #ffe0b8;
+    }
+
+    .item-desc {
+      font-size: 1rem;
+      opacity: 0.95;
+    }
+
+    /* Special cards (owners, supporter, worker) */
+    .special-section {
+      margin-top: 3rem;
+    }
+
+    .special-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+      justify-items: center;
+    }
+
+    .special-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .special-label {
+      font-size: 1.1rem;
+    }
+
+    .special-card {
+      --ballSize: 80px;
+      --gap: 16px;
+      width: 220px;
+      height: 320px;
+      filter: contrast(20);
+      background-color: #1b1328;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid #4a3b66;
+      border-radius: 12px;
+      box-shadow: 0 18px 40px rgba(10, 0, 30, 0.9);
+      cursor: pointer;
+    }
+
+    .special-content {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      opacity: 0;
+      transition: all 0.3s 0.3s;
+      padding: 0.8rem;
+      text-align: center;
+      position: relative;
+      z-index: 3;
+    }
+
+    .special-name {
+      font-size: 1.6rem;
+      margin-bottom: 0.2rem;
+    }
+
+    .special-role {
+      font-size: 1.2rem;
+      margin-bottom: 0.4rem;
+      color: #ffe0b8;
+    }
+
+    .special-bio {
+      font-size: 1rem;
+      opacity: 0.95;
+    }
+
+    .special-mask-wrap {
+      --color: #fff;
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      inset: 0;
+      transform: scale(1.1);
+      display: flex;
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .special-mask {
+      width: 100%;
+      height: 100%;
+      background: var(--color);
+      filter: blur(18px);
+      transition: all 0.5s 0.3s;
+    }
+
+    .special-mask-left {
+      transform: translateX(0%);
+    }
+
+    .special-mask-right {
+      transform: translateX(0%);
+    }
+
+    .special-loading-wrap {
+      --color: #000;
+      width: 60px;
+      height: 60px;
+      margin: -30px 0 0 -30px;
+      position: absolute;
+      inset: 50%;
+      pointer-events: none;
+      transition: all 0.3s 0.3s;
+      z-index: 4;
+    }
+
+    .special-ball {
+      filter: blur(4px);
+    }
+
+    .special-ball1 {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      border: 6px solid var(--color);
+      animation: animBall1 3s steps(4) infinite;
+    }
+
+    .special-ball2 {
+      width: 12px;
+      height: 12px;
+      margin: -6px 0 0 -6px;
+      position: absolute;
+      inset: 50%;
+      border-radius: 50%;
+      border: 6px solid var(--color);
+      animation: animBall2 3s ease-in-out infinite;
+    }
+
+    @keyframes animBall1 {
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    @keyframes animBall2 {
+      50% {
+        transform: translateY(18px);
+      }
+    }
+
+    .special-card:hover .special-content {
+      opacity: 1;
+    }
+
+    .special-card:hover .special-mask-left {
+      transform: translateX(-100%);
+    }
+
+    .special-card:hover .special-mask-right {
+      transform: translateX(100%);
+    }
+
+    .special-card:hover .special-loading-wrap {
+      opacity: 0;
+    }
+
+    /* Employee cards */
+    .employees-section {
+      margin-top: 3rem;
+    }
+
+    .employees-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1.2rem;
+      justify-items: center;
+    }
+
+    .emp-card {
+      width: 190px;
+      height: 254px;
+      background: #2b1f4f;
+      border-radius: 15px;
+      box-shadow: 1px 5px 60px 0px #100a886b;
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .emp-card-border-top {
+      width: 60%;
+      height: 3%;
+      background: #7f6df5;
+      margin: auto;
+      border-radius: 0px 0px 15px 15px;
+    }
+
+    .emp-img {
+      width: 70px;
+      height: 80px;
+      background: #7f6df5;
+      border-radius: 15px;
+      margin: auto;
+      margin-top: 25px;
+      overflow: hidden;
+    }
+
+    .emp-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .emp-name {
+      font-weight: 600;
+      color: white;
+      text-align: center;
+      display: block;
+      padding-top: 10px;
+      font-size: 1.2rem;
+    }
+
+    .emp-role {
+      font-weight: 400;
+      color: white;
+      display: block;
+      text-align: center;
+      padding-top: 3px;
+      font-size: 1rem;
+    }
+
+    .emp-card button {
+      padding: 8px 25px;
+      display: block;
+      margin: auto;
+      border-radius: 8px;
+      border: none;
+      margin-top: 30px;
+      background: #7f6df5;
+      color: white;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      box-shadow: 0 6px 14px rgba(10, 0, 30, 0.8);
+      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+    }
+
+    .emp-card button:hover {
+      background: #5f4bf0;
+      transform: translateY(-1px);
+      box-shadow: 0 8px 18px rgba(10, 0, 30, 1);
+    }
+
+    /* Footer */
+    .footer {
+      margin-top: 3rem;
+      font-size: 1rem;
+      text-align: center;
       opacity: 0.9;
     }
 
     .footer span {
-      color: #f7d38a;
+      color: #ffe0b8;
     }
 
-    @media (max-width: 800px) {
+    @media (max-width: 900px) {
       header {
         flex-direction: column;
         align-items: flex-start;
@@ -539,197 +607,409 @@
         justify-content: flex-start;
       }
       .hero-title {
-        font-size: 1.6rem;
+        font-size: 2.2rem;
       }
-      .sections {
+      .sections-grid {
         grid-template-columns: 1fr;
       }
     }
 
-    @media (max-width: 480px) {
+    @media (max-width: 600px) {
       .brand-name {
-        font-size: 1.1rem;
+        font-size: 1.8rem;
       }
       .brand-logo {
         width: 60px;
         height: 60px;
       }
       .hero-title {
-        font-size: 1.4rem;
+        font-size: 2rem;
       }
       .hero-subtitle {
-        font-size: 0.85rem;
+        font-size: 1.05rem;
       }
     }
   </style>
 </head>
 <body>
-  <!-- Loader -->
-  <div id="loader-screen">
-    <div class="loader-wrapper">
-      <div class="loader-logo">
-        <img src="https://i.imgur.com/6NZVG2f.png" alt="Mystic Spells Logo">
-      </div>
-      <div>
-        <span class="loader-letter">U</span>
-        <span class="loader-letter">n</span>
-        <span class="loader-letter">v</span>
-        <span class="loader-letter">e</span>
-        <span class="loader-letter">i</span>
-        <span class="loader-letter">l</span>
-        <span class="loader-letter">i</span>
-        <span class="loader-letter">n</span>
-        <span class="loader-letter">g</span>
-        <span class="loader-letter">.</span>
-        <span class="loader-letter">.</span>
-        <span class="loader-letter">.</span>
-      </div>
-      <div class="loader"></div>
-    </div>
-  </div>
-
-  <div class="black-hole">
-    <div class="tunnel">
-      <div class="ring"></div>
-      <div class="ring"></div>
-      <div class="ring"></div>
-      <div class="ring"></div>
-      <div class="ring"></div>
-      <div class="ring"></div>
-      <div class="ring"></div>
-      <div class="ring"></div>
-      <div class="ring"></div>
-      <div class="ring"></div>
-    </div>
-    <div class="aura"></div>
-    <div class="overlay"></div>
-
+  <div class="page">
     <main class="content">
+      <!-- HEADER -->
       <header>
         <div class="brand">
           <div class="brand-logo">
+            <!-- Replace with your logo if you want -->
             <img src="https://i.imgur.com/6NZVG2f.png" alt="Mystic Spells Logo">
           </div>
           <div class="brand-text">
             <div class="brand-name">Mystic Spells</div>
             <div class="brand-tagline">
-              Tarot, spellwork, and divination for Euphoria RP. Step into the circle.
+              A cozy moonlit witch shop inside Euphoria RP.
             </div>
           </div>
         </div>
         <nav>
-          <a href="love.html" class="nav-link">Love</a>
-          <a href="fortune.html" class="nav-link">Fortune</a>
-          <a href="shadow.html" class="nav-link">Shadow</a>
+          <a href="bundles.html" class="nav-link">Bundles</a>
+          <a href="items.html" class="nav-link">Items</a>
+          <a href="rules.html" class="nav-link">Rules</a>
+          <a href="readings.html" class="nav-link">Readings</a>
           <a href="spells.html" class="nav-link">Spells</a>
-          <a href="pricing.html" class="nav-link">Pricing</a>
-          <a href="deck.html" class="nav-link">Tarot Deck</a>
           <a href="announcements.html" class="nav-link">News</a>
-          <a href="location.html" class="nav-link">Location</a>
+          <a href="staff.html" class="nav-link">Staff</a>
         </nav>
       </header>
 
+      <!-- HERO -->
       <section class="hero">
         <h1 class="hero-title">Welcome to Mystic Spells</h1>
         <p class="hero-subtitle">
-          A full‑service occult shop inside <span>Euphoria RP</span>.  
-          Tarot readings, spellwork, energy checks, and custom rituals—tailored to your character’s story.
+          A moonlit cottage of potions, tarot, and spellwork in <span>Euphoria RP</span>.  
+          Come for Spectral Rush, stay for the magic.
         </p>
         <div class="hero-cta">
-          <a href="love.html" class="button">
-            <div class="text">Love Readings</div>
+          <a href="#bundles" class="button">
+            <div class="text">Shop Bundles</div>
           </a>
-          <a href="fortune.html" class="button">
-            <div class="text">Fortune & Money</div>
+          <a href="#items" class="button">
+            <div class="text">View Items</div>
           </a>
-          <a href="spells.html" class="button">
-            <div class="text">Spell Services</div>
+          <a href="#rules" class="button">
+            <div class="text">Shop Rules</div>
           </a>
-          <a href="pricing.html" class="button">
-            <div class="text">View Pricing</div>
+          <a href="#staff" class="button">
+            <div class="text">Meet the Coven</div>
           </a>
         </div>
       </section>
 
-      <section class="sections">
-        <!-- Left: Store info & services -->
-        <div class="card-panel">
-          <div class="panel-title">In‑Game Store Menu</div>
+      <!-- RULES + ANNOUNCEMENTS -->
+      <section class="sections-grid">
+        <div class="panel" id="rules">
+          <div class="panel-title">Mystic Spells Shop Rules</div>
           <div class="panel-subtitle">
-            Everything Mystic Spells offers in‑city. You can expand or tweak this list anytime.
+            Welcome, dear witchlings. To keep our coven cozy, magical, and drama‑free:
           </div>
-          <ul class="list">
-            <li><span>Tarot Readings:</span> Love, fortune, career, shadow work, spiritual guidance, energy checks.</li>
-            <li><span>Spellwork:</span> Love spells, money draws, protection, cleanses, curse removal, custom rituals.</li>
-            <li><span>Custom Packages:</span> Multi‑session readings, long‑term spellwork, storyline‑based magic.</li>
-            <li><span>RP‑Friendly:</span> All services are written and delivered in‑character for Euphoria RP.</li>
+          <ul class="rules-list">
+            <li>Always RP in character – no OOC in the shop.</li>
+            <li>No drama – leave conflicts outside. We are here for magic, not stress.</li>
+            <li>Call authorities first – any problems, call the police. Violence only in self‑defense.</li>
+            <li>Respect everyone – no bias, no exclusion. All witches and visitors are welcome.</li>
+            <li>No guns – leave firearms outside. This is a safe magical space.</li>
+            <li>Keep it peaceful – Mystic Spells is a place to hang, chill, and enjoy.</li>
+            <li>No refunds – all sales are final.</li>
+            <li>Consume at your own risk – we are not responsible for what happens when you use our potions.</li>
           </ul>
-          <div class="pill-row" style="margin-top:0.8rem;">
-            <div class="pill">Love & Relationships</div>
-            <div class="pill">Money & Fortune</div>
-            <div class="pill">Shadow Work</div>
-            <div class="pill">Spiritual Guidance</div>
-            <div class="pill">Protection & Cleansing</div>
-          </div>
         </div>
 
-        <!-- Right: Location & announcements -->
-        <div class="card-panel">
-          <div class="panel-title">Store Info & Announcements</div>
+        <div class="panel">
+          <div class="panel-title">Latest Announcements</div>
           <div class="panel-subtitle">
-            You can update this text anytime with new events, sales, or RP storylines.
+            Pinboard for bans, events, and important coven news.
           </div>
           <div class="announcement-item">
-            <strong>Location:</strong> <span>[Euphoria RP – Mystic Spells shop location here]</span>
+            <strong>Store Ban:</strong> INJECTED IS BANNED FROM THE STORE.
           </div>
           <div class="announcement-item">
-            <strong>Hours:</strong> <span>[Your usual RP hours / time zone here]</span>
+            <strong>Note:</strong> All items and potions are for RP storytelling and entertainment.
           </div>
           <div class="announcement-item">
-            <strong>Contact:</strong> <span>[Discord / in‑game handle here]</span>
+            <strong>Coming Soon:</strong> Full tarot reading menu & spell service listings.
           </div>
-
-          <hr style="border:none;border-top:1px solid rgba(255,255,255,0.1);margin:0.8rem 0;" />
-
-          <div class="announcement-item">
-            <strong>Latest:</strong> Opening week specials on love readings & protection spells.
-          </div>
-          <div class="announcement-item">
-            <strong>Upcoming:</strong> Full moon ritual night – limited slots, booking soon.
-          </div>
-          <div class="announcement-item">
-            <strong>Note:</strong> All readings are for RP storytelling and entertainment.
-          </div>
-
-          <div class="pill-row" style="margin-top:0.8rem;">
-            <a href="announcements.html" class="pill">View all announcements</a>
-            <a href="location.html" class="pill">View full location details</a>
+          <div class="pill-row">
+            <div class="pill">No OOC in shop</div>
+            <div class="pill">No refunds</div>
+            <div class="pill">Consume at your own risk</div>
           </div>
         </div>
       </section>
 
+      <!-- BUNDLES -->
+      <section class="section-block" id="bundles">
+        <h2 class="section-title">Potion Bundles</h2>
+        <p class="section-subtitle">
+          Curated sets for parties, protection, and pure chaos.
+        </p>
+        <div class="cards-grid">
+          <div class="bundle-card">
+            <div class="bundle-name">🎀 Starlight Starburst</div>
+            <div class="bundle-price">27,500</div>
+            <ul class="bundle-list">
+              <li>30x Spectral Rush</li>
+              <li>30x Suspicious Stew</li>
+            </ul>
+          </div>
+          <div class="bundle-card">
+            <div class="bundle-name">🎀 Pretty &amp; Protected</div>
+            <div class="bundle-price">25,000</div>
+            <ul class="bundle-list">
+              <li>35x Spectral Rush</li>
+              <li>15x Elixir of Renewal</li>
+              <li>10x Blood of Enemy</li>
+            </ul>
+          </div>
+          <div class="bundle-card">
+            <div class="bundle-name">🎀 Ultimate Tea Party</div>
+            <div class="bundle-price">32,000</div>
+            <ul class="bundle-list">
+              <li>20x Suspicious Stew</li>
+              <li>20x Spectral Rush</li>
+              <li>20x Elixir of Renewal</li>
+              <li>20x Blood of Enemy</li>
+            </ul>
+          </div>
+          <div class="bundle-card">
+            <div class="bundle-name">🎀 Midnight Moonbeam</div>
+            <div class="bundle-price">25,500</div>
+            <ul class="bundle-list">
+              <li>40x Blood of Enemy</li>
+              <li>20x Elixir of Renewal</li>
+              <li>10x Spectral Rush</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- ITEMS -->
+      <section class="section-block" id="items">
+        <h2 class="section-title">Individual Potions &amp; Stews</h2>
+        <p class="section-subtitle">
+          Mix and match your own chaos.
+        </p>
+        <div class="cards-grid">
+          <div class="item-card">
+            <div class="item-name">Spectral Rush</div>
+            <div class="item-price">$500</div>
+            <div class="item-desc">
+              Speed and shield in a bottle. For when you need to move fast and not die trying.
+            </div>
+          </div>
+          <div class="item-card">
+            <div class="item-name">Suspicious Stew</div>
+            <div class="item-price">$500 each</div>
+            <div class="item-desc">
+              Hunger and thirst relief with a side of mystery. Consume at your own risk.
+            </div>
+          </div>
+          <div class="item-card">
+            <div class="item-name">Elixir of Renewal</div>
+            <div class="item-price">$500 each</div>
+            <div class="item-desc">
+              Health restoration in a shimmering vial. Perfect for after the chaos hits.
+            </div>
+          </div>
+          <div class="item-card">
+            <div class="item-name">Blood of Enemy</div>
+            <div class="item-price">$300 each</div>
+            <div class="item-desc">
+              Thirst relief with a dark twist. Best not to ask whose blood it was.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SPECIAL CARDS: OWNERS + TOP SUPPORTER + TOP WORKER -->
+      <section class="special-section" id="staff">
+        <h2 class="section-title">Coven Leaders &amp; Stars</h2>
+        <p class="section-subtitle">
+          The witches behind the moonlight.
+        </p>
+        <div class="special-grid">
+          <!-- Owner: Gothy -->
+          <div class="special-wrap">
+            <div class="special-label">Owner</div>
+            <div class="special-card">
+              <div class="special-content">
+                <div class="special-name">Gothy</div>
+                <div class="special-role">Owner of Mystic Spells</div>
+                <div class="special-bio">
+                  The original moonlit witch of the cottage. Keeper of rules, chaos, and all things cursed &amp; cute.
+                </div>
+              </div>
+              <div class="special-mask-wrap">
+                <div class="special-mask special-mask-left"></div>
+                <div class="special-mask special-mask-right"></div>
+              </div>
+              <div class="special-loading-wrap">
+                <div class="special-ball special-ball1"></div>
+                <div class="special-ball special-ball2"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Co-Owner: Alex -->
+          <div class="special-wrap">
+            <div class="special-label">Co‑Owner</div>
+            <div class="special-card">
+              <div class="special-content">
+                <div class="special-name">Alex</div>
+                <div class="special-role">Co‑Owner &amp; Spell Curator</div>
+                <div class="special-bio">
+                  The heart of Mystic Spells. Designs bundles, vibes, and the magic that keeps the coven glowing.
+                </div>
+              </div>
+              <div class="special-mask-wrap">
+                <div class="special-mask special-mask-left"></div>
+                <div class="special-mask special-mask-right"></div>
+              </div>
+              <div class="special-loading-wrap">
+                <div class="special-ball special-ball1"></div>
+                <div class="special-ball special-ball2"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Top Supporter -->
+          <div class="special-wrap">
+            <div class="special-label">Top Supporter</div>
+            <div class="special-card">
+              <div class="special-content">
+                <div class="special-name">Top Supporter</div>
+                <div class="special-role">Coven Favorite</div>
+                <div class="special-bio">
+                  The one who never leaves the shelves empty and always brings the best energy into the shop.
+                </div>
+              </div>
+              <div class="special-mask-wrap">
+                <div class="special-mask special-mask-left"></div>
+                <div class="special-mask special-mask-right"></div>
+              </div>
+              <div class="special-loading-wrap">
+                <div class="special-ball special-ball1"></div>
+                <div class="special-ball special-ball2"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Top Worker -->
+          <div class="special-wrap">
+            <div class="special-label">Top Worker</div>
+            <div class="special-card">
+              <div class="special-content">
+                <div class="special-name">Top Worker</div>
+                <div class="special-role">Most Enchanted Employee</div>
+                <div class="special-bio">
+                  Always on shift, always brewing, always making sure the coven is stocked and glowing.
+                </div>
+              </div>
+              <div class="special-mask-wrap">
+                <div class="special-mask special-mask-left"></div>
+                <div class="special-mask special-mask-right"></div>
+              </div>
+              <div class="special-loading-wrap">
+                <div class="special-ball special-ball1"></div>
+                <div class="special-ball special-ball2"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- EMPLOYEES -->
+      <section class="employees-section" id="staff-list">
+        <h2 class="section-title">Mystic Spells Coven</h2>
+        <p class="section-subtitle">
+          The witches who keep the shelves stocked and the magic flowing.
+        </p>
+        <div class="employees-grid">
+          <!-- Each button can later link to their own page like nyx.html, jay.html, etc. -->
+          <div class="emp-card">
+            <div class="emp-card-border-top"></div>
+            <div class="emp-img">
+              <!-- Nyx image later -->
+            </div>
+            <span class="emp-name">Nyx</span>
+            <p class="emp-role">Employee</p>
+            <button onclick="location.href='nyx.html'">Get to know me</button>
+          </div>
+
+          <div class="emp-card">
+            <div class="emp-card-border-top"></div>
+            <div class="emp-img"></div>
+            <span class="emp-name">Jay</span>
+            <p class="emp-role">Employee</p>
+            <button onclick="location.href='jay.html'">Get to know me</button>
+          </div>
+
+          <div class="emp-card">
+            <div class="emp-card-border-top"></div>
+            <div class="emp-img"></div>
+            <span class="emp-name">Lila</span>
+            <p class="emp-role">Employee</p>
+            <button onclick="location.href='lila.html'">Get to know me</button>
+          </div>
+
+          <div class="emp-card">
+            <div class="emp-card-border-top"></div>
+            <div class="emp-img"></div>
+            <span class="emp-name">Faye</span>
+            <p class="emp-role">Employee</p>
+            <button onclick="location.href='faye.html'">Get to know me</button>
+          </div>
+
+          <div class="emp-card">
+            <div class="emp-card-border-top"></div>
+            <div class="emp-img"></div>
+            <span class="emp-name">Trav</span>
+            <p class="emp-role">Employee</p>
+            <button onclick="location.href='trav.html'">Get to know me</button>
+          </div>
+
+          <div class="emp-card">
+            <div class="emp-card-border-top"></div>
+            <div class="emp-img"></div>
+            <span class="emp-name">Toby</span>
+            <p class="emp-role">Employee</p>
+            <button onclick="location.href='toby.html'">Get to know me</button>
+          </div>
+
+          <div class="emp-card">
+            <div class="emp-card-border-top"></div>
+            <div class="emp-img"></div>
+            <span class="emp-name">Shaun</span>
+            <p class="emp-role">Employee</p>
+            <button onclick="location.href='shaun.html'">Get to know me</button>
+          </div>
+
+          <div class="emp-card">
+            <div class="emp-card-border-top"></div>
+            <div class="emp-img"></div>
+            <span class="emp-name">Logan</span>
+            <p class="emp-role">Employee</p>
+            <button onclick="location.href='logan.html'">Get to know me</button>
+          </div>
+
+          <div class="emp-card">
+            <div class="emp-card-border-top"></div>
+            <div class="emp-img"></div>
+            <span class="emp-name">Jaymia</span>
+            <p class="emp-role">Employee</p>
+            <button onclick="location.href='jaymia.html'">Get to know me</button>
+          </div>
+
+          <div class="emp-card">
+            <div class="emp-card-border-top"></div>
+            <div class="emp-img"></div>
+            <span class="emp-name">Raina</span>
+            <p class="emp-role">Employee</p>
+            <button onclick="location.href='raina.html'">Get to know me</button>
+          </div>
+
+          <div class="emp-card">
+            <div class="emp-card-border-top"></div>
+            <div class="emp-img"></div>
+            <span class="emp-name">Sushi</span>
+            <p class="emp-role">Employee</p>
+            <button onclick="location.href='sushi.html'">Get to know me</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- FOOTER -->
       <footer class="footer">
-        <div>
-          Mystic Spells • Euphoria RP • <span>Tarot & Spellwork</span>
-        </div>
-        <div>
-          Home page is your hub. Use the menu above to explore love, fortune, spells, pricing, and more.
-        </div>
+        <div>Mystic Spells • Euphoria RP • <span>Potions, Stews &amp; Spellwork</span></div>
+        <div>Home of Spectral Rush, Suspicious Stew, Elixir of Renewal, and Blood of Enemy.</div>
       </footer>
     </main>
   </div>
-
-  <script>
-    // Hide loader after 10 seconds
-    window.addEventListener("load", () => {
-      setTimeout(() => {
-        const loader = document.getElementById("loader-screen");
-        loader.style.opacity = "0";
-        setTimeout(() => {
-          loader.style.display = "none";
-        }, 800);
-      }, 10000);
-    });
-  </script>
 </body>
 </html>
