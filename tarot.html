@@ -5,34 +5,19 @@
 <title>Mystic Spells – Tarot Access</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- Favicon -->
 <link rel="icon" href="https://i.imgur.com/6NZVG2f.png" type="image/png">
-
-<!-- Font -->
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
 
 <style>
   body {
     margin: 0;
     font-family: "Montserrat", sans-serif;
-    background: radial-gradient(circle at center,
-      #3c1a6e 0%,
-      #1f1238 40%,
-      #0d0818 80%,
-      #000 100%
-    );
+    background: radial-gradient(circle at center,#3c1a6e 0%,#1f1238 40%,#0d0818 80%,#000 100%);
     color: #e9ddff;
     text-align: center;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-  }
-
-  .container {
-    width: 100%;
-    max-width: 1200px;
-    margin: auto;
-    padding: 20px;
   }
 
   /* HERO */
@@ -44,66 +29,29 @@
   .hero::before {
     content: "";
     position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 420px;
-    height: 420px;
+    top: 50%; left: 50%;
+    width: 420px; height: 420px;
     transform: translate(-50%, -50%);
     background: radial-gradient(circle, rgba(164,124,243,0.45), rgba(0,0,0,0));
-    border-radius: 50%;
-    filter: blur(40px);
-    z-index: -1;
+    border-radius: 50%; filter: blur(40px); z-index: -1;
   }
 
-  .logo {
-    width: 160px;
-    margin: 0 auto 10px;
-    display: block;
-  }
+  .logo { width: 160px; margin: 0 auto 10px; display: block; }
+  h1 { font-size: 52px; margin-bottom: 10px; color: #f2e6ff; }
+  p.subtitle { font-size: 20px; max-width: 700px; margin: 0 auto 20px; color: #e8d8ff; }
 
-  h1 {
-    font-size: 52px;
-    margin-bottom: 10px;
-    color: #f2e6ff;
-  }
-
-  p.subtitle {
-    font-size: 20px;
-    max-width: 700px;
-    margin: 0 auto 20px;
-    color: #e8d8ff;
-  }
-
-  /* BUTTON ROW */
+  /* NAV BUTTONS */
   .button-row {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 14px;
-    margin-bottom: 40px;
+    display: flex; flex-wrap: wrap; justify-content: center;
+    gap: 14px; margin-bottom: 40px;
   }
-
   .btn {
-    border: none;
-    width: 10em;
-    height: 3.5em;
-    border-radius: 2em;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: #1C1A1C;
-    cursor: pointer;
-    transition: all 450ms ease-in-out;
+    border: none; width: 10em; height: 3.5em; border-radius: 2em;
+    display: flex; justify-content: center; align-items: center;
+    background: #1C1A1C; cursor: pointer; transition: all 450ms ease-in-out;
     text-decoration: none;
   }
-
-  .text {
-    font-weight: 600;
-    color: #FFFFFF;
-    font-size: 18px;
-    text-align: center;
-  }
-
+  .text { font-weight: 600; color: #FFFFFF; font-size: 18px; }
   .btn:hover {
     background: linear-gradient(0deg,#A47CF3,#683FEA);
     box-shadow: inset 0px 1px 0px rgba(255,255,255,0.4),
@@ -122,12 +70,8 @@
     line-height: 1.5rem;
   }
 
-  .tarot-info strong {
-    color: #f5e6ff;
-  }
-
-  /* LOGIN SECTION WRAPPER */
-  .login-section {
+  /* LOGIN SECTION */
+  .login-wrapper {
     flex: 1;
     display: flex;
     justify-content: center;
@@ -150,35 +94,15 @@
   .login-card::before {
     content: "";
     position: absolute;
-    width: 260px;
-    height: 260px;
+    width: 260px; height: 260px;
     background: radial-gradient(circle, rgba(255,192,255,0.4), transparent);
-    top: -80px;
-    right: -60px;
-    filter: blur(8px);
-    opacity: 0.8;
+    top: -80px; right: -60px;
+    filter: blur(8px); opacity: 0.8;
   }
 
-  .login-logo {
-    width: 110px;
-    margin: 0 auto 10px;
-    display: block;
-  }
-
-  .login-heading {
-    text-align: center;
-    font-weight: 700;
-    font-size: 28px;
-    color: #f5e6ff;
-    margin-bottom: 5px;
-  }
-
-  .login-sub {
-    text-align: center;
-    font-size: 14px;
-    color: #d0c0ff;
-    margin-bottom: 20px;
-  }
+  .login-logo { width: 110px; margin: 0 auto 10px; display: block; }
+  .login-heading { font-size: 28px; font-weight: 700; margin-bottom: 5px; }
+  .login-sub { font-size: 14px; color: #d0c0ff; margin-bottom: 20px; }
 
   .form .input {
     width: 100%;
@@ -189,30 +113,12 @@
     margin-top: 16px;
     color: #f5e6ff;
     font-size: 16px;
-    box-shadow: 0 0 12px rgba(0,0,0,0.6);
     text-align: center;
   }
 
-  .form .input::placeholder {
-    color: #a89ad0;
-  }
+  .form-label { font-size: 13px; color: #d0c0ff; margin-top: 10px; display: block; }
 
-  .form .input:focus {
-    outline: none;
-    border-color: #A47CF3;
-    box-shadow: 0 0 20px rgba(164,124,243,0.7);
-  }
-
-  .form-label {
-    font-size: 13px;
-    color: #d0c0ff;
-    margin-top: 10px;
-    display: block;
-    text-align: center;
-  }
-
-  .form .login-button {
-    display: block;
+  .login-button {
     width: 100%;
     font-weight: 700;
     background: linear-gradient(135deg,#A47CF3,#683FEA);
@@ -223,25 +129,13 @@
     border: none;
     font-size: 17px;
     box-shadow: 0 0 30px rgba(164,124,243,0.8);
-    transition: all 0.2s ease-in-out;
     cursor: pointer;
-  }
-
-  .form .login-button:hover {
-    transform: translateY(-1px) scale(1.02);
-    box-shadow: 0 0 40px rgba(164,124,243,1);
-  }
-
-  .form .login-button:active {
-    transform: scale(0.97);
-    box-shadow: 0 0 20px rgba(164,124,243,0.7);
   }
 
   .login-note {
     margin-top: 12px;
     font-size: 12px;
     color: #cbbaf5;
-    text-align: center;
   }
 
   footer {
@@ -260,7 +154,6 @@
     align-items: center;
     justify-content: center;
     z-index: 9999;
-    color: #f5e6ff;
     padding: 20px;
   }
 
@@ -274,18 +167,8 @@
     text-align: center;
   }
 
-  .lockout-title {
-    font-size: 32px;
-    font-weight: 700;
-    margin-bottom: 10px;
-  }
-
-  .lockout-sub {
-    font-size: 15px;
-    color: #d8caff;
-    line-height: 1.6rem;
-    margin-bottom: 25px;
-  }
+  .lockout-title { font-size: 32px; font-weight: 700; margin-bottom: 10px; }
+  .lockout-sub { font-size: 15px; color: #d8caff; line-height: 1.6rem; margin-bottom: 25px; }
 
   .loader {
     display: inline-flex;
@@ -314,58 +197,40 @@
     animation: l3 1s steps(20) infinite;
   }
 
-  .loader::before {
-    animation-duration: 1.5s;
-  }
-
   @keyframes l3 {
-    100% {
-      text-shadow: 0 -20em 0 #A47CF3;
-    }
+    100% { text-shadow: 0 -20em 0 #A47CF3; }
   }
 
-  .timer-text {
-    margin-top: 5px;
-    font-size: 15px;
-    color: #e9ddff;
-  }
-
-  .timer-text span {
-    font-weight: 700;
-    color: #ffb3ff;
-  }
+  .timer-text { font-size: 15px; color: #e9ddff; }
+  .timer-text span { font-weight: 700; color: #ffb3ff; }
 </style>
 </head>
 
 <body>
 
-<div class="container">
+<!-- HERO -->
+<div class="hero">
+  <img class="logo" src="https://i.imgur.com/6NZVG2f.png">
+  <h1>Mystic Spells</h1>
+  <p class="subtitle">Tarot access is reserved for in‑coven use only.</p>
 
-  <!-- HERO -->
-  <div class="hero">
-    <img class="logo" src="https://i.imgur.com/6NZVG2f.png">
-    <h1>Mystic Spells</h1>
-    <p class="subtitle">Tarot access is reserved for in‑coven use only.</p>
-
-    <div class="button-row">
-      <a href="index.html" class="btn"><span class="text">Home</span></a>
-      <a href="calculator.html" class="btn"><span class="text">Calculator</span></a>
-      <a href="rules.html" class="btn"><span class="text">Rules</span></a>
-      <a href="items.html" class="btn"><span class="text">Items</span></a>
-      <a href="staff.html" class="btn"><span class="text">Staff</span></a>
-      <a href="location.html" class="btn"><span class="text">Location</span></a>
-    </div>
+  <div class="button-row">
+    <a href="index.html" class="btn"><span class="text">Home</span></a>
+    <a href="calculator.html" class="btn"><span class="text">Calculator</span></a>
+    <a href="rules.html" class="btn"><span class="text">Rules</span></a>
+    <a href="items.html" class="btn"><span class="text">Items</span></a>
+    <a href="staff.html" class="btn"><span class="text">Staff</span></a>
+    <a href="location.html" class="btn"><span class="text">Location</span></a>
   </div>
-
-  <p class="tarot-info">
-    <strong>In‑Character Tarot Readings:</strong> If you would like a reading done, please visit the store in‑city.
-    Each reading is <strong>$1,000</strong> and tips are always appreciated. This page is for authorized coven use only.
-  </p>
-
 </div>
 
-<!-- LOGIN SECTION -->
-<div class="login-section">
+<p class="tarot-info">
+  <strong>In‑Character Tarot Readings:</strong> If you would like a reading done, please visit the store in‑city.
+  Each reading is <strong>$1,000</strong> and tips are always appreciated. This page is for authorized coven use only.
+</p>
+
+<!-- LOGIN -->
+<div class="login-wrapper">
   <div class="login-card">
     <img src="https://i.imgur.com/6NZVG2f.png" class="login-logo">
     <div class="login-heading">Tarot Access</div>
@@ -392,7 +257,7 @@
   Mystic Spells © 2026 — Crafted under the moonlight.
 </footer>
 
-<!-- LOCKOUT OVERLAY -->
+<!-- LOCKOUT -->
 <div class="lockout-overlay" id="lockoutOverlay">
   <div class="lockout-content">
     <div class="lockout-title">404 — Arcane Breach Detected</div>
