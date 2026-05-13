@@ -93,19 +93,19 @@
     transform: translateY(-2px);
   }
 
-  /* STAFF GRID */
+  /* STAFF GRID — FIXED SPACING */
   .staff-grid {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 40px;
-    padding: 40px 20px 80px;
+    gap: 60px; /* increased from 40px */
+    padding: 40px 20px 120px;
   }
 
-  /* CARD */
+  /* CARD — TALLER TO PREVENT OVERLAP */
   .card {
-    width: 280px;
-    height: 420px;
+    width: 300px;
+    height: 480px; /* increased from 420px */
     perspective: 1000px;
   }
 
@@ -142,8 +142,8 @@
   }
 
   .front img {
-    width: 140px;
-    height: 140px;
+    width: 150px;
+    height: 150px;
     border-radius: 100%;
     object-fit: cover;
     border: 4px solid #A47CF3;
@@ -219,9 +219,6 @@
 <!-- STAFF GRID -->
 <div class="staff-grid">
 
-  <!-- TEMPLATE FOR EACH STAFF MEMBER -->
-  <!-- Just duplicate this block when adding more later -->
-
   <!-- JAY -->
   <div class="card">
     <div class="content">
@@ -242,14 +239,14 @@
   <div class="card">
     <div class="content">
       <div class="front">
-        <img src="" alt="Waiting">
+        <img src="https://i.imgur.com/ZaVqE6Z.png">
         <h2>Nyx</h2>
         <p>Shop Keeper</p>
         <div class="hire-date">Hired: May 12th, 2026 — 7:01 PM CST</div>
         <div class="timer" id="timer-nyx">Calculating…</div>
       </div>
       <div class="back">
-        <p>Waiting…</p>
+        <p>Tarot Reader, Mind Opener, Horror Fanatic</p>
       </div>
     </div>
   </div>
