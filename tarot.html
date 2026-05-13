@@ -5,10 +5,7 @@
 <title>Mystic Spells – Tarot Readings</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- Favicon (same as home) -->
 <link rel="icon" href="https://i.imgur.com/6NZVG2f.png" type="image/png">
-
-<!-- Font -->
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
 
 <style>
@@ -30,7 +27,6 @@
     padding: 20px 20px 60px;
   }
 
-  /* HERO */
   .hero {
     text-align: center;
     padding: 60px 10px 40px;
@@ -76,7 +72,6 @@
     opacity: 0.9;
   }
 
-  /* CONTROLS SECTION */
   .controls-card {
     margin-top: 30px;
     background: linear-gradient(145deg, #120d1f, #1c1530);
@@ -87,7 +82,7 @@
 
   .controls-grid {
     display: grid;
-    grid-template-columns: 2fr 1.2fr;
+    grid-template-columns: 2fr 1.4fr;
     gap: 20px;
   }
 
@@ -131,6 +126,30 @@
     background: rgba(164,124,243,0.25);
   }
 
+  .toggle-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 6px;
+  }
+
+  .toggle-pill {
+    padding: 6px 10px;
+    border-radius: 999px;
+    border: 1px solid rgba(255,255,255,0.18);
+    background: rgba(10,8,20,0.7);
+    font-size: 12px;
+    cursor: pointer;
+    color: #e9ddff;
+    transition: all 0.2s ease;
+  }
+
+  .toggle-pill.active {
+    background: linear-gradient(135deg, #ff7ad9, #b13cff);
+    border-color: transparent;
+    box-shadow: 0 0 18px rgba(255,122,217,0.7);
+  }
+
   .generate-row {
     display: flex;
     flex-direction: column;
@@ -163,7 +182,6 @@
     opacity: 0.9;
   }
 
-  /* RESULTS SECTION */
   .results-wrapper {
     margin-top: 35px;
     display: grid;
@@ -218,6 +236,23 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
+    opacity: 0;
+    transform: translateY(10px) scale(0.96);
+    animation: cardFadeIn 0.4s forwards;
+  }
+
+  .card-display:nth-child(2) { animation-delay: 0.05s; }
+  .card-display:nth-child(3) { animation-delay: 0.1s; }
+  .card-display:nth-child(4) { animation-delay: 0.15s; }
+  .card-display:nth-child(5) { animation-delay: 0.2s; }
+  .card-display:nth-child(6) { animation-delay: 0.25s; }
+  .card-display:nth-child(7) { animation-delay: 0.3s; }
+
+  @keyframes cardFadeIn {
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
   }
 
   .card-display img {
@@ -236,6 +271,12 @@
     color: #c7b8f5;
   }
 
+  .card-extra {
+    font-size: 10px;
+    color: #b9a9ff;
+    margin-top: 4px;
+  }
+
   .oracle-text {
     font-size: 14px;
     color: #e9ddff;
@@ -248,16 +289,13 @@
     font-weight: 600;
   }
 
-  .oracle-mode-tag {
+  .oracle-mode-tag,
+  .oracle-spread-tag,
+  .oracle-topic-tag,
+  .oracle-shadow-tag {
     font-size: 11px;
     color: #c7b8f5;
-    margin-bottom: 6px;
-  }
-
-  .oracle-spread-tag {
-    font-size: 11px;
-    color: #c7b8f5;
-    margin-bottom: 10px;
+    margin-bottom: 4px;
   }
 
   .back-link {
@@ -277,7 +315,6 @@
 <body>
 <div class="page">
 
-  <!-- HERO -->
   <div class="hero">
     <img class="logo" src="https://i.imgur.com/6NZVG2f.png" alt="Mystic Spells Logo">
     <h1>Tarot Readings</h1>
@@ -289,11 +326,9 @@
     </p>
   </div>
 
-  <!-- CONTROLS -->
   <div class="controls-card">
     <div class="controls-grid">
 
-      <!-- LEFT: READING TYPE + DECK TYPE -->
       <div>
         <div class="controls-group-title">Reading Type</div>
         <div class="pill-row" id="readingTypeRow">
@@ -302,6 +337,7 @@
           <button class="pill" data-reading="three">3‑Card Deep Reading</button>
           <button class="pill" data-reading="five">5‑Card Spread</button>
           <button class="pill" data-reading="seven">7‑Card Story Spread</button>
+          <button class="pill" data-reading="custom">Custom (You choose count)</button>
         </div>
 
         <div style="height:12px;"></div>
@@ -312,9 +348,18 @@
           <button class="pill" data-deck="major">Major Arcana Only</button>
           <button class="pill" data-deck="minor">Minor Arcana Only</button>
         </div>
+
+        <div style="height:12px;"></div>
+
+        <div class="controls-group-title">Topic Focus</div>
+        <div class="pill-row" id="topicRow">
+          <button class="pill active" data-topic="general">General</button>
+          <button class="pill" data-topic="romance">Romance</button>
+          <button class="pill" data-topic="career">Career</button>
+          <button class="pill" data-topic="spiritual">Spiritual</button>
+        </div>
       </div>
 
-      <!-- RIGHT: MODE + GENERATE -->
       <div class="generate-row">
         <div>
           <div class="controls-group-title">Reading Mode</div>
@@ -322,12 +367,18 @@
             <button class="pill active" data-mode="ic">IC – In Character</button>
             <button class="pill" data-mode="ooc">OOC – Real Life</button>
           </div>
+
+          <div class="controls-group-title" style="margin-top:14px;">Extra Options</div>
+          <div class="toggle-row">
+            <button class="toggle-pill" id="shadowToggle" data-shadow="off">Shadow Meaning: Off</button>
+            <button class="toggle-pill" id="reversedToggle" data-reversed="off">Allow Reversed: Off</button>
+          </div>
         </div>
 
         <div>
           <button class="generate-btn" id="generateBtn">Draw Cards & Ask the Oracle</button>
           <div class="small-note">
-            The Oracle will consider your spread, card combinations, and mode (IC/OOC) to give a tailored interpretation.
+            The Oracle considers spread, card combinations, elements, numerology, topic, mode, and shadow settings.
           </div>
         </div>
       </div>
@@ -335,10 +386,8 @@
     </div>
   </div>
 
-  <!-- RESULTS -->
   <div class="results-wrapper">
 
-    <!-- CARDS -->
     <div class="cards-area">
       <div class="section-title">Drawn Cards</div>
       <div class="section-sub" id="cardsSub">
@@ -347,13 +396,14 @@
       <div class="cards-grid" id="cardsGrid"></div>
     </div>
 
-    <!-- ORACLE -->
     <div class="oracle-area">
       <div class="section-title">Oracle’s Recommendation</div>
       <div class="oracle-mode-tag" id="oracleModeTag"></div>
+      <div class="oracle-topic-tag" id="oracleTopicTag"></div>
+      <div class="oracle-shadow-tag" id="oracleShadowTag"></div>
       <div class="oracle-spread-tag" id="oracleSpreadTag"></div>
       <div class="oracle-text" id="oracleText">
-        Choose your reading type, deck focus, and mode—then draw.  
+        Choose your reading type, deck focus, topic, and mode—then draw.  
         The Oracle will interpret the energy, synergy, and story of your cards.
       </div>
     </div>
@@ -363,39 +413,52 @@
   <a href="index.html" class="back-link">← Back to Mystic Spells Home</a>
 
 </div>
-
 <script>
   // ====== TAROT DATA ======
 
-  // Major Arcana with placeholder image URLs – replace with your actual Imgur links
   const majorArcana = [
-    { name: "The Fool", type: "Major", img: "https://i.imgur.com/IBrMUUS.png" },
-    { name: "The Magician", type: "Major", img: "https://i.imgur.com/5PidMHl.png" },
-    { name: "The High Priestess", type: "Major", img: "https://i.imgur.com/xrsmWEA.png" },
-    { name: "The Empress", type: "Major", img: "https://i.imgur.com/RvakGCX.png" },
-    { name: "The Emperor", type: "Major", img: "https://i.imgur.com/K4oVvvj.png" },
-    { name: "The Hierophant", type: "Major", img: "https://i.imgur.com/GRF1erw.png" },
-    { name: "The Lovers", type: "Major", img: "https://i.imgur.com/DVAdlIA.png" },
-    { name: "The Chariot", type: "Major", img: "https://i.imgur.com/K5lk6Om.png" },
-    { name: "Strength", type: "Major", img: "https://i.imgur.com/WF9jYOf.png" },
-    { name: "The Hermit", type: "Major", img: "https://i.imgur.com/GgoMlM8.png" },
-    { name: "Wheel of Fortune", type: "Major", img: "https://i.imgur.com/oQ7dG8i.png" },
-    { name: "Justice", type: "Major", img: "https://i.imgur.com/xxvbuEe.png" },
-    { name: "The Hanged Man", type: "Major", img: "https://i.imgur.com/b71lXKz.png" },
-    { name: "Death", type: "Major", img: "https://i.imgur.com/WB1hQzH.png" },
-    { name: "Temperance", type: "Major", img: "https://i.imgur.com/2rUNAHs.png" },
-    { name: "The Devil", type: "Major", img: "https://i.imgur.com/WA3Zekv.png" },
-    { name: "The Tower", type: "Major", img: "https://i.imgur.com/OGbBcsY.png" },
-    { name: "The Star", type: "Major", img: "https://i.imgur.com/zf2SNWL.png" },
-    { name: "The Moon", type: "Major", img: "https://i.imgur.com/uaLXrGB.png" },
-    { name: "The Sun", type: "Major", img: "https://i.imgur.com/FxEoqnn.png" },
-    { name: "Judgement", type: "Major", img: "https://i.imgur.com/9E5aH31.png" },
-    { name: "The World", type: "Major", img: "https://i.imgur.com/XdoOTCP.png" }
+    { name: "The Fool", type: "Major", img: "https://i.imgur.com/IBrMUUS.png", number: 0, element: "Air" },
+    { name: "The Magician", type: "Major", img: "https://i.imgur.com/5PidMHl.png", number: 1, element: "Air" },
+    { name: "The High Priestess", type: "Major", img: "https://i.imgur.com/xrsmWEA.png", number: 2, element: "Water" },
+    { name: "The Empress", type: "Major", img: "https://i.imgur.com/RvakGCX.png", number: 3, element: "Earth" },
+    { name: "The Emperor", type: "Major", img: "https://i.imgur.com/K4oVvvj.png", number: 4, element: "Fire" },
+    { name: "The Hierophant", type: "Major", img: "https://i.imgur.com/GRF1erw.png", number: 5, element: "Earth" },
+    { name: "The Lovers", type: "Major", img: "https://i.imgur.com/DVAdlIA.png", number: 6, element: "Air" },
+    { name: "The Chariot", type: "Major", img: "https://i.imgur.com/K5lk6Om.png", number: 7, element: "Water" },
+    { name: "Strength", type: "Major", img: "https://i.imgur.com/WF9jYOf.png", number: 8, element: "Fire" },
+    { name: "The Hermit", type: "Major", img: "https://i.imgur.com/GgoMlM8.png", number: 9, element: "Earth" },
+    { name: "Wheel of Fortune", type: "Major", img: "https://i.imgur.com/oQ7dG8i.png", number: 10, element: "Fire" },
+    { name: "Justice", type: "Major", img: "https://i.imgur.com/xxvbuEe.png", number: 11, element: "Air" },
+    { name: "The Hanged Man", type: "Major", img: "https://i.imgur.com/b71lXKz.png", number: 12, element: "Water" },
+    { name: "Death", type: "Major", img: "https://i.imgur.com/WB1hQzH.png", number: 13, element: "Water" },
+    { name: "Temperance", type: "Major", img: "https://i.imgur.com/2rUNAHs.png", number: 14, element: "Fire" },
+    { name: "The Devil", type: "Major", img: "https://i.imgur.com/WA3Zekv.png", number: 15, element: "Earth" },
+    { name: "The Tower", type: "Major", img: "https://i.imgur.com/OGbBcsY.png", number: 16, element: "Fire" },
+    { name: "The Star", type: "Major", img: "https://i.imgur.com/zf2SNWL.png", number: 17, element: "Air" },
+    { name: "The Moon", type: "Major", img: "https://i.imgur.com/uaLXrGB.png", number: 18, element: "Water" },
+    { name: "The Sun", type: "Major", img: "https://i.imgur.com/FxEoqnn.png", number: 19, element: "Fire" },
+    { name: "Judgement", type: "Major", img: "https://i.imgur.com/9E5aH31.png", number: 20, element: "Fire" },
+    { name: "The World", type: "Major", img: "https://i.imgur.com/XdoOTCP.png", number: 21, element: "Earth" }
   ];
 
-  // Simple Minor Arcana text-only deck (you can expand this later)
   const suits = ["Wands", "Cups", "Swords", "Pentacles"];
-  const ranks = ["Ace", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Page", "Knight", "Queen", "King"];
+  const ranks = ["Ace","Two","Three","Four","Five","Six","Seven","Eight","Nine","Ten","Page","Knight","Queen","King"];
+
+  function suitElement(suit) {
+    if (suit === "Wands") return "Fire";
+    if (suit === "Cups") return "Water";
+    if (suit === "Swords") return "Air";
+    if (suit === "Pentacles") return "Earth";
+    return "Spirit";
+  }
+
+  function rankNumber(rank) {
+    const map = {
+      "Ace":1,"Two":2,"Three":3,"Four":4,"Five":5,"Six":6,"Seven":7,"Eight":8,"Nine":9,"Ten":10,
+      "Page":11,"Knight":12,"Queen":13,"King":14
+    };
+    return map[rank] || 0;
+  }
 
   const minorArcana = [];
   suits.forEach(suit => {
@@ -403,7 +466,9 @@
       minorArcana.push({
         name: `${rank} of ${suit}`,
         type: "Minor",
-        img: null
+        img: null,
+        element: suitElement(suit),
+        number: rankNumber(rank)
       });
     });
   });
@@ -414,6 +479,9 @@
   const readingTypeRow = document.getElementById("readingTypeRow");
   const deckTypeRow = document.getElementById("deckTypeRow");
   const modeRow = document.getElementById("modeRow");
+  const topicRow = document.getElementById("topicRow");
+  const shadowToggle = document.getElementById("shadowToggle");
+  const reversedToggle = document.getElementById("reversedToggle");
   const generateBtn = document.getElementById("generateBtn");
 
   const cardsGrid = document.getElementById("cardsGrid");
@@ -421,20 +489,21 @@
   const oracleText = document.getElementById("oracleText");
   const oracleModeTag = document.getElementById("oracleModeTag");
   const oracleSpreadTag = document.getElementById("oracleSpreadTag");
+  const oracleTopicTag = document.getElementById("oracleTopicTag");
+  const oracleShadowTag = document.getElementById("oracleShadowTag");
 
   let currentReadingType = "one";
   let currentDeckType = "full";
   let currentMode = "ic";
+  let currentTopic = "general";
+  let shadowOn = false;
+  let reversedOn = false;
 
-  // ====== HELPERS ======
   function setActivePill(rowEl, value, attr) {
     const pills = rowEl.querySelectorAll(".pill");
     pills.forEach(p => {
-      if (p.getAttribute(attr) === value) {
-        p.classList.add("active");
-      } else {
-        p.classList.remove("active");
-      }
+      if (p.getAttribute(attr) === value) p.classList.add("active");
+      else p.classList.remove("active");
     });
   }
 
@@ -459,6 +528,27 @@
     }
   });
 
+  topicRow.addEventListener("click", e => {
+    if (e.target.classList.contains("pill")) {
+      currentTopic = e.target.getAttribute("data-topic");
+      setActivePill(topicRow, currentTopic, "data-topic");
+    }
+  });
+
+  shadowToggle.addEventListener("click", () => {
+    shadowOn = !shadowOn;
+    shadowToggle.dataset.shadow = shadowOn ? "on" : "off";
+    shadowToggle.textContent = `Shadow Meaning: ${shadowOn ? "On" : "Off"}`;
+    shadowToggle.classList.toggle("active", shadowOn);
+  });
+
+  reversedToggle.addEventListener("click", () => {
+    reversedOn = !reversedOn;
+    reversedToggle.dataset.reversed = reversedOn ? "on" : "off";
+    reversedToggle.textContent = `Allow Reversed: ${reversedOn ? "On" : "Off"}`;
+    reversedToggle.classList.toggle("active", reversedOn);
+  });
+
   function getDeckByType(type) {
     if (type === "major") return [...majorArcana];
     if (type === "minor") return [...minorArcana];
@@ -470,7 +560,9 @@
     const drawn = [];
     for (let i = 0; i < count && copy.length > 0; i++) {
       const idx = Math.floor(Math.random() * copy.length);
-      drawn.push(copy.splice(idx, 1)[0]);
+      const baseCard = copy.splice(idx, 1)[0];
+      const reversed = reversedOn ? Math.random() < 0.45 : false;
+      drawn.push({ ...baseCard, reversed });
     }
     return drawn;
   }
@@ -482,6 +574,7 @@
       case "three": return 3;
       case "five": return 5;
       case "seven": return 7;
+      case "custom": return 4;
       default: return 1;
     }
   }
@@ -493,6 +586,7 @@
       case "three": return "3‑Card Deep Reading";
       case "five": return "5‑Card Spread";
       case "seven": return "7‑Card Story Spread";
+      case "custom": return "Custom Spread";
       default: return "";
     }
   }
@@ -503,7 +597,21 @@
       : "OOC – Real Life: The Oracle speaks in reflection, growth, and self‑awareness.";
   }
 
-  // Basic meanings for synergy (you can expand later)
+  function topicLabel(topic) {
+    switch (topic) {
+      case "romance": return "Topic: Romance, connection, and relationships.";
+      case "career": return "Topic: Career, work, and material path.";
+      case "spiritual": return "Topic: Spiritual growth, intuition, and inner path.";
+      default: return "Topic: General energy and themes.";
+    }
+  }
+
+  function shadowLabel(on) {
+    return on
+      ? "Shadow Meaning: The Oracle leans into fears, blocks, and hidden patterns."
+      : "Shadow Meaning: Off – The Oracle focuses on balanced and constructive insight.";
+  }
+
   const keywordHints = {
     "The Fool": "new beginnings, leaps of faith, innocence",
     "The Magician": "manifestation, skill, focused will",
@@ -529,23 +637,158 @@
     "The World": "completion, wholeness, achievement"
   };
 
-  function getSimpleCardEnergy(card) {
-    if (keywordHints[card.name]) return keywordHints[card.name];
-    if (card.type === "Minor") {
-      if (card.name.includes("Pentacles")) return "material matters, work, stability";
-      if (card.name.includes("Cups")) return "emotions, relationships, intuition";
-      if (card.name.includes("Wands")) return "action, passion, creativity";
-      if (card.name.includes("Swords")) return "thoughts, conflict, decisions";
+  function reversedFlavor(card) {
+    if (!card.reversed) return "";
+    if (card.type === "Major") {
+      return "shadow, delay, or internalized version of its usual energy";
     }
-    return "subtle, situational energy";
+    return "blocked, inverted, or turned inward expression of its suit’s energy";
   }
 
-  function buildOracleText(cards, readingType, mode) {
-    if (!cards || cards.length === 0) {
-      return "No cards were drawn. Try again.";
+  function getSimpleCardEnergy(card) {
+    let base = keywordHints[card.name] || "";
+    if (!base && card.type === "Minor") {
+      if (card.name.includes("Pentacles")) base = "material matters, work, stability";
+      else if (card.name.includes("Cups")) base = "emotions, relationships, intuition";
+      else if (card.name.includes("Wands")) base = "action, passion, creativity";
+      else if (card.name.includes("Swords")) base = "thoughts, conflict, decisions";
+    }
+    if (!base) base = "subtle, situational energy";
+
+    if (card.reversed) {
+      base += " (reversed: " + reversedFlavor(card) + ")";
+    }
+    return base;
+  }
+
+  function elementSummary(cards) {
+    const counts = { Fire: 0, Water: 0, Air: 0, Earth: 0, Spirit: 0 };
+    cards.forEach(c => {
+      if (c.element && counts[c.element] !== undefined) counts[c.element]++;
+    });
+    const active = Object.entries(counts).filter(([el, n]) => n > 0);
+    if (!active.length) return "";
+    let text = "Elemental balance: ";
+    text += active.map(([el, n]) => `${el} x${n}`).join(", ") + ". ";
+    if (counts.Fire > counts.Water && counts.Fire >= 2) text += "Fire dominates—action, intensity, and urgency are highlighted. ";
+    if (counts.Water > counts.Fire && counts.Water >= 2) text += "Water dominates—emotions, intuition, and sensitivity are highlighted. ";
+    if (counts.Air > counts.Earth && counts.Air >= 2) text += "Air dominates—thoughts, communication, and mental patterns are highlighted. ";
+    if (counts.Earth > counts.Air && counts.Earth >= 2) text += "Earth dominates—stability, practicality, and grounding are highlighted. ";
+    return text + "\n\n";
+  }
+
+  function numerologySummary(cards) {
+    const nums = cards.map(c => (typeof c.number === "number" ? c.number : 0)).filter(n => n > 0);
+    if (!nums.length) return "";
+    const sum = nums.reduce((a, b) => a + b, 0);
+    const reduced = (function reduce(n) {
+      if (n < 10) return n;
+      return reduce(String(n).split("").reduce((a, b) => a + Number(b), 0));
+    })(sum);
+    return `Numerology: The sum of these card numbers is ${sum}, reducing to ${reduced}. This hints at a core theme of ${
+      reduced === 1 ? "new beginnings and self‑definition" :
+      reduced === 2 ? "duality, partnership, and balance" :
+      reduced === 3 ? "expression, creativity, and growth" :
+      reduced === 4 ? "structure, stability, and foundations" :
+      reduced === 5 ? "change, challenge, and freedom" :
+      reduced === 6 ? "harmony, responsibility, and care" :
+      reduced === 7 ? "reflection, mystery, and inner search" :
+      reduced === 8 ? "power, cycles, and manifestation" :
+      reduced === 9 ? "completion, release, and wisdom" : "ongoing cycles"
+    }.\n\n`;
+  }
+
+  function buildSynergy(cards) {
+    const names = cards.map(c => c.name);
+    let text = "";
+
+    const hasFool = names.includes("The Fool");
+    const hasThreePentacles = names.includes("Three of Pentacles");
+    const hasTower = names.includes("The Tower");
+    const hasNineSwords = names.includes("Nine of Swords");
+    const hasStar = names.includes("The Star");
+    const hasMoon = names.includes("The Moon");
+    const hasDevil = names.includes("The Devil");
+    const hasLovers = names.includes("The Lovers");
+    const hasSun = names.includes("The Sun");
+    const hasDeath = names.includes("Death");
+    const hasJustice = names.includes("Justice");
+
+    if (hasFool && hasThreePentacles) {
+      text += "The Fool with the Three of Pentacles suggests a leap of faith supported by collaboration. The Oracle recommends trusting allies and learning as you go.\n\n";
+    }
+    if (hasTower && hasNineSwords) {
+      text += "The Tower with the Nine of Swords points to a breaking point where inner anxiety meets outer upheaval. The Oracle recommends grounding yourself and preparing for release.\n\n";
+    }
+    if (hasStar && hasMoon) {
+      text += "The Star with The Moon blends hope with mystery. The Oracle recommends following subtle signs while keeping faith that clarity will come in time.\n\n";
+    }
+    if (hasDevil && hasLovers) {
+      text += "The Devil with The Lovers highlights choices around attachment, temptation, or unhealthy bonds. The Oracle recommends choosing what supports your growth, not just what feels familiar.\n\n";
+    }
+    if (hasSun && hasTower) {
+      text += "The Sun with The Tower shows that even disruptive change may ultimately lead to clarity and liberation. The Oracle recommends trusting that what falls away makes room for joy.\n\n";
+    }
+    if (hasDeath && hasJustice) {
+      text += "Death with Justice speaks of karmic endings and necessary closures. The Oracle recommends honoring what is ending and accepting the balance being restored.\n\n";
     }
 
-    const names = cards.map(c => c.name);
+    if (!text && cards.length >= 2) {
+      text += "Together, these cards weave a layered story. The Oracle recommends noticing repeating symbols, suits, or numbers—those are the loudest messages.\n\n";
+    }
+
+    return text;
+  }
+
+  function topicFlavor(topic) {
+    switch (topic) {
+      case "romance":
+        return "In romance, these cards speak to the way hearts meet, clash, or grow together.\n\n";
+      case "career":
+        return "In career, these cards speak to your path, effort, and the structures you move through.\n\n";
+      case "spiritual":
+        return "In spiritual matters, these cards speak to your inner path, intuition, and connection to something greater.\n\n";
+      default:
+        return "For general life, these cards speak to the themes currently circling your orbit.\n\n";
+    }
+  }
+
+  function shadowFlavorText(on) {
+    if (!on) return "";
+    return "With shadow meaning enabled, the Oracle leans into fears, blocks, and patterns that might be hidden or avoided.\n\n";
+  }
+
+  function readingFlavor(readingType) {
+    switch (readingType) {
+      case "one":
+        return "As a one‑card advice pull, this card acts like a spotlight on what matters most right now.\n\n";
+      case "truefalse":
+        return "For a true / false style reading, the card(s) don’t give a simple yes or no—they show the energy around the situation.\n\n";
+      case "three":
+        return "In a three‑card deep reading, think of the spread as past / present / future or mind / body / spirit.\n\n";
+      case "five":
+        return "In a five‑card spread, the story is more layered—supporting energies, challenges, and hidden influences all show up here.\n\n";
+      case "seven":
+        return "In a seven‑card story spread, the cards read like chapters in a book. Notice the progression from the first card to the last.\n\n";
+      case "custom":
+        return "In a custom spread, let each position mean what you decide—roles, scenes, aspects, or steps in a process.\n\n";
+      default:
+        return "";
+    }
+  }
+
+  function modeFlavor(mode) {
+    if (mode === "ic") {
+      return "IC – In Character: The Oracle speaks to your character’s path, fate, and narrative arc. Use this reading to inspire scenes, choices, and story beats.\n\n";
+    } else {
+      return "OOC – Real Life: The Oracle speaks to your own growth, patterns, and inner world. Use this reading as a mirror—take what resonates and leave the rest.\n\n";
+    }
+  }
+
+  function buildOracleText(cards, readingType, mode, topic, shadow) {
+    if (!cards || cards.length === 0) return "No cards were drawn. Try again.";
+
+    const names = cards.map(c => c.name + (c.reversed ? " (reversed)" : ""));
     const energies = cards.map(getSimpleCardEnergy);
 
     let base = "";
@@ -556,75 +799,18 @@
       base += `You drew: ${names.join(", ")}.\n\n`;
       base += `Energies at play:\n`;
       cards.forEach((c, i) => {
-        base += `• ${c.name}: ${energies[i]}\n`;
+        base += `• ${c.name}${c.reversed ? " (reversed)" : ""}: ${energies[i]}\n`;
       });
       base += `\n`;
     }
 
-    // Synergy logic
-    let synergy = "";
-    const hasFool = names.includes("The Fool");
-    const hasThreePentacles = names.includes("Three of Pentacles");
-    const hasTower = names.includes("The Tower");
-    const hasNineSwords = names.includes("Nine of Swords");
-    const hasStar = names.includes("The Star");
-    const hasDevil = names.includes("The Devil");
-
-    if (hasFool && hasThreePentacles) {
-      synergy += "The Fool with the Three of Pentacles suggests a leap of faith supported by collaboration. ";
-      synergy += "The Oracle recommends trusting allies and learning as you go, rather than trying to control every detail.\n\n";
-    }
-
-    if (hasTower && hasNineSwords) {
-      synergy += "The Tower with the Nine of Swords points to a breaking point where inner anxiety meets outer upheaval. ";
-      synergy += "The Oracle recommends grounding yourself, preparing for release, and remembering that what falls away may free you.\n\n";
-    }
-
-    if (hasStar && hasMoon) {
-      synergy += "The Star with The Moon blends hope with mystery. ";
-      synergy += "The Oracle recommends following subtle signs while keeping faith that clarity will come in time.\n\n";
-    }
-
-    if (hasDevil && hasLovers) {
-      synergy += "The Devil with The Lovers highlights choices around attachment, temptation, or unhealthy bonds. ";
-      synergy += "The Oracle recommends choosing what supports your growth, not just what feels familiar.\n\n";
-    }
-
-    // Generic synergy if none of the above
-    if (!synergy && cards.length >= 2) {
-      synergy += "Together, these cards weave a story of overlapping energies. ";
-      synergy += "The Oracle recommends noticing where themes repeat—those are the areas asking for your attention.\n\n";
-    }
-
-    // Reading-type flavor
-    let readingFlavor = "";
-    switch (readingType) {
-      case "one":
-        readingFlavor = "As a one‑card advice pull, this card acts like a spotlight on what matters most right now.\n\n";
-        break;
-      case "truefalse":
-        readingFlavor = "For a true / false style reading, the card(s) don’t give a simple yes or no—they show the energy around the situation.\n\n";
-        break;
-      case "three":
-        readingFlavor = "In a three‑card deep reading, think of the spread as past / present / future or mind / body / spirit, depending on your question.\n\n";
-        break;
-      case "five":
-        readingFlavor = "In a five‑card spread, the story is more layered—supporting energies, challenges, and hidden influences all show up here.\n\n";
-        break;
-      case "seven":
-        readingFlavor = "In a seven‑card story spread, the cards read like chapters in a book. Notice the progression from the first card to the last.\n\n";
-        break;
-    }
-
-    // Mode flavor
-    let modeFlavor = "";
-    if (mode === "ic") {
-      modeFlavor += "IC – In Character: The Oracle speaks to your character’s path, fate, and narrative arc. ";
-      modeFlavor += "Use this reading to inspire scenes, choices, and story beats.\n\n";
-    } else {
-      modeFlavor += "OOC – Real Life: The Oracle speaks to your own growth, patterns, and inner world. ";
-      modeFlavor += "Use this reading as a mirror, not a command—take what resonates and leave the rest.\n\n";
-    }
+    base += elementSummary(cards);
+    base += numerologySummary(cards);
+    base += buildSynergy(cards);
+    base += readingFlavor(readingType);
+    base += topicFlavor(topic);
+    base += shadowFlavorText(shadow);
+    base += modeFlavor(mode);
 
     let recommendation = "The Oracle recommends:\n";
     if (cards.length === 1) {
@@ -634,8 +820,11 @@
     } else {
       recommendation += "• Tracing the emotional journey from the first card to the last—notice where tension spikes, where relief appears, and where choice is implied.\n";
     }
+    if (shadow) {
+      recommendation += "• Paying special attention to discomfort, resistance, or denial—those may be the exact places the cards are pointing toward.\n";
+    }
 
-    return base + synergy + readingFlavor + modeFlavor + recommendation;
+    return base + "\n" + recommendation;
   }
 
   function renderCards(cards) {
@@ -660,7 +849,7 @@
 
       const nameEl = document.createElement("div");
       nameEl.className = "card-name";
-      nameEl.textContent = card.name;
+      nameEl.textContent = card.name + (card.reversed ? " (reversed)" : "");
       div.appendChild(nameEl);
 
       const tagEl = document.createElement("div");
@@ -668,11 +857,15 @@
       tagEl.textContent = card.type === "Major" ? "Major Arcana" : "Minor Arcana";
       div.appendChild(tagEl);
 
+      const extraEl = document.createElement("div");
+      extraEl.className = "card-extra";
+      extraEl.textContent = `${card.element || "Spirit"} • ${card.number ? "Number " + card.number : "Archetype"}`;
+      div.appendChild(extraEl);
+
       cardsGrid.appendChild(div);
     });
   }
 
-  // ====== MAIN GENERATE HANDLER ======
   generateBtn.addEventListener("click", () => {
     const deck = getDeckByType(currentDeckType);
     const count = getCardCountForReading(currentReadingType);
@@ -682,9 +875,10 @@
 
     oracleModeTag.textContent = modeLabel(currentMode);
     oracleSpreadTag.textContent = spreadLabel(currentReadingType);
+    oracleTopicTag.textContent = topicLabel(currentTopic);
+    oracleShadowTag.textContent = shadowLabel(shadowOn);
 
-    const text = buildOracleText(drawn, currentReadingType, currentMode);
-    // Simple markdown-ish bold for card names
+    const text = buildOracleText(drawn, currentReadingType, currentMode, currentTopic, shadowOn);
     oracleText.innerHTML = text.replace(/\*\*(.+?)\*\*/g, "<span class='oracle-highlight'>$1</span>");
   });
 </script>
