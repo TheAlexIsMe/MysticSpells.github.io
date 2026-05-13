@@ -9,6 +9,10 @@
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
 
 <style>
+  * {
+    box-sizing: border-box;
+  }
+
   body {
     margin: 0;
     font-family: "Montserrat", sans-serif;
@@ -30,31 +34,66 @@
     width: 420px; height: 420px;
     transform: translate(-50%, -50%);
     background: radial-gradient(circle, rgba(164,124,243,0.45), rgba(0,0,0,0));
-    border-radius: 50%; filter: blur(40px); z-index: -1;
+    border-radius: 50%;
+    filter: blur(40px);
+    z-index: -1;
   }
 
-  .logo { width: 160px; margin: 0 auto 10px; display: block; }
-  h1 { font-size: 52px; margin-bottom: 10px; color: #f2e6ff; }
-  p.subtitle { font-size: 20px; max-width: 700px; margin: 0 auto 20px; color: #e8d8ff; }
+  .logo {
+    width: 160px;
+    margin: 0 auto 10px;
+    display: block;
+  }
+
+  h1 {
+    font-size: 52px;
+    margin-bottom: 10px;
+    color: #f2e6ff;
+  }
+
+  p.subtitle {
+    font-size: 20px;
+    max-width: 700px;
+    margin: 0 auto 20px;
+    color: #e8d8ff;
+  }
 
   /* NAV BUTTONS */
   .button-row {
-    display: flex; flex-wrap: wrap; justify-content: center;
-    gap: 14px; margin-bottom: 40px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 14px;
+    margin-bottom: 40px;
   }
+
   .btn {
-    border: none; width: 10em; height: 3.5em; border-radius: 2em;
-    display: flex; justify-content: center; align-items: center;
-    background: #1C1A1C; cursor: pointer; transition: all 450ms ease-in-out;
+    border: none;
+    width: 10em;
+    height: 3.5em;
+    border-radius: 2em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #1C1A1C;
+    cursor: pointer;
+    transition: all 450ms ease-in-out;
     text-decoration: none;
   }
-  .text { font-weight: 600; color: #FFFFFF; font-size: 18px; }
+
+  .text {
+    font-weight: 600;
+    color: #FFFFFF;
+    font-size: 18px;
+  }
+
   .btn:hover {
     background: linear-gradient(0deg,#A47CF3,#683FEA);
-    box-shadow: inset 0px 1px 0px rgba(255,255,255,0.4),
-                inset 0px -4px 0px rgba(0,0,0,0.2),
-                0px 0px 0px 4px rgba(255,255,255,0.2),
-                0px 0px 180px #9917FF;
+    box-shadow:
+      inset 0px 1px 0px rgba(255,255,255,0.4),
+      inset 0px -4px 0px rgba(0,0,0,0.2),
+      0px 0px 0px 4px rgba(255,255,255,0.2),
+      0px 0px 180px #9917FF;
     transform: translateY(-2px);
   }
 
@@ -65,21 +104,22 @@
     font-size: 16px;
     color: #d8caff;
     line-height: 1.5rem;
+    padding: 0 20px;
   }
 
-  /* LOGIN WRAPPER — THE FIX */
+  /* LOGIN WRAPPER – centers card under hero */
   .login-wrapper {
     width: 100%;
     display: flex;
     justify-content: center;
-    margin-top: 30px;
-    margin-bottom: 80px;
+    margin: 30px 0 80px;
+    padding: 0 20px;
   }
 
   /* LOGIN CARD */
   .login-card {
     width: 520px;
-    max-width: 90%;
+    max-width: 100%;
     background: radial-gradient(circle at top, #4b2a88 0%, #1a102e 60%, #0b0716 100%);
     border-radius: 30px;
     padding: 35px 40px 40px;
@@ -92,29 +132,79 @@
   .login-card::before {
     content: "";
     position: absolute;
-    width: 260px; height: 260px;
+    width: 260px;
+    height: 260px;
     background: radial-gradient(circle, rgba(255,192,255,0.4), transparent);
-    top: -80px; right: -60px;
-    filter: blur(8px); opacity: 0.8;
+    top: -80px;
+    right: -60px;
+    filter: blur(8px);
+    opacity: 0.8;
   }
 
-  .login-logo { width: 110px; margin: 0 auto 10px; display: block; }
-  .login-heading { font-size: 28px; font-weight: 700; margin-bottom: 5px; }
-  .login-sub { font-size: 14px; color: #d0c0ff; margin-bottom: 20px; }
+  .login-logo {
+    width: 110px;
+    margin: 0 auto 10px;
+    display: block;
+    position: relative;
+    z-index: 1;
+  }
 
-  .form .input {
+  .login-heading {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 5px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .login-sub {
+    font-size: 14px;
+    color: #d0c0ff;
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .form-label {
+    font-size: 13px;
+    color: #d0c0ff;
+    margin-top: 10px;
+    display: block;
+    position: relative;
+    z-index: 1;
+    text-align: left;
+  }
+
+  .form-label span {
+    display: inline-block;
+    margin-left: 4px;
+    font-size: 11px;
+    color: #a89ad0;
+  }
+
+  .input {
     width: 100%;
     background: rgba(10, 6, 20, 0.9);
     border: 1px solid rgba(255,255,255,0.18);
-    padding: 16px 18px;
+    padding: 14px 16px;
     border-radius: 16px;
-    margin-top: 16px;
+    margin-top: 6px;
     color: #f5e6ff;
     font-size: 16px;
     text-align: center;
+    position: relative;
+    z-index: 1;
   }
 
-  .form-label { font-size: 13px; color: #d0c0ff; margin-top: 10px; display: block; }
+  .input::placeholder {
+    color: #a89ad0;
+  }
+
+  .input:focus {
+    outline: none;
+    border-color: #A47CF3;
+    box-shadow: 0 0 20px rgba(164,124,243,0.7);
+  }
 
   .login-button {
     width: 100%;
@@ -128,12 +218,26 @@
     font-size: 17px;
     box-shadow: 0 0 30px rgba(164,124,243,0.8);
     cursor: pointer;
+    position: relative;
+    z-index: 1;
+  }
+
+  .login-button:hover {
+    transform: translateY(-1px) scale(1.02);
+    box-shadow: 0 0 40px rgba(164,124,243,1);
+  }
+
+  .login-button:active {
+    transform: scale(0.97);
+    box-shadow: 0 0 20px rgba(164,124,243,0.7);
   }
 
   .login-note {
     margin-top: 12px;
     font-size: 12px;
     color: #cbbaf5;
+    position: relative;
+    z-index: 1;
   }
 
   footer {
@@ -165,8 +269,18 @@
     text-align: center;
   }
 
-  .lockout-title { font-size: 32px; font-weight: 700; margin-bottom: 10px; }
-  .lockout-sub { font-size: 15px; color: #d8caff; line-height: 1.6rem; margin-bottom: 25px; }
+  .lockout-title {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+
+  .lockout-sub {
+    font-size: 15px;
+    color: #d8caff;
+    line-height: 1.6rem;
+    margin-bottom: 25px;
+  }
 
   .loader {
     display: inline-flex;
@@ -199,8 +313,15 @@
     100% { text-shadow: 0 -20em 0 #A47CF3; }
   }
 
-  .timer-text { font-size: 15px; color: #e9ddff; }
-  .timer-text span { font-weight: 700; color: #ffb3ff; }
+  .timer-text {
+    font-size: 15px;
+    color: #e9ddff;
+  }
+
+  .timer-text span {
+    font-weight: 700;
+    color: #ffb3ff;
+  }
 </style>
 </head>
 
@@ -234,8 +355,8 @@
     <div class="login-heading">Tarot Access</div>
     <div class="login-sub">Authorized personnel only. All access is logged.</div>
 
-    <form class="form" id="loginForm">
-      <label class="form-label">Username</label>
+    <form id="loginForm">
+      <label class="form-label">Username <span>(AlexOwner or nyx)</span></label>
       <input placeholder="Enter username" id="username" class="input" required>
 
       <label class="form-label">Password</label>
