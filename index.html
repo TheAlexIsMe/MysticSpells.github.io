@@ -113,7 +113,7 @@
   .grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 55px; /* MORE SPACE */
+    gap: 55px;
     margin-top: 40px;
   }
 
@@ -123,7 +123,7 @@
     }
   }
 
-  /* ✨ NEW SHOP RULES CARD (cleaner, more aesthetic) */
+  /* RULES CARD */
   .rules-card {
     background: linear-gradient(145deg, #120d1f, #1c1530);
     padding: 1.8rem;
@@ -167,7 +167,7 @@
     border-radius: 50%;
   }
 
-  /* ✨ ANNOUNCEMENT CARD */
+  /* ANNOUNCEMENT CARD */
   .announce-card {
     padding: 1.8rem;
     border-radius: 1.2rem;
@@ -208,7 +208,7 @@
     line-height: 1.5rem;
   }
 
-  /* ✨ OWNERS BOX (two columns inside one box) */
+  /* OWNERS BOX */
   .owners-box {
     background: linear-gradient(145deg, #120d1f, #1c1530);
     padding: 2rem;
@@ -252,19 +252,6 @@
     margin-bottom: 10px;
   }
 
-  .coming-soon-box {
-    width: 160px;
-    height: 160px;
-    border-radius: 12px;
-    background: rgba(255,255,255,0.1);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #d8caff;
-    margin: 0 auto 10px;
-    font-size: 18px;
-  }
-
   .owner-name {
     font-size: 1.3rem;
     font-weight: 600;
@@ -302,7 +289,6 @@
   <!-- RULES + ANNOUNCEMENTS -->
   <div class="grid">
 
-    <!-- NEW RULES CARD -->
     <div class="rules-card">
       <div class="rules-title">Shop Rules</div>
       <div class="rules-sub">Keep the coven magical, safe, and drama‑free.</div>
@@ -318,7 +304,6 @@
       </ul>
     </div>
 
-    <!-- ANNOUNCEMENTS -->
     <div class="announce-card">
       <div class="announce-header">
         <span class="announce-icon">!</span>
@@ -333,7 +318,7 @@
 
   </div>
 
-  <!-- OWNERS (ONE BOX, TWO COLUMNS) -->
+  <!-- OWNERS -->
   <div class="owners-box">
     <div class="owners-title">Owners</div>
     <div class="owners-sub">The witches behind the magic.</div>
@@ -342,9 +327,14 @@
 
       <!-- GOTHY -->
       <div class="owner-card">
-        <div class="coming-soon-box">Coming Soon</div>
+        <img class="owner-photo" src="https://i.imgur.com/c8c8c256-44bf-4b2b-b9f6-439608abdbe5.png">
         <div class="owner-name">Gothy — Owner</div>
-        <p class="owner-desc">More info coming soon.</p>
+        <p class="owner-desc">
+          The aunty of all. Always there with a helping hand, a sarcastic comment,  
+          and enough side‑eye to make you rethink that e‑date.  
+          Sweet until provoked — then suddenly your biggest hater and therapist  
+          in the same sentence.
+        </p>
       </div>
 
       <!-- ALEX -->
