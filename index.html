@@ -5,23 +5,28 @@
   <title>Mystic Spells – Home</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- Soft Witchy Script Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600;700&display=swap" rel="stylesheet">
+  <!-- Cormorant Garamond -->
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
+    /* GLOBAL RESET */
     * {
-      box-sizing: border-box;
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
     }
 
     body {
-      font-family: "Dancing Script", cursive;
+      font-family: "Cormorant Garamond", serif;
       font-size: 22px;
       line-height: 1.55;
-      color: #fff7ff;
-      text-shadow: 0 0 3px rgba(0,0,0,0.4);
-      background: radial-gradient(circle at top, #ffffff 0%, #e8d9ff 20%, #c7b7ff 40%, #8a6ccf 65%, #3a2a5a 100%);
+      color: #1a1524; /* medium-dark body text */
+      background: radial-gradient(circle at center,
+        #4b2f7f 0%,   /* stronger violet center */
+        #2a1d4a 40%,
+        #1a1426 75%,
+        #0b0712 100%
+      );
       min-height: 100vh;
       overflow-x: hidden;
     }
@@ -31,17 +36,17 @@
       text-decoration: none;
     }
 
+    /* PAGE WRAPPER */
     .page {
       min-height: 100vh;
       display: flex;
       flex-direction: column;
-      backdrop-filter: blur(4px);
     }
 
     .content {
-      max-width: 1200px;
+      max-width: 1200px; /* balanced medium layout */
       margin: 0 auto;
-      padding: 1.5rem 1rem 3rem;
+      padding: 2rem 1.5rem 4rem;
     }
 
     /* HEADER */
@@ -49,9 +54,9 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 1rem;
-      margin-bottom: 2rem;
       flex-wrap: wrap;
+      gap: 1.5rem;
+      margin-bottom: 2.5rem;
     }
 
     .brand {
@@ -60,7 +65,7 @@
       gap: 1rem;
     }
 
-    /* FIXED LOGO SIZE — NO CIRCLE */
+    /* FIXED LOGO SIZE */
     .brand-logo img {
       width: 120px;
       height: auto;
@@ -68,125 +73,119 @@
     }
 
     .brand-name {
-      font-size: 2.4rem;
-      letter-spacing: 0.12em;
+      font-size: 2.6rem;
+      color: #f2e6ff; /* light header text */
+      letter-spacing: 0.08em;
       text-transform: uppercase;
     }
 
     .brand-tagline {
       font-size: 1.2rem;
+      color: #e8d8ff;
       opacity: 0.9;
     }
 
     nav {
       display: flex;
-      gap: 0.5rem;
+      gap: 0.6rem;
       flex-wrap: wrap;
-      justify-content: flex-end;
     }
 
     .nav-link {
-      font-size: 22px;
+      font-size: 20px;
       padding: 0.5rem 1.2rem;
-      border-radius: 999px;
-      border: 1px solid rgba(255, 255, 255, 0.4);
-      background: rgba(25, 15, 45, 0.7);
-      cursor: pointer;
-      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
-      box-shadow: 0 4px 10px rgba(10, 0, 30, 0.4);
+      border-radius: 10px; /* soft rounded */
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      color: #f2e6ff;
+      transition: 0.25s;
     }
 
     .nav-link:hover {
-      background: rgba(255, 255, 255, 0.12);
-      transform: translateY(-1px);
-      box-shadow: 0 6px 14px rgba(10, 0, 30, 0.6);
+      background: rgba(255, 255, 255, 0.18);
+      transform: translateY(-2px);
     }
 
     /* HERO */
     .hero {
       text-align: center;
       margin-bottom: 2.5rem;
-      padding: 1.2rem 0 0.5rem;
     }
 
     .hero-title {
       font-size: 48px;
-      margin-bottom: 0.4rem;
-      letter-spacing: 0.18em;
+      color: #f2e6ff;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
+      margin-bottom: 0.5rem;
     }
 
     .hero-subtitle {
       font-size: 26px;
       max-width: 700px;
       margin: 0 auto;
+      color: #e8d8ff;
       opacity: 0.95;
     }
 
     .hero-subtitle span {
-      color: #ffe0ff;
+      color: #f8eaff;
     }
 
     .hero-cta {
-      margin-top: 1.5rem;
+      margin-top: 1.8rem;
       display: flex;
       justify-content: center;
       gap: 1rem;
       flex-wrap: wrap;
     }
 
-    /* BUTTONS */
+    /* BUTTONS — soft rounded */
     .button {
-      background: rgba(25, 10, 45, 0.9);
-      border-radius: 0.8em;
-      border: 2px solid rgba(255, 255, 255, 0.7);
-      cursor: pointer;
-      padding: 0.6em 1.8em;
-      min-width: 190px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      padding: 0.7rem 1.8rem;
+      min-width: 180px;
       text-align: center;
-      transition: all 0.3s;
-      box-shadow: 0 4px 10px rgba(10, 0, 30, 0.6);
+      transition: 0.25s;
+      color: #f2e6ff;
+      font-size: 24px;
+      letter-spacing: 0.08em;
     }
 
     .button:hover {
-      background: rgba(255, 255, 255, 0.12);
-      transform: translateY(-1px);
-      box-shadow: 0 6px 14px rgba(10, 0, 30, 0.8);
+      background: rgba(255, 255, 255, 0.2);
+      transform: translateY(-2px);
     }
 
-    .button .text {
-      font-size: 24px;
-      color: #ffe0b8;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-    }
-
-    /* PANELS */
+    /* PANELS — Deep Gothic */
     .sections-grid {
       display: grid;
-      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1.6fr);
-      gap: 2rem;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem; /* comfort spacing */
       margin-top: 2rem;
-      align-items: flex-start;
     }
 
     .panel {
-      background: rgba(25, 15, 45, 0.88);
-      border-radius: 18px;
-      padding: 1.2rem 1.4rem;
-      border: 1px solid rgba(255, 255, 255, 0.45);
-      box-shadow: 0 18px 40px rgba(10, 0, 30, 0.8);
+      background: #1a1426; /* deep gothic */
+      border-radius: 16px;
+      padding: 1.5rem 1.7rem;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
     }
 
     .panel-title {
       font-size: 36px;
+      color: #f2e6ff;
       margin-bottom: 0.4rem;
     }
 
     .panel-subtitle {
       font-size: 24px;
-      margin-bottom: 0.8rem;
+      color: #e8d8ff;
       opacity: 0.95;
+      margin-bottom: 1rem;
     }
 
     .rules-list {
@@ -194,107 +193,97 @@
       display: grid;
       gap: 0.4rem;
       font-size: 22px;
-      line-height: 1.6;
+      color: #1a1524;
     }
 
     .rules-list li::before {
       content: "✦ ";
-      color: #ffe0ff;
+      color: #f2e6ff;
     }
 
     .announcement-item {
       font-size: 22px;
-      margin-bottom: 0.4rem;
+      margin-bottom: 0.5rem;
+      color: #1a1524;
     }
 
     .announcement-item strong {
-      color: #ffe0b8;
+      color: #f2e6ff;
     }
 
     .pill-row {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.4rem;
-      margin-top: 0.6rem;
+      gap: 0.5rem;
+      margin-top: 0.8rem;
     }
 
     .pill {
       font-size: 20px;
-      padding: 0.25rem 0.7rem;
-      border-radius: 999px;
-      border: 1px solid rgba(255, 255, 255, 0.5);
-      background: rgba(35, 20, 60, 0.9);
-      box-shadow: 0 4px 10px rgba(10, 0, 30, 0.7);
+      padding: 0.3rem 0.8rem;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      color: #f2e6ff;
     }
 
-    /* BUNDLES + ITEMS */
+    /* SECTION TITLES */
     .section-block {
-      margin-top: 2.5rem;
+      margin-top: 3rem;
     }
 
     .section-title {
       font-size: 40px;
-      margin-bottom: 0.4rem;
+      color: #f2e6ff;
       text-align: center;
+      margin-bottom: 0.4rem;
     }
 
     .section-subtitle {
       font-size: 24px;
       text-align: center;
+      color: #e8d8ff;
       opacity: 0.9;
       margin-bottom: 1.2rem;
     }
 
+    /* CARDS */
     .cards-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-      gap: 1.2rem;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem;
     }
 
     .bundle-card,
     .item-card {
-      background: rgba(25, 15, 45, 0.88);
+      background: #1a1426;
       border-radius: 16px;
-      padding: 1rem 1.1rem;
-      border: 1px solid rgba(255, 255, 255, 0.45);
-      box-shadow: 0 14px 30px rgba(10, 0, 30, 0.8);
+      padding: 1.2rem 1.4rem;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
     }
 
-    .bundle-name {
-      font-size: 30px;
-      margin-bottom: 0.2rem;
-    }
-
-    .bundle-price {
-      font-size: 24px;
-      margin-bottom: 0.5rem;
-      color: #ffe0b8;
-    }
-
-    .bundle-list {
-      list-style: none;
-      font-size: 22px;
-      display: grid;
-      gap: 0.2rem;
-    }
-
+    .bundle-name,
     .item-name {
-      font-size: 28px;
-      margin-bottom: 0.2rem;
-    }
-
-    .item-price {
-      font-size: 22px;
+      font-size: 30px;
+      color: #f2e6ff;
       margin-bottom: 0.3rem;
-      color: #ffe0b8;
     }
 
+    .bundle-price,
+    .item-price {
+      font-size: 24px;
+      color: #e8d8ff;
+      margin-bottom: 0.5rem;
+    }
+
+    .bundle-list,
     .item-desc {
       font-size: 22px;
-      opacity: 0.95;
+      color: #1a1524;
     }
 
-    /* SPECIAL CARDS (Owners + Supporter + Worker) */
+    /* SPECIAL CARDS (Owners, Supporter, Worker) */
     .special-section {
       margin-top: 3rem;
     }
@@ -302,7 +291,7 @@
     .special-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 1.5rem;
+      gap: 2rem;
       justify-items: center;
     }
 
@@ -315,32 +304,27 @@
 
     .special-label {
       font-size: 24px;
+      color: #f2e6ff;
     }
 
     .special-card {
       width: 220px;
       height: 320px;
-      background-color: #1b1328;
+      background: #1a1426;
+      border-radius: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
       position: relative;
       overflow: hidden;
-      border: 1px solid #4a3b66;
-      border-radius: 12px;
-      box-shadow: 0 18px 40px rgba(10, 0, 30, 0.9);
       cursor: pointer;
     }
 
     .special-content {
-      width: 100%;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      color: #fff;
       opacity: 0;
-      transition: all 0.3s 0.3s;
-      padding: 0.8rem;
+      transition: 0.3s;
+      color: #f2e6ff;
       text-align: center;
+      padding: 1rem;
       position: relative;
       z-index: 3;
     }
@@ -353,101 +337,16 @@
     .special-role {
       font-size: 26px;
       margin-bottom: 0.4rem;
-      color: #ffe0b8;
+      color: #e8d8ff;
     }
 
     .special-bio {
       font-size: 22px;
-      line-height: 1.5;
-    }
-
-    .special-mask-wrap {
-      width: 100%;
-      height: 100%;
-      position: absolute;
-      inset: 0;
-      transform: scale(1.1);
-      display: flex;
-      pointer-events: none;
-      z-index: 2;
-    }
-
-    .special-mask {
-      width: 100%;
-      height: 100%;
-      background: #fff;
-      filter: blur(18px);
-      transition: all 0.5s 0.3s;
-    }
-
-    .special-mask-left {
-      transform: translateX(0%);
-    }
-
-    .special-mask-right {
-      transform: translateX(0%);
-    }
-
-    .special-loading-wrap {
-      width: 60px;
-      height: 60px;
-      margin: -30px 0 0 -30px;
-      position: absolute;
-      inset: 50%;
-      pointer-events: none;
-      transition: all 0.3s 0.3s;
-      z-index: 4;
-    }
-
-    .special-ball {
-      filter: blur(4px);
-    }
-
-    .special-ball1 {
-      width: 100%;
-      height: 100%;
-      border-radius: 50%;
-      border: 6px solid #fff;
-      animation: animBall1 3s steps(4) infinite;
-    }
-
-    .special-ball2 {
-      width: 12px;
-      height: 12px;
-      margin: -6px 0 0 -6px;
-      position: absolute;
-      inset: 50%;
-      border-radius: 50%;
-      border: 6px solid #fff;
-      animation: animBall2 3s ease-in-out infinite;
-    }
-
-    @keyframes animBall1 {
-      100% {
-        transform: rotate(360deg);
-      }
-    }
-
-    @keyframes animBall2 {
-      50% {
-        transform: translateY(18px);
-      }
+      color: #1a1524;
     }
 
     .special-card:hover .special-content {
       opacity: 1;
-    }
-
-    .special-card:hover .special-mask-left {
-      transform: translateX(-100%);
-    }
-
-    .special-card:hover .special-mask-right {
-      transform: translateX(100%);
-    }
-
-    .special-card:hover .special-loading-wrap {
-      opacity: 0;
     }
 
     /* EMPLOYEE CARDS */
@@ -458,17 +357,17 @@
     .employees-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 1.2rem;
+      gap: 1.5rem;
       justify-items: center;
     }
 
     .emp-card {
       width: 190px;
       height: 254px;
-      background: #2b1f4f;
+      background: #1a1426;
       border-radius: 15px;
-      box-shadow: 1px 5px 60px 0px #100a886b;
-      border: 1px solid rgba(255, 255, 255, 0.4);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
       display: flex;
       flex-direction: column;
       overflow: hidden;
@@ -479,7 +378,7 @@
       height: 3%;
       background: #7f6df5;
       margin: auto;
-      border-radius: 0px 0px 15px 15px;
+      border-radius: 0 0 15px 15px;
     }
 
     .emp-img {
@@ -487,8 +386,7 @@
       height: 80px;
       background: #7f6df5;
       border-radius: 15px;
-      margin: auto;
-      margin-top: 25px;
+      margin: 25px auto 0;
       overflow: hidden;
     }
 
@@ -500,49 +398,46 @@
 
     .emp-name {
       font-size: 26px;
-      color: white;
+      color: #f2e6ff;
       text-align: center;
       padding-top: 10px;
     }
 
     .emp-role {
       font-size: 22px;
-      color: white;
+      color: #e8d8ff;
       text-align: center;
       padding-top: 3px;
     }
 
     .emp-card button {
       padding: 8px 25px;
-      display: block;
-      margin: auto;
-      border-radius: 8px;
+      margin: 30px auto 0;
+      border-radius: 10px;
       border: none;
-      margin-top: 30px;
       background: #7f6df5;
       color: white;
       font-size: 22px;
       cursor: pointer;
-      box-shadow: 0 6px 14px rgba(10, 0, 30, 0.8);
-      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+      transition: 0.25s;
     }
 
     .emp-card button:hover {
-      background: #5f4bf0;
-      transform: translateY(-1px);
-      box-shadow: 0 8px 18px rgba(10, 0, 30, 1);
+      background: #6a58e8;
+      transform: translateY(-2px);
     }
 
     /* FOOTER */
     .footer {
       margin-top: 3rem;
-      font-size: 22px;
       text-align: center;
+      font-size: 22px;
+      color: #e8d8ff;
       opacity: 0.9;
     }
 
     .footer span {
-      color: #ffe0b8;
+      color: #f2e6ff;
     }
   </style>
 </head>
@@ -559,9 +454,7 @@
 
           <div class="brand-text">
             <div class="brand-name">Mystic Spells</div>
-            <div class="brand-tagline">
-              A cozy moonlit witch shop inside Euphoria RP.
-            </div>
+            <div class="brand-tagline">A moonlit cottage of potions, tarot, and spellwork in Euphoria RP.</div>
           </div>
         </div>
 
@@ -587,10 +480,10 @@
         </p>
 
         <div class="hero-cta">
-          <a href="#bundles" class="button"><div class="text">Shop Bundles</div></a>
-          <a href="#items" class="button"><div class="text">View Items</div></a>
-          <a href="#rules" class="button"><div class="text">Shop Rules</div></a>
-          <a href="#staff" class="button"><div class="text">Meet the Coven</div></a>
+          <a href="#bundles" class="button">Shop Bundles</a>
+          <a href="#items" class="button">View Items</a>
+          <a href="#rules" class="button">Shop Rules</a>
+          <a href="#staff" class="button">Meet the Coven</a>
         </div>
       </section>
 
@@ -600,9 +493,7 @@
         <!-- RULES -->
         <div class="panel">
           <div class="panel-title">Mystic Spells Shop Rules</div>
-          <div class="panel-subtitle">
-            Welcome, dear witchlings. To keep our coven cozy, magical, and drama‑free:
-          </div>
+          <div class="panel-subtitle">To keep our coven cozy, magical, and drama‑free:</div>
 
           <ul class="rules-list">
             <li>Always RP in character — no OOC in the shop.</li>
@@ -619,9 +510,7 @@
         <!-- ANNOUNCEMENTS -->
         <div class="panel" id="announcements">
           <div class="panel-title">Latest Announcements</div>
-          <div class="panel-subtitle">
-            Pinboard for bans, events, and important coven news.
-          </div>
+          <div class="panel-subtitle">Pinboard for bans, events, and coven news.</div>
 
           <div class="announcement-item">
             <strong>Store Ban:</strong> INJECTED IS BANNED FROM THE STORE.
@@ -743,14 +632,6 @@
                 <div class="special-role">Owner of Mystic Spells</div>
                 <div class="special-bio">The original moonlit witch of the cottage. Keeper of rules, chaos, and all things cursed &amp; cute.</div>
               </div>
-              <div class="special-mask-wrap">
-                <div class="special-mask special-mask-left"></div>
-                <div class="special-mask special-mask-right"></div>
-              </div>
-              <div class="special-loading-wrap">
-                <div class="special-ball special-ball1"></div>
-                <div class="special-ball special-ball2"></div>
-              </div>
             </div>
           </div>
 
@@ -761,14 +642,6 @@
                 <div class="special-name">Alex</div>
                 <div class="special-role">Co‑Owner &amp; Spell Curator</div>
                 <div class="special-bio">The heart of Mystic Spells. Designs bundles, vibes, and the magic that keeps the coven glowing.</div>
-              </div>
-              <div class="special-mask-wrap">
-                <div class="special-mask special-mask-left"></div>
-                <div class="special-mask special-mask-right"></div>
-              </div>
-              <div class="special-loading-wrap">
-                <div class="special-ball special-ball1"></div>
-                <div class="special-ball special-ball2"></div>
               </div>
             </div>
           </div>
@@ -781,14 +654,6 @@
                 <div class="special-role">Coven Favorite</div>
                 <div class="special-bio">The one who never leaves the shelves empty and always brings the best energy into the shop.</div>
               </div>
-              <div class="special-mask-wrap">
-                <div class="special-mask special-mask-left"></div>
-                <div class="special-mask special-mask-right"></div>
-              </div>
-              <div class="special-loading-wrap">
-                <div class="special-ball special-ball1"></div>
-                <div class="special-ball special-ball2"></div>
-              </div>
             </div>
           </div>
 
@@ -799,14 +664,6 @@
                 <div class="special-name">Top Worker</div>
                 <div class="special-role">Most Enchanted Employee</div>
                 <div class="special-bio">Always on shift, always brewing, always making sure the coven is stocked and glowing.</div>
-              </div>
-              <div class="special-mask-wrap">
-                <div class="special-mask special-mask-left"></div>
-                <div class="special-mask special-mask-right"></div>
-              </div>
-              <div class="special-loading-wrap">
-                <div class="special-ball special-ball1"></div>
-                <div class="special-ball special-ball2"></div>
               </div>
             </div>
           </div>
