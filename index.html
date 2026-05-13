@@ -18,35 +18,38 @@
       #000 100%
     );
     color: #e9ddff;
+    text-align: center;
   }
 
   .container {
     max-width: 1100px;
     margin: auto;
     padding: 20px;
-    text-align: center;
   }
 
-  /* LOGO */
   .logo {
-    width: 140px;
+    width: 150px;
     margin: 20px auto;
     display: block;
   }
 
-  /* HERO */
   h1 {
     font-size: 48px;
     margin-bottom: 5px;
+    color: #f2e6ff;
   }
 
   p.subtitle {
-    font-size: 24px;
+    font-size: 22px;
     max-width: 700px;
     margin: 0 auto 25px;
+    color: #e8d8ff;
   }
 
-  /* BUTTONS */
+  nav {
+    margin-bottom: 25px;
+  }
+
   .btn {
     display: inline-block;
     padding: 10px 22px;
@@ -55,14 +58,14 @@
     background: rgba(255,255,255,0.12);
     border: 1px solid rgba(255,255,255,0.25);
     color: #f2e6ff;
-    font-size: 22px;
+    font-size: 20px;
     transition: 0.2s;
   }
+
   .btn:hover {
     background: rgba(255,255,255,0.22);
   }
 
-  /* PANELS */
   .panel {
     background: #1a1426;
     border: 1px solid rgba(255,255,255,0.25);
@@ -73,17 +76,30 @@
   }
 
   .panel h2 {
-    color: #f2e6ff;
-    margin-bottom: 10px;
     font-size: 32px;
+    margin-bottom: 10px;
+    color: #f2e6ff;
   }
 
   .panel p, .panel li {
+    font-size: 20px;
     color: #d8caff;
-    font-size: 22px;
   }
 
   ul { padding-left: 20px; }
+
+  .owner-photo {
+    width: 160px;
+    border-radius: 12px;
+    display: block;
+    margin: 10px 0;
+  }
+
+  @media (max-width: 600px) {
+    h1 { font-size: 34px; }
+    p.subtitle { font-size: 18px; }
+    .btn { font-size: 18px; padding: 8px 16px; }
+  }
 </style>
 </head>
 
@@ -93,17 +109,21 @@
   <!-- LOGO -->
   <img class="logo" src="https://i.imgur.com/6NZVG2f.png" alt="Mystic Spells Logo">
 
-  <!-- HERO -->
+  <!-- TITLE -->
   <h1>Mystic Spells</h1>
   <p class="subtitle">A moonlit cottage of potions, tarot, and spellwork in Euphoria RP.</p>
 
-  <!-- BUTTONS -->
-  <a href="bundles.html" class="btn">Bundles</a>
-  <a href="items.html" class="btn">Items</a>
-  <a href="rules.html" class="btn">Rules</a>
-  <a href="staff.html" class="btn">Staff</a>
+  <!-- NAVIGATION BUTTONS -->
+  <nav>
+    <a href="tarot.html" class="btn">Tarot Readings</a>
+    <a href="calculator.html" class="btn">Bundle Calculator</a>
+    <a href="rules.html" class="btn">Rules</a>
+    <a href="items.html" class="btn">Items</a>
+    <a href="staff.html" class="btn">Staff</a>
+    <a href="location.html" class="btn">Location</a>
+  </nav>
 
-  <!-- RULES PANEL -->
+  <!-- RULES PREVIEW -->
   <div class="panel">
     <h2>Shop Rules</h2>
     <ul>
@@ -117,18 +137,18 @@
     </ul>
   </div>
 
-  <!-- ANNOUNCEMENTS PANEL -->
+  <!-- ANNOUNCEMENTS -->
   <div class="panel">
     <h2>Announcements</h2>
     <p><strong>Store Ban:</strong> INJECTED is banned.</p>
-    <p><strong>Coming Soon:</strong> Tarot readings & spell services.</p>
+    <p><strong>Coming Soon:</strong> Tarot readings, spell services, and more.</p>
   </div>
 
-  <!-- YOUR PHOTO -->
+  <!-- OWNER -->
   <div class="panel">
     <h2>Owner – Alex</h2>
-    <img src="https://i.imgur.com/mnaXdnh.png" style="width:160px;border-radius:12px;margin-bottom:10px;">
-    <p>The heart of Mystic Spells.</p>
+    <img src="https://i.imgur.com/mnaXdnh.png" class="owner-photo" alt="Alex">
+    <p>The heart of Mystic Spells. Designer of vibes, bundles, and magic.</p>
   </div>
 
 </div>
